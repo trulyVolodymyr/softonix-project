@@ -1,0 +1,12 @@
+.app-input {
+  
+  .el-input__wrapper {
+    @apply h-11 text-sm
+    
+  }
+
+  .el-input__wrapper.is-focus {
+    box-shadow: 0 0 0 2px var(--el-input-focus-border-color) inset;
+    @apply border-black
+  }
+}
