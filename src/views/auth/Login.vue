@@ -1,62 +1,95 @@
 <template>
-  <div class="h-full flex items-center justify-center">
-    <el-card class="w-1/3 m-auto">
+  <div
+    v-loading="loading"
+  >
+    <div
+      class="rounded-lg shadow-2xl"
+    >
+      <h3
+        class="mb-5 text-center text-5 py-5 border-b-[1px]"
+      >
+        Login
+      </h3>
+
       <el-form
         ref="formRef"
-        :model="formModel"
         :rules="formRules"
-        label-position="top"
+        :model="formModel"
+        class="w-[500px] space-y-6 px-5"
+        @submit.prevent="submit"
       >
-        <el-form-item label="email" prop="email">
-          <el-input v-model="formModel.email" />
+        <el-form-item prop="email">
+          <el-input
+            v-model="formModel.email"
+            size="large"
+            type="email"
+            class="app-input"
+            placeholder="Email"
+          />
         </el-form-item>
 
-        <el-form-item label="Password" prop="password">
-          <el-input v-model="formModel.password" />
+        <el-form-item prop="password">
+          <el-input
+            v-model="formModel.password"
+            size="large"
+            type="password"
+            placeholder="Password"
+            class="app-input"
+          />
         </el-form-item>
 
-        <el-form-item>
-          <el-button :type="$elComponentType.primary" @click="submitForm">{{ t('auth.login') }}</el-button>
-          <el-button @click="resetForm">{{ t('auth.reset') }}</el-button>
-          <el-button @click="$router.push({ name: $routeNames.rootPage })">{{ t('auth.backToHome') }}</el-button>
-        </el-form-item>
+        <el-button
+          native-type="submit"
+          class="w-full app-button"
+        >
+          Submit
+        </el-button>
       </el-form>
-    </el-card>
+      <h2
+        class="mt-4 px-5 pb-5 text-sm"
+      >
+        Dont have an account?
+        <span>
+          <router-link
+            :to="{name:$routeNames.signUp}"
+            class="underline"
+          >
+            Register</router-link>
+        </span>
+      </h2>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
-const { t } = useI18n()
+const router = useRouter()
+const { $routeNames } = useGlobalProperties()
+
+const { login } = useAuthStore()
 
 const formRef = useElFormRef()
-const formModel = reactive({
+
+const formModel = useElFormModel({
   email: '',
   password: ''
 })
+const loading = ref(false)
 
 const formRules = useElFormRules({
-  email: [
-    useRequiredRule(),
-    useEmailRule()
-  ],
-  password: [
-    useRequiredRule(),
-    useMinLenRule(5)
-  ]
+  email: [useRequiredRule(), useEmailRule()],
+  password: [useRequiredRule(), useMinLenRule(6)]
 })
 
-async function submitForm () {
-  console.log(formRef)
+function submit () {
+  formRef.value?.validate((isValid) => {
+    if (isValid) {
+      loading.value = true
 
-  formRef.value.validate(valid => {
-    if (valid) {
-      alert('submit!')
+      login(formModel)
+        .then(() => router.push({ name: $routeNames.exampleView }))
+        .finally(() => (loading.value = false))
     }
-  })
-}
-
-function resetForm () {
-  formRef.value.resetFields()
-  console.log(formModel)
+  }
+  )
 }
 </script>

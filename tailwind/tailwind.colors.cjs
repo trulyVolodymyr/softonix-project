@@ -6,6 +6,8 @@ module.exports = {
   red: colors.red,
   green: colors.green,
   orange: colors.orange,
+  black: colors.black,
+  transparent: colors.transparent,
 
   // todo: with the following code you can use element colors
   primary: 'var(--el-color-primary)',

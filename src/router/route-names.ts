@@ -5,8 +5,6 @@ export const routeNames = {
   rootPage: 'rootPage',
 
   ...exampleViewRouteNames,
-  ...authRouteNames,
+  ...authRouteNames
 
-  additionalDefaultLayoutRoute: 'additionalDefaultLayoutRoute',
-  additionalNoLayoutRoute: 'additionalNoLayoutRoute'
 }
