@@ -40,7 +40,7 @@
           <el-input
             v-model="formModel.passwordRepeat"
             type="password"
-            placeholder="Repeat Password"
+            placeholder="Confirm Password"
             class="app-input"
           />
         </el-form-item>
@@ -57,11 +57,11 @@
       >
         Alredy have an account?
         <span>
-          <a
-            href="/auth/login"
+          <router-link
+            :to="{name:$routeNames.login}"
             class="underline"
           >
-            Log in</a>
+            Login</router-link>
         </span>
       </h2>
     </div>

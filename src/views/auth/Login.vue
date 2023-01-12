@@ -50,11 +50,11 @@
       >
         Dont have an account?
         <span>
-          <a
-            href="/auth/sign-up"
+          <router-link
+            :to="{name:$routeNames.signUp}"
             class="underline"
           >
-            Register</a>
+            Register</router-link>
         </span>
       </h2>
     </div>
