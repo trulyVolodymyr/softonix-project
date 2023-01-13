@@ -4,13 +4,11 @@
       header
     </header>
 
-    <div class="flex-grow overflow-auto p-4">
+    <div class="flex-grow overflow-auto p-4 bg-gray-300">
       <router-view />
     </div>
 
-    <footer class="p-4 bg-red-200 capitalize shrink-0">
-      example footer
-    </footer>
+    <TheFooter />
   </div>
 </template>
 
