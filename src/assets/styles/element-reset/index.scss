@@ -16,7 +16,10 @@
 @use "element-plus/theme-chalk/src/form-item";
 @use "element-plus/theme-chalk/src/card";
 @use "element-plus/theme-chalk/src/dropdown";
+@use "element-plus/theme-chalk/src/carousel";
+@use "element-plus/theme-chalk/src/carousel-item";
 
 
 @import './app-input.scss';
-@import './app-button.scss'
+@import './app-button.scss';
+@import './app-carousel.scss'
