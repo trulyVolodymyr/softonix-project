@@ -41,11 +41,7 @@
 <script lang="ts" setup>
 
 const authStore = useAuthStore()
+const { logout } = useAuthStore()
 const { accessToken } = storeToRefs(authStore)
-
-function logout () {
-  accessToken.value = null
-  localStorage.removeItem('si-token')
-}
 
 </script>

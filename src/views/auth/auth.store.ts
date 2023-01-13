@@ -27,11 +27,19 @@ export const useAuthStore = defineStore('authStore', () => {
       })
   }
 
+  function logout () {
+    accessToken.value = null
+    refreshToken.value = null
+    localStorage.removeItem('si-token')
+    localStorage.removeItem('ref-token')
+  }
+
   return {
     accessToken,
     refreshToken,
     login,
     register,
+    logout,
     setRefreshToken,
     setToken
   }
