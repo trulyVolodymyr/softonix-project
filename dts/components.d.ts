@@ -24,7 +24,8 @@ declare module '@vue/runtime-core' {
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ExampleViewComponent: typeof import('./../src/views/example-view/components/ExampleViewComponent.vue')['default']
     Footer: typeof import('./../src/components/Footer.vue')['default']
-    HeaderDropdown: typeof import('./../src/components/the-header/HeaderDropdown.vue')['default']
+    Header: typeof import('./../src/components/header/Header.vue')['default']
+    HeaderDropdown: typeof import('./../src/components/header/HeaderDropdown.vue')['default']
     IconAvatar: typeof import('./../src/components/icons/IconAvatar.vue')['default']
     IconCar: typeof import('~icons/icon/car')['default']
     IconCart: typeof import('~icons/icon/cart')['default']
@@ -34,8 +35,8 @@ declare module '@vue/runtime-core' {
     PortalTarget: typeof import('./../src/plugins/portal/PortalTarget.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    TheHeader: typeof import('./../src/components/the-header/TheHeader.vue')['default']
-    UserButton: typeof import('./../src/components/the-header/UserButton.vue')['default']
+    TheHeader: typeof import('./../src/components/header/TheHeader.vue')['default']
+    UserButton: typeof import('./../src/components/header/UserButton.vue')['default']
   }
   export interface ComponentCustomProperties {
     vLoading: typeof import('element-plus/es')['ElLoadingDirective']
