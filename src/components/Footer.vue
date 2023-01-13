@@ -5,7 +5,7 @@
     <h3
       class="text-xs"
     >
-      © 2023 BlahBlaHouse, Inc.
+      © 2023 FindHouse, Inc.
     </h3>
   </div>
 </template>
