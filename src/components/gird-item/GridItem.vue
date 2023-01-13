@@ -246,12 +246,3 @@ const object = ref({
 })
 
 </script>
-
-<style lang="scss">
-.container {
-  .el-carousel__item {
-    @apply h-auto
-  }
-}
-
-</style>
