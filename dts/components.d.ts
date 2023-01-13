@@ -23,6 +23,7 @@ declare module '@vue/runtime-core' {
     ElOption: typeof import('element-plus/es')['ElOption']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ExampleViewComponent: typeof import('./../src/views/example-view/components/ExampleViewComponent.vue')['default']
+    Footer: typeof import('./../src/components/Footer.vue')['default']
     HeaderDropdown: typeof import('./../src/components/the-header/HeaderDropdown.vue')['default']
     IconAvatar: typeof import('./../src/components/icons/IconAvatar.vue')['default']
     IconCar: typeof import('~icons/icon/car')['default']
