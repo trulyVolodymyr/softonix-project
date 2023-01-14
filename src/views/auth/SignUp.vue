@@ -3,7 +3,7 @@
     v-loading="loading"
   >
     <div
-      class="rounded-lg shadow-2xl"
+      class="shadow-2xl"
     >
       <h3
         class="mb-5 text-center text-[20px] py-5 border-b-[1px]"

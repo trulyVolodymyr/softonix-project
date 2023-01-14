@@ -1,10 +1,9 @@
 <template>
-  <div class=" hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 rounded-lg">
+  <div class=" hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
     <el-carousel
       height="250px"
       :autoplay="false"
       trigger="click"
-      class="rounded-t-lg"
     >
       <el-carousel-item
         v-for="item in object.photos.slice(0,8)" :key="item.pictureUrl"
@@ -14,20 +13,20 @@
     </el-carousel>
     <div class="p-3">
       <div class="flex mt-1">
-        <p class="font-bold">
+        <p class="font-bold text-sm">
           {{ object.address }}
         </p>
         <div class="flex items-center ml-auto space-x-1">
           <IconStar />
-          <p>
+          <p class="text-sm">
             {{ object.stars }}
           </p>
         </div>
       </div>
 
-      <p class="mt-1 font-medium">
+      <p class="mt-1 font-medium text-xs">
         {{ object.pricing.rate.amountFormatted }}
-        <span class=" font-normal"> nigth</span>
+        <span class="font-normal"> nigth</span>
       </p>
     </div>
   </div>
@@ -40,7 +39,7 @@
       <el-carousel-item
         v-for="item in object.photos.slice(0,8)" :key="item.pictureUrl"
       >
-        <img class="object-cover w-full h-full shrink-0 rounded-lg" :src="item.pictureUrl" :alt="item.caption">
+        <img class="object-cover w-full h-full shrink-0" :src="item.pictureUrl" :alt="item.caption">
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -53,7 +52,7 @@
       <el-carousel-item
         v-for="item in object.photos.slice(0,8)" :key="item.pictureUrl"
       >
-        <img class="object-cover w-full h-full shrink-0 rounded-lg" :src="item.pictureUrl" :alt="item.caption">
+        <img class="object-cover w-full h-full shrink-0" :src="item.pictureUrl" :alt="item.caption">
       </el-carousel-item>
     </el-carousel>
   </div>
@@ -66,7 +65,7 @@
       <el-carousel-item
         v-for="item in object.photos.slice(0,8)" :key="item.pictureUrl"
       >
-        <img class="object-cover w-full h-full shrink-0 rounded-lg" :src="item.pictureUrl" :alt="item.caption">
+        <img class="object-cover w-full h-full shrink-0" :src="item.pictureUrl" :alt="item.caption">
       </el-carousel-item>
     </el-carousel>
   </div>
