@@ -1,6 +1,7 @@
 export const useAuthStore = defineStore('authStore', () => {
   const accessToken = ref(localStorage.getItem('si-token'))
   const refreshToken = ref(localStorage.getItem('ref-token'))
+  const error = ref(false)
 
   function setToken (token: string) {
     accessToken.value = token
@@ -17,6 +18,8 @@ export const useAuthStore = defineStore('authStore', () => {
       .then((res) => {
         setToken(res.access_token)
         setRefreshToken(res.refresh_token)
+      }).catch(() => {
+        error.value = true
       })
   }
 
@@ -24,6 +27,8 @@ export const useAuthStore = defineStore('authStore', () => {
     return authService.register(payload)
       .then((res) => {
         console.log(res)
+      }).catch(() => {
+        error.value = true
       })
   }
 
@@ -37,6 +42,7 @@ export const useAuthStore = defineStore('authStore', () => {
   return {
     accessToken,
     refreshToken,
+    error,
     login,
     register,
     logout,

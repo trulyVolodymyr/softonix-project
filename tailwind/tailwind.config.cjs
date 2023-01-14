@@ -9,7 +9,10 @@ module.exports = {
     './src/**/*.{vue,js,ts,jsx,tsx}'
   ],
   theme: {
-    colors,
+    colors: {
+      ...colors,
+      modal: 'rgba(255,255,255,0.6)'
+    },
     extend: {
       borderWidth: {
         DEFAULT: '1px'

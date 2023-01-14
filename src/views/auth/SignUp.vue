@@ -1,4 +1,7 @@
 <template>
+  <transition name="fade">
+    <AuthModal v-if="error" />
+  </transition>
   <div
     v-loading="loading"
   >
@@ -73,6 +76,8 @@ const router = useRouter()
 const { $routeNames } = useGlobalProperties()
 
 const { register } = useAuthStore()
+const authStore = useAuthStore()
+const { error } = storeToRefs(authStore)
 
 const formRef = useElFormRef()
 
@@ -105,10 +110,19 @@ function submit () {
       loading.value = true
 
       register(formModel)
-        .then(() => router.push({ name: $routeNames.login }))
+        .then(() => { if (!error.value) { router.push({ name: $routeNames.login }) } })
         .finally(() => (loading.value = false))
     }
   }
   )
 }
 </script>
+
+<style lang="scss">
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to  {
+  opacity: 0;
+}
+</style>

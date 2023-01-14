@@ -1,4 +1,8 @@
 .app-button {
   @apply h-11 bg-black border-2 text-white border-transparent hover:border-black hover:bg-white
-   text-base;
+   text-base rounded-none;
+}
+.app-button-white {
+  @apply w-full h-11 bg-white border-2 text-black border-transparent hover:border-white hover:bg-black
+   text-base rounded-none hover:text-white;
 }
