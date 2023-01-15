@@ -1,4 +1,5 @@
 <template>
+  <!-- <Modal /> -->
   <Grid>
     <GridItem
       v-for="place in object"

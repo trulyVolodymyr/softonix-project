@@ -6,6 +6,11 @@
       </h3>
       <IconHouse />
     </div>
-    <HeaderDropdown />
+    <div
+      class="ml-auto flex space-x-2"
+    >
+      <FiltersButton />
+      <HeaderDropdown />
+    </div>
   </div>
 </template>

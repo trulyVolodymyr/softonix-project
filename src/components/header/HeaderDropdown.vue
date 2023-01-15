@@ -1,6 +1,5 @@
 <template>
   <el-dropdown
-    class="ml-auto"
     trigger="click"
     :hide-on-click="false"
   >
