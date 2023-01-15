@@ -8,6 +8,7 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AuthButton: typeof import('./../src/views/auth/components/AuthButton.vue')['default']
+    AuthModal: typeof import('./../src/views/auth/components/AuthModal.vue')['default']
     Compute: typeof import('./../src/components/Compute.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElButton: typeof import('element-plus/es')['ElButton']
@@ -33,9 +34,11 @@ declare module '@vue/runtime-core' {
     IconAvatar: typeof import('./../src/components/icons/IconAvatar.vue')['default']
     IconCar: typeof import('~icons/icon/car')['default']
     IconCart: typeof import('~icons/icon/cart')['default']
+    IconClose: typeof import('./../src/components/icons/IconClose.vue')['default']
     IconHouse: typeof import('./../src/components/icons/IconHouse.vue')['default']
     IconMenu: typeof import('./../src/components/icons/IconMenu.vue')['default']
     IconStar: typeof import('./../src/components/icons/IconStar.vue')['default']
+    Modal: typeof import('./../src/components/Modal.vue')['default']
     Portal: typeof import('./../src/plugins/portal/Portal.vue')['default']
     PortalTarget: typeof import('./../src/plugins/portal/PortalTarget.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
