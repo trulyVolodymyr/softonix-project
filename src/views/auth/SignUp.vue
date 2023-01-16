@@ -70,8 +70,6 @@ const router = useRouter()
 const { $routeNames } = useGlobalProperties()
 
 const { register } = useAuthStore()
-const authStore = useAuthStore()
-const { error } = storeToRefs(authStore)
 
 const formRef = useElFormRef()
 
@@ -104,16 +102,17 @@ function submit () {
       loading.value = true
 
       register(formModel)
-        .then(() => { if (!error.value) { router.push({ name: $routeNames.login }) } })
+        .then(() => { router.push({ name: $routeNames.login }) })
+        .catch((e) => {
+          ElNotification({
+            title: 'Error!',
+            message: e.error_description || 'Something went wrong.',
+            type: 'error'
+          })
+        })
         .finally(() => (loading.value = false))
     }
   }
   )
 }
-
-watch(error, (currentValue) => {
-  if (currentValue === true) {
-    authService.errorModal()
-  }
-})
 </script>

@@ -1,6 +1,11 @@
-.el-notification{
-  &__content i{
-    @apply not-italic
+.el-notification {
+  &__content {
+    @apply text-left;
+
+    i {
+      @apply not-italic
+    }
   }
+
   @apply rounded-none
 }
