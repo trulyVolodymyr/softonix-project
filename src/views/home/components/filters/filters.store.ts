@@ -18,6 +18,33 @@ export const useFiltersStore = defineStore('filterStore', () => {
   const propertyType = ref(['House'])
   const propertyTypes = ['House', 'Apartment', 'Guesthouse', 'Hotel']
 
+  const amenities = ref({
+    essentials: {
+      wifi: false,
+      washer: false,
+      airConditioning: false,
+      dedicatedWorkspace: false,
+      hairDryer: false,
+      kitchen: false,
+      dryer: false,
+      heating: false,
+      tv: false,
+      iron: false
+    },
+    features: {
+      pool: false,
+      freeParking: false,
+      crib: false,
+      bbqGrill: false,
+      indoorFireplace: false,
+      hotTub: false,
+      evCharger: false,
+      gym: false,
+      breakfast: false,
+      smokingAllowed: false
+    }
+  })
+
   return {
     filtersModalVisability,
     priceRange,
@@ -29,7 +56,7 @@ export const useFiltersStore = defineStore('filterStore', () => {
     beds,
     bathrooms,
     propertyType,
-    propertyTypes
-
+    propertyTypes,
+    amenities
   }
 })
