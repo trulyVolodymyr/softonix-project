@@ -1,0 +1,32 @@
+.el-checkbox{
+  &__label{
+    @apply text-white
+  }
+  &__inner{
+    @apply rounded-none
+  }
+  &__input.is-checked + &__label{
+    @apply text-white
+  }
+  &__input.is-checked &__inner{
+    @apply border-[1px] border-white
+  }
+}
+.el-checkbox-button{
+  &:first-child &__inner{
+    @apply rounded-none
+  }
+  &:last-child &__inner{
+    @apply rounded-none
+  }
+  & &__inner{
+    @apply border-[1px] border-white
+  }
+  &.is-checked &__inner{
+    @apply border-[1px] border-white
+  }
+  &.is-checked:first-child &__inner{
+    @apply border-[1px] border-white
+  }
+  @apply mr-3
+}

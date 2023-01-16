@@ -1,6 +1,6 @@
-.app-input {
+.el-input {
   .el-input__wrapper {
-    @apply h-11 text-sm;
+    @apply h-11 text-sm rounded-none;
   }
 
   .el-input__wrapper.is-focus {

@@ -17,8 +17,8 @@ const app = createApp(App)
 app
   .use(store)
   .use(router)
-  .use(PortalPlugin)
   .use(I18nPlugin)
+  .use(PortalPlugin)
   .use(VueGlobalPropertiesPlugin)
 
 router.isReady().then(() => {

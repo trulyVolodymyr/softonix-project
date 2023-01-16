@@ -1,7 +1,6 @@
 <template>
-  <transition name="fade">
-    <AuthModal v-if="error" />
-  </transition>
+  <AuthModal v-if="error" />
+
   <div
     v-loading="loading"
   >
@@ -26,7 +25,6 @@
             v-model="formModel.email"
             type="email"
             placeholder="Email"
-            class="app-input"
           />
         </el-form-item>
 
@@ -35,7 +33,6 @@
             v-model="formModel.password"
             type="password"
             placeholder="Password"
-            class="app-input"
           />
         </el-form-item>
 
@@ -44,7 +41,6 @@
             v-model="formModel.passwordRepeat"
             type="password"
             placeholder="Confirm Password"
-            class="app-input"
           />
         </el-form-item>
 
@@ -117,12 +113,3 @@ function submit () {
   )
 }
 </script>
-
-<style lang="scss">
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to  {
-  opacity: 0;
-}
-</style>

@@ -18,9 +18,16 @@
 @use "element-plus/theme-chalk/src/dropdown";
 @use "element-plus/theme-chalk/src/carousel";
 @use "element-plus/theme-chalk/src/carousel-item";
+@use "element-plus/theme-chalk/src/slider";
+@use "element-plus/theme-chalk/src/checkbox";
+@use "element-plus/theme-chalk/src/checkbox-button";
+@use "element-plus/theme-chalk/src/radio";
 
 
 @import './app-input.scss';
 @import './app-button.scss';
 @import './app-carousel.scss';
-@import './app-dropdown.scss'
+@import './app-dropdown.scss';
+@import './app-slider.scss';
+@import './app-checkbox.scss';
+@import './app-radio.scss';

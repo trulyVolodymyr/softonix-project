@@ -1,7 +1,6 @@
 <template>
-  <transition name="fade">
-    <AuthModal v-if="error" />
-  </transition>
+  <AuthModal v-if="error" />
+
   <div
     v-loading="loading"
   >
@@ -26,7 +25,6 @@
             v-model="formModel.email"
             size="large"
             type="email"
-            class="app-input"
             placeholder="Email"
           />
         </el-form-item>
@@ -37,7 +35,6 @@
             size="large"
             type="password"
             placeholder="Password"
-            class="app-input"
           />
         </el-form-item>
 
@@ -91,19 +88,10 @@ function submit () {
       loading.value = true
 
       login(formModel)
-        .then(() => { if (!error.value) { router.push({ name: $routeNames.exampleView }) } })
+        .then(() => { if (!error.value) { router.push({ name: $routeNames.home }) } })
         .finally(() => (loading.value = false))
     }
   }
   )
 }
 </script>
-
-<style lang="scss">
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to  {
-  opacity: 0;
-}
-</style>
