@@ -1,0 +1,6 @@
+.el-notification{
+  &__content i{
+    @apply not-italic
+  }
+  @apply rounded-none
+}

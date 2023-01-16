@@ -22,6 +22,7 @@
 @use "element-plus/theme-chalk/src/checkbox";
 @use "element-plus/theme-chalk/src/checkbox-button";
 @use "element-plus/theme-chalk/src/radio";
+@use "element-plus/theme-chalk/src/notification";
 
 
 @import './app-input.scss';
@@ -31,3 +32,4 @@
 @import './app-slider.scss';
 @import './app-checkbox.scss';
 @import './app-radio.scss';
+@import './app-notification.scss';
