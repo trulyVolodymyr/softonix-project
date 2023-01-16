@@ -1,10 +1,10 @@
 <template>
-  <div class="overflow-y-auto h-full">
-    <div
-      class="text-right filter-item"
-    >
-      <FiltersClose />
-    </div>
+  <div
+    class="text-right filter-item"
+  >
+    <FiltersClose />
+  </div>
+  <div class="overflow-y-auto h-[600px] pr-3">
     <div class="filter-item">
       <FiltersRange />
     </div>

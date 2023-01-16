@@ -12,6 +12,7 @@
     </div>
   </Teleport>
 </template>
+
 <script lang='ts' setup>
 defineProps<{
   wide?: boolean
