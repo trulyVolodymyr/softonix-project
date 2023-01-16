@@ -1,6 +1,4 @@
 <template>
-  <AuthModal v-if="error" />
-
   <div
     v-loading="loading"
   >
@@ -94,4 +92,10 @@ function submit () {
   }
   )
 }
+
+watch(error, (currentValue) => {
+  if (currentValue === true) {
+    authService.errorModal()
+  }
+})
 </script>

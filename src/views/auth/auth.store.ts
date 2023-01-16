@@ -14,6 +14,7 @@ export const useAuthStore = defineStore('authStore', () => {
   }
 
   function login (payload: ILoginRequest) {
+    error.value = false
     return authService.login(payload)
       .then((res) => {
         setToken(res.access_token)
@@ -24,6 +25,7 @@ export const useAuthStore = defineStore('authStore', () => {
   }
 
   function register (payload: ILoginRequest) {
+    error.value = false
     return authService.register(payload)
       .then((res) => {
         console.log(res)

@@ -1,5 +1,5 @@
 <template>
-  <Modal v-if="filtersModalVisability" wide>
+  <Modal v-if="filtersModalVisability">
     <Filters />
   </Modal>
   <Grid>
