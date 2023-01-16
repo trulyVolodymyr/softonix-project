@@ -5,9 +5,15 @@
     >
       <div
         class="bg-black w-[450px] p-5"
+        :class="{'w-[650px]': wide}"
       >
         <slot />
       </div>
     </div>
   </Teleport>
 </template>
+<script lang='ts' setup>
+defineProps<{
+  wide?: boolean
+}>()
+</script>

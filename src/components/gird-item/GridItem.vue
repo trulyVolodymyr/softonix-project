@@ -13,18 +13,18 @@
     </el-carousel>
     <div class="p-3">
       <div class="flex mt-1">
-        <p class="font-bold">
+        <p class="font-bold text-sm">
           {{ address }}
         </p>
         <div class="flex items-center ml-auto space-x-1">
           <IconStar />
-          <p>
+          <p class="text-sm">
             {{ stars }}
           </p>
         </div>
       </div>
 
-      <p class="mt-1 font-medium">
+      <p class="mt-1 font-medium text-xs">
         {{ price }}
         <span class=" font-normal">night</span>
       </p>
