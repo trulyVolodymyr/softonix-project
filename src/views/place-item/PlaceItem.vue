@@ -52,11 +52,11 @@
       </li>
     </ul>
 
-    <div class="grid grid-container">
+    <div class="grid gap-5 grid-container">
       <div
         v-for="item in place.reviews"
         :key="item.author.id"
-        class="max-w-[400px] mb-4"
+        class="w-full mb-4"
       >
         <div
           class="flex mb-2"
@@ -302,6 +302,6 @@ const place = ref(
 
 <style>
 .grid-container {
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 450px));
 }
 </style>
