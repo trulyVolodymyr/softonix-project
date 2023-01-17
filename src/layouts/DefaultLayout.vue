@@ -1,9 +1,10 @@
 <template>
-  <div class="flex flex-col h-full overflow-hidden">
+  <div class="flex flex-col h-full overflow-hidden items-center">
     <Header />
-
-    <div class="flex-grow overflow-auto p-4">
-      <router-view />
+    <div class="w-full flex-grow overflow-auto flex justify-center">
+      <div class="flex-grow p-6 max-w-[1440px] w-full">
+        <router-view />
+      </div>
     </div>
 
     <Footer />

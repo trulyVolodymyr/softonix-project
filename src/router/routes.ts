@@ -4,6 +4,7 @@ import { routeNames } from './route-names'
 
 import { authRoutes } from '@/views/auth/auth.routes'
 import { homeRoutes } from '@/views/home/home.routes'
+import { placeItemRoutes } from '@/views/place-item/place-item.routes'
 
 import DefaultLayout from '@/layouts/DefaultLayout.vue'
 
@@ -13,7 +14,8 @@ const defaultLayoutRoutes: RouteRecordRaw = {
   redirect: { name: routeNames.home },
   component: DefaultLayout,
   children: [
-    ...homeRoutes
+    ...homeRoutes,
+    ...placeItemRoutes
   ]
 }
 
