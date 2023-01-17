@@ -20,7 +20,7 @@
     <img
       v-for="item in place.photos.slice(0,5)"
       :key="item.pictureUrl"
-      class="first-of-type:col-span-2 first-of-type:row-span-2"
+      class="first-of-type:col-span-2 first-of-type:row-span-2 first-of-type:w-full"
       :src="item.pictureUrl"
       :alt="item.caption"
     >
