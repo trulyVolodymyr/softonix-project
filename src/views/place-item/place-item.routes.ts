@@ -2,7 +2,6 @@ import type { RouteRecordRaw } from 'vue-router'
 
 export const placeItemRouteNames = {
   placeItem: 'placeItem'
-
 }
 
 export const placeItemRoutes: Array<RouteRecordRaw> = [

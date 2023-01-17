@@ -23,6 +23,8 @@
 @use "element-plus/theme-chalk/src/checkbox-button";
 @use "element-plus/theme-chalk/src/radio";
 @use "element-plus/theme-chalk/src/notification";
+@use "element-plus/theme-chalk/src/date-picker";
+@use "element-plus/theme-chalk/src/input-number";
 
 
 @import './app-input.scss';
@@ -33,3 +35,4 @@
 @import './app-checkbox.scss';
 @import './app-radio.scss';
 @import './app-notification.scss';
+@import './app-input-number.scss';

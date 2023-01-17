@@ -15,7 +15,6 @@
 </template>
 
 <script lang="ts" setup>
-
 const { object } = useHomeStore()
 
 const filterStore = useFiltersStore()

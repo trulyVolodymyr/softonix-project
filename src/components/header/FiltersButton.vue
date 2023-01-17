@@ -13,5 +13,6 @@ const { filtersModalVisability } = storeToRefs(filterStore)
 
 function showFiltersModal () {
   filtersModalVisability.value = true
+  console.log(filtersModalVisability.value)
 }
 </script>
