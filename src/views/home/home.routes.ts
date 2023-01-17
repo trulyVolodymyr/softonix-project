@@ -10,6 +10,5 @@ export const homeRoutes: Array<RouteRecordRaw> = [
     path: 'home',
     name: homeRouteNames.home,
     component: () => import('./Home.vue')
-
   }
 ]

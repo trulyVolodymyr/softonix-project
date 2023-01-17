@@ -2,7 +2,7 @@
   <div class="flex flex-col h-full overflow-hidden">
     <Header />
 
-    <div class="flex-grow overflow-auto p-4">
+    <div class="flex-grow overflow-auto p-10">
       <router-view />
     </div>
 

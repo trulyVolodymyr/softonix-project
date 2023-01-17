@@ -1,5 +1,5 @@
 
-export const useHomeStore = defineStore('homeStore', () => {
+export const useHomeStore = defineStore('HomeStore', () => {
   const object = ref([
     {
       id: 1,
