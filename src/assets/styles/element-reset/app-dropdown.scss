@@ -1,3 +1,6 @@
 .el-popper {
 border-radius: 0 ;
 }
+.el-dropdown-menu__item:not(.is-disabled):focus {
+  @apply bg-white
+}
