@@ -22,8 +22,9 @@
         type="primary"
         trigger="click"
         :hide-on-click="false"
+        class="w-full"
       >
-        <el-button class="app-button-reserve">
+        <el-button class="app-button w-full">
           {{ numberOfGuest }}
         </el-button>
 
@@ -53,7 +54,7 @@
         <p class="text-sm">${{ serviceFee }}</p>
       </div>
 
-      <el-button class="app-button-reserve mt-4">
+      <el-button class="app-button w-full mt-4">
         Check out
       </el-button>
     </div>
