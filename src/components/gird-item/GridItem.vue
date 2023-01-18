@@ -11,14 +11,14 @@
     </el-carousel>
 
     <div class="p-3">
-      <div class="flex mt-1">
-        <p class="font-bold text-sm">{{ address }}</p>
-        <div class="flex items-center ml-auto space-x-1">
-          <IconStar /><p class="text-sm">{{ stars }}</p>
+      <div class="flex justify-between mt-1">
+        <p class="font-bold text-xs whitespace-nowrap overflow-hidden text-ellipsis">{{ address }}</p>
+        <div v-if="stars" class="flex items-center space-x-1 ml-2">
+          <IconStar /><p class="text-xs">{{ stars }}</p>
         </div>
       </div>
 
-      <p class="mt-1 font-medium text-xs">{{ price }}<span class=" font-normal">night</span></p>
+      <p class="mt-1 font-medium text-xs">{{ price }}<span class="font-normal"> night</span></p>
     </div>
   </div>
 </template>
