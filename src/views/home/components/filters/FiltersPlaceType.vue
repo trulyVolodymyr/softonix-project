@@ -1,12 +1,6 @@
 <template>
-  <h3
-    class="text-white text-lg text-center"
-  >
-    Type of place
-  </h3>
-  <div
-    class="flex"
-  >
+  <h3 class="text-white text-lg text-center">Type of place</h3>
+  <div class="flex">
     <el-checkbox v-model="typeEntire" label="Entire place" size="large" />
     <el-checkbox v-model="typePrivate" label="Private room" size="large" />
   </div>

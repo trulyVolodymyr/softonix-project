@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="text-right filter-item"
-  >
+  <div class="text-right filter-item">
     <FiltersClose />
   </div>
   <div class="overflow-y-auto h-[600px] pr-3">

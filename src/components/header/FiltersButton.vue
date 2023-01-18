@@ -1,10 +1,5 @@
 <template>
-  <el-button
-    class="app-button-header"
-    @click="showFiltersModal"
-  >
-    Filters
-  </el-button>
+  <el-button class="app-button-header" @click="showFiltersModal">Filters</el-button>
 </template>
 
 <script lang="ts" setup>
