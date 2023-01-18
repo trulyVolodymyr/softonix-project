@@ -1,12 +1,6 @@
 <template>
   <div class="ml-auto shadow-2xl p-2 h-[max-content]">
-    <p class="mb-4">
-      <span
-        class="font-bold text-lg"
-      >
-        $ {{ place.pricing.rate.amount }}
-      </span> night
-    </p>
+    <p class="mb-4"><span class="font-bold text-lg">$ {{ place.pricing.rate.amount }}</span> night</p>
     <el-date-picker
       v-model="dates"
       type="daterange"
@@ -24,9 +18,7 @@
         :hide-on-click="false"
         class="w-full"
       >
-        <el-button class="app-button w-full">
-          {{ numberOfGuest }}
-        </el-button>
+        <el-button class="app-button w-full">{{ numberOfGuest }}</el-button>
 
         <template #dropdown>
           <el-dropdown-menu>
@@ -38,25 +30,18 @@
       </el-dropdown>
     </div>
 
-    <div
-      v-if="numberOfDays"
-      class="mt-5"
-    >
+    <div v-if="numberOfDays" class="mt-5">
       <div class="flex justify-between mb-2">
         <p class="text-sm">${{ place.pricing.rate.amount }} x {{ numberOfDays }} nigths </p>
         <p class="text-sm">${{ totalSum }}</p>
       </div>
 
       <div class="flex justify-between">
-        <p class="text-sm">
-          Service fee
-        </p>
+        <p class="text-sm">Service fee</p>
         <p class="text-sm">${{ serviceFee }}</p>
       </div>
 
-      <el-button class="app-button w-full mt-4">
-        Check out
-      </el-button>
+      <el-button class="app-button w-full mt-4">Check out</el-button>
     </div>
   </div>
 </template>

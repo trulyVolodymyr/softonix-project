@@ -1,22 +1,15 @@
 <template>
-  <h3
-    class="text-xl font-bold mb-3"
-  >
-    {{ place.name }}
-  </h3>
+  <h3 class="text-xl font-bold mb-3">{{ place.name }}</h3>
+
   <div class="flex space-x-5 mb-3">
     <p>{{ place.address }}</p>
     <p>{{ place.reviews.length }} reviews</p>
     <div class="flex items-center space-x-1">
-      <IconStar />
-      <p class="text-sm">
-        {{ place.stars }}
-      </p>
+      <IconStar /><p class="text-sm">{{ place.stars }}</p>
     </div>
   </div>
-  <div
-    class="grid grid-cols-4 gap-4 mb-4"
-  >
+
+  <div class="grid grid-cols-4 gap-4 mb-4">
     <img
       v-for="item in place.photos.slice(0,5)"
       :key="item.pictureUrl"
@@ -26,36 +19,26 @@
       :alt="item.caption"
     >
   </div>
-  <p
-    class="text-lg font-bold"
-  >
-    {{ place.roomType }} hosted by {{ place.primaryHost.firstName }}
-  </p>
-  <p class="pb-4 border-b-[1px] border-black mb-3">
-    {{ placeInfo }}
-  </p>
+
+  <p class="text-lg font-bold"> {{ place.roomType }} hosted by {{ place.primaryHost.firstName }}</p>
+  <p class="pb-4 border-b-[1px] border-black mb-3"> {{ placeInfo }}</p>
+
   <div>
     <div class="flex">
       <div>
-        <h3
-          class="text-xl font-bold mb-3"
-        >
-          What this place offers
-        </h3>
+        <h3 class="text-xl font-bold mb-3">What this place offers</h3>
 
         <ul class="grid grid-cols-2 mb-8 p-2 shadow-2xl">
           <li v-for="item in place.amenities.essentials" :key="item">
-            <p class="font-medium mb-1">
-              - {{ item }}
-            </p>
+            <p class="font-medium mb-1"> - {{ item }}</p>
           </li>
+
           <li v-for="item in place.amenities.features" :key="item">
-            <p class="font-medium mb-1">
-              - {{ item }}
-            </p>
+            <p class="font-medium mb-1">- {{ item }}</p>
           </li>
         </ul>
       </div>
+
       <PlaceItemReserve />
     </div>
 
@@ -65,25 +48,18 @@
         :key="item.author.id"
         class="w-full mb-4 shadow-2xl p-2"
       >
-        <div
-          class="flex mb-2"
-        >
+        <div class="flex mb-2">
           <img
             class=" w-10 h-10 mr-8"
-            :src="item.author.pictureUrl" :alt="item.author.firstName"
+            :src="item.author.pictureUrl"
+            :alt="item.author.firstName"
           >
           <div>
-            <p class=" text-sm font-bold">
-              {{ item.author.firstName }}
-            </p>
-            <p class=" text-sm font-bold">
-              {{ formatDate(item.createdAt) }}
-            </p>
+            <p class=" text-sm font-bold">{{ item.author.firstName }}</p>
+            <p class=" text-sm font-bold">{{ formatDate(item.createdAt) }}</p>
           </div>
         </div>
-        <p class="text-sm">
-          {{ item.comments }}
-        </p>
+        <p class="text-sm">{{ item.comments }}</p>
       </div>
     </div>
   </div>

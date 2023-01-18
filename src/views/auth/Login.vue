@@ -86,8 +86,6 @@ function submit () {
       login(formModel)
         .then(() => { router.push({ name: $routeNames.home }) })
         .catch((e) => {
-          console.log(e)
-
           ElNotification({
             title: 'Error',
             message: e.error_description || 'Something went wrong.',
