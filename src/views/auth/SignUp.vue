@@ -1,15 +1,7 @@
 <template>
-  <div
-    v-loading="loading"
-  >
-    <div
-      class="shadow-2xl"
-    >
-      <h3
-        class="mb-5 text-center text-[20px] py-5 border-b-[1px]"
-      >
-        Registration
-      </h3>
+  <div v-loading="loading">
+    <div class="shadow-2xl">
+      <h3 class="mb-5 text-center text-[20px] py-5 border-b-[1px]">Registration</h3>
 
       <el-form
         ref="formRef"
@@ -42,23 +34,13 @@
           />
         </el-form-item>
 
-        <el-button
-          native-type="submit"
-          class="w-full app-button"
-        >
-          Submit
-        </el-button>
+        <el-button native-type="submit" class="w-full app-button">Submit</el-button>
       </el-form>
-      <h2
-        class="mt-4 px-5 pb-5 text-sm"
-      >
+
+      <h2 class="mt-4 px-5 pb-5 text-sm">
         Alredy have an account?
         <span>
-          <router-link
-            :to="{name:$routeNames.login}"
-            class="underline"
-          >
-            Login</router-link>
+          <router-link :to="{name:$routeNames.login}" class="underline">Login</router-link>
         </span>
       </h2>
     </div>

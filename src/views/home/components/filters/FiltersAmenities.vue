@@ -1,14 +1,6 @@
 <template>
-  <h3
-    class="text-white text-lg text-center mb-4"
-  >
-    Amenities
-  </h3>
-  <h4
-    class="text-white underline"
-  >
-    Essentials
-  </h4>
+  <h3 class="text-white text-lg text-center mb-4">Amenities</h3>
+  <h4 class="text-white underline">Essentials</h4>
   <div>
     <el-checkbox v-model="amenities.essentials.wifi" label="Wifi" size="large" />
     <el-checkbox v-model="amenities.essentials.washer" label="Washer" size="large" />
@@ -21,11 +13,7 @@
     <el-checkbox v-model="amenities.essentials.tv" label="TV" size="large" />
     <el-checkbox v-model="amenities.essentials.iron" label="Iron" size="large" />
   </div>
-  <h4
-    class="text-white underline"
-  >
-    Features
-  </h4>
+  <h4 class="text-white underline">Features</h4>
   <div>
     <el-checkbox v-model="amenities.features.pool" label="Pool" size="large" />
     <el-checkbox v-model="amenities.features.freeParking" label="Free parking on premises" size="large" />

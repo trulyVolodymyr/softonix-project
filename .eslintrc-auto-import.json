@@ -212,6 +212,7 @@
     "usePageLeave": true,
     "useParallax": true,
     "usePermission": true,
+    "usePlaceItemStore": true,
     "usePointer": true,
     "usePointerSwipe": true,
     "usePreferredColorScheme": true,

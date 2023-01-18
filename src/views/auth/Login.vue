@@ -1,15 +1,7 @@
 <template>
-  <div
-    v-loading="loading"
-  >
-    <div
-      class="shadow-2xl"
-    >
-      <h3
-        class="mb-5 text-center text-5 py-5 border-b-[1px]"
-      >
-        Login
-      </h3>
+  <div v-loading="loading">
+    <div class="shadow-2xl">
+      <h3 class="mb-5 text-center text-5 py-5 border-b-[1px]">Login</h3>
 
       <el-form
         ref="formRef"
@@ -43,16 +35,11 @@
           Submit
         </el-button>
       </el-form>
-      <h2
-        class="mt-4 px-5 pb-5 text-sm"
-      >
+
+      <h2 class="mt-4 px-5 pb-5 text-sm">
         Dont have an account?
         <span>
-          <router-link
-            :to="{name:$routeNames.signUp}"
-            class="underline"
-          >
-            Register</router-link>
+          <router-link :to="{name:$routeNames.signUp}" class="underline">Register</router-link>
         </span>
       </h2>
     </div>
@@ -86,8 +73,6 @@ function submit () {
       login(formModel)
         .then(() => { router.push({ name: $routeNames.home }) })
         .catch((e) => {
-          console.log(e)
-
           ElNotification({
             title: 'Error',
             message: e.error_description || 'Something went wrong.',

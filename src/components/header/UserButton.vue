@@ -1,7 +1,5 @@
 <template>
-  <div
-    class="header-button-hover"
-  >
+  <div class="header-button-hover">
     <IconMenu />
     <IconAvatar />
   </div>

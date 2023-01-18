@@ -1,0 +1,5 @@
+.el-dropdown{
+  &__popper.el-popper{
+    @apply w-[300px]
+  }
+}
