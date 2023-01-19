@@ -10,6 +10,7 @@ export const useFiltersStore = defineStore('filterStore', () => {
 
   const typeEntire = ref<boolean>(false)
   const typePrivate = ref<boolean>(false)
+  const typeShared = ref<boolean>(false)
 
   const bedroms = ref(1)
   const beds = ref(1)
@@ -42,7 +43,17 @@ export const useFiltersStore = defineStore('filterStore', () => {
       gym: false,
       breakfast: false,
       smokingAllowed: false
+    },
+    location: {
+      beachfront: false,
+      waterfront: false,
+      skiOut: false
+    },
+    safety: {
+      smokeAlarm: false,
+      carbonMonoxideAlarm: false
     }
+
   })
 
   return {
@@ -57,6 +68,7 @@ export const useFiltersStore = defineStore('filterStore', () => {
     bathrooms,
     propertyType,
     propertyTypes,
-    amenities
+    amenities,
+    typeShared
   }
 })

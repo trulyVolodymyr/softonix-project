@@ -1,5 +1,5 @@
 <template>
-  <div class="header-button-hover">
+  <div class="header-button-hover h-[44px]">
     <IconMenu />
     <IconAvatar />
   </div>

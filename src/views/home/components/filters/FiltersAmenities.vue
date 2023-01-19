@@ -26,6 +26,17 @@
     <el-checkbox v-model="amenities.features.breakfast" label="Breakfast" size="large" />
     <el-checkbox v-model="amenities.features.smokingAllowed" label="Smoking allowed" size="large" />
   </div>
+  <h4 class="text-white underline">Location</h4>
+  <div>
+    <el-checkbox v-model="amenities.location.beachfront" label="Beachfront" size="large" />
+    <el-checkbox v-model="amenities.location.waterfront" label="Waterfront" size="large" />
+    <el-checkbox v-model="amenities.location.skiOut" label="Ski-in/ski-out" size="large" />
+  </div>
+  <h4 class="text-white underline">Safety</h4>
+  <div>
+    <el-checkbox v-model="amenities.safety.smokeAlarm" label="Smoke alarm" size="large" />
+    <el-checkbox v-model="amenities.safety.carbonMonoxideAlarm" label="Carbon monoxide alarm" size="large" />
+  </div>
 </template>
 
 <script lang='ts' setup>
