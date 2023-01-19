@@ -2,7 +2,7 @@
   <div class="flex flex-col h-full overflow-hidden items-center">
     <Header />
 
-    <div class="w-full flex-grow overflow-auto flex justify-center">
+    <div class="w-full vova flex-grow overflow-auto flex justify-center">
       <div class="flex-grow p-6 max-w-[1440px] w-full">
         <router-view />
       </div>
@@ -11,7 +11,3 @@
     <Footer />
   </div>
 </template>
-
-<script lang="ts" setup>
-
-</script>
