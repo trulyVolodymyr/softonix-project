@@ -31,8 +31,8 @@ const end = ref(12)
 const load = () => {
   start.value = start.value + 12
   end.value = end.value + 12
-  const vova = object.slice(start.value, end.value)
-  vova.forEach(el => placesShowed.value.push(el))
+  const addedPlaces = object.slice(start.value, end.value)
+  placesShowed.value.push(...addedPlaces)
 }
 
 const filterStore = useFiltersStore()
