@@ -18,6 +18,13 @@
     <div class="filter-item">
       <FiltersAmenities />
     </div>
+    <div class="flex justify-end mt-4">
+      <el-button
+        class="app-button border-[1px] border-white hover:border-[1px] hover:border-white"
+      >
+        Aplly filters
+      </el-button>
+    </div>
   </div>
 </template>
 

@@ -3,7 +3,7 @@
     <Header />
 
     <div class="w-full flex-grow overflow-auto flex justify-center">
-      <div class="flex-grow p-6 max-w-[1440px] w-full">
+      <div class="flex-grow  max-w-[1440px] w-full">
         <router-view />
       </div>
     </div>

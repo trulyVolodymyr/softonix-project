@@ -6,9 +6,21 @@
         <IconHouse />
       </div>
       <div class="ml-auto flex space-x-2">
-        <FiltersButton />
+        <template v-if="isHomePage">
+          <FiltersButton />
+        </template>
         <HeaderDropdown />
       </div>
     </div>
   </div>
 </template>
+
+<script lang='ts' setup>
+import { routeNames } from '@/router'
+const { name } = useRoute()
+
+const isHomePage = computed(() => {
+  return name === routeNames.home
+})
+
+</script>

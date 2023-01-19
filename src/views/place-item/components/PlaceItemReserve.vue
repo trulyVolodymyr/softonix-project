@@ -21,7 +21,7 @@
         <el-button class="app-button w-full">{{ numberOfGuest }}</el-button>
 
         <template #dropdown>
-          <el-dropdown-menu>
+          <el-dropdown-menu class="place-item-dropdown">
             <el-dropdown-item>
               <PlaceItemNumberOfGuests />
             </el-dropdown-item>
