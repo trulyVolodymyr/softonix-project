@@ -34,7 +34,7 @@ export const useAuthStore = defineStore('authStore', () => {
     localStorage.removeItem('si-token')
     localStorage.removeItem('ref-token')
 
-    window.location.href = router.resolve(routeNames.login).href
+    window.location.href = router.resolve(routeNames.home).href
 
     ElNotification({
       title: 'You are logged out.',
