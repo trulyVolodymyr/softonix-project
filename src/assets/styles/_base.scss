@@ -21,7 +21,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-img, svg {
+img,
+svg {
   display: initial;
 }
 
@@ -40,6 +41,7 @@ label {
   border-radius: 16px;
   border: 2px solid #fff;
 }
+
 
 /* set button(top and bottom of the scrollbar) */
 *::-webkit-scrollbar-button {
