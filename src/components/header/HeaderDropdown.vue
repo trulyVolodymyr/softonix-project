@@ -5,7 +5,7 @@
     <template #dropdown>
       <el-dropdown-menu>
         <template v-if="accessToken">
-          <el-dropdown-item @click="logout">Logout</el-dropdown-item>
+          <el-dropdown-item class="block text-center" @click="logout"><p>Logout</p></el-dropdown-item>
         </template>
 
         <template v-else>
