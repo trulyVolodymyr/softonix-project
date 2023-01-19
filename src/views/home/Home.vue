@@ -2,11 +2,8 @@
   <Modal v-if="filtersModalVisability">
     <Filters />
   </Modal>
-  <ul
-    v-infinite-scroll="load"
-    class="infinite-list"
-    style="overflow: auto"
-  >
+
+  <div class="p-6">
     <Grid>
       <GridItem
         v-for="place in placesShowed"
@@ -17,7 +14,8 @@
         :price="place.pricing.rate.amountFormatted"
       />
     </Grid>
-  </ul>
+    <div ref="trigger" class="more" />
+  </div>
 </template>
 
 <script lang="ts" setup>
@@ -28,15 +26,41 @@ const placesShowed = ref(object.slice(0, 12))
 const start = ref(0)
 const end = ref(12)
 
-const load = () => {
-  start.value = start.value + 12
-  end.value = end.value + 12
-  const addedPlaces = object.slice(start.value, end.value)
-  placesShowed.value.push(...addedPlaces)
-}
+const trigger = ref<Element>()
 
 const filterStore = useFiltersStore()
 const { filtersModalVisability } = storeToRefs(filterStore)
+
+function loadItems () {
+  new Promise((resolve) => {
+    start.value = start.value + 12
+    end.value = end.value + 12
+    resolve(object.slice(start.value, end.value))
+  }).then((data: any) => {
+    placesShowed.value.push(...data)
+  })
+}
+
+const options = {
+  root: null,
+  rootMargin: '300px',
+  threshold: 0
+}
+const observer = new IntersectionObserver(callBack, options)
+
+function callBack (entries: any) {
+  entries.forEach((entry: any) => {
+    if (entry.isIntersecting) {
+      loadItems()
+    }
+  })
+}
+
+onMounted(() => {
+  if (trigger.value) {
+    observer.observe(trigger.value)
+  }
+})
 
 </script>
 

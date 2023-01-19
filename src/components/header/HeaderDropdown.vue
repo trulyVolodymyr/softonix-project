@@ -1,5 +1,5 @@
 <template>
-  <el-dropdown trigger="click" :hide-on-click="false">
+  <el-dropdown trigger="click" :hide-on-click="false" class="header">
     <UserButton class="el-dropdown-link" />
 
     <template #dropdown>
@@ -10,11 +10,11 @@
 
         <template v-else>
           <el-dropdown-item>
-            <router-link :to="{name:$routeNames.login}">Login</router-link>
+            <router-link class="w-full text-center" :to="{name:$routeNames.login}">Login</router-link>
           </el-dropdown-item>
 
           <el-dropdown-item>
-            <router-link :to="{name:$routeNames.signUp}">Register</router-link>
+            <router-link class="w-full text-center" :to="{name:$routeNames.signUp}">Register</router-link>
           </el-dropdown-item>
         </template>
       </el-dropdown-menu>
