@@ -1,3 +1,3 @@
 <template>
-  <h3>Orders</h3>
+  <h3>orders</h3>
 </template>

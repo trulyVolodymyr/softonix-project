@@ -38,7 +38,7 @@
 </template>
 
 <script lang='ts' setup>
-const adults = ref(0)
+const adults = ref(1)
 const children = ref(0)
 const infants = ref(0)
 
