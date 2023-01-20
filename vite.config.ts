@@ -28,6 +28,9 @@ export default defineConfig({
   },
 
   optimizeDeps: {
-    include: ['colors']
+    include: [
+      'colors',
+      '@fawmi/vue-google-maps',
+      'fast-deep-equal']
   }
 })

@@ -6,6 +6,9 @@
       <el-dropdown-menu>
         <template v-if="accessToken">
           <el-dropdown-item @click="logout"><p>Logout</p></el-dropdown-item>
+          <el-dropdown-item>
+            <router-link :to="{name:$routeNames.orders}">Orders</router-link>
+          </el-dropdown-item>
         </template>
 
         <template v-else>

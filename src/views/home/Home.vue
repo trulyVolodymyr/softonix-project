@@ -25,7 +25,6 @@ const placesShowed = ref(object.slice(0, 12))
 
 const start = ref(0)
 const end = ref(12)
-
 const trigger = ref<Element>()
 
 const filterStore = useFiltersStore()

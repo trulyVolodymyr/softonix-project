@@ -1,65 +1,75 @@
 <template>
-  <h3 class="text-xl font-bold mb-3">{{ place.name }}</h3>
+  <div class="p-6">
+    <h3 class="text-xl font-bold mb-3">{{ place.name }}</h3>
 
-  <div class="flex space-x-5 mb-3">
-    <p>{{ place.address }}</p>
-    <p>{{ place.reviews.length }} reviews</p>
-    <div class="flex items-center space-x-1">
-      <IconStar /><p class="text-sm">{{ place.stars }}</p>
+    <div class="flex space-x-5 mb-3">
+      <p>{{ place.address }}</p>
+      <p>{{ place.reviews.length }} reviews</p>
+      <div class="flex items-center space-x-1">
+        <IconStar /><p class="text-sm">{{ place.stars }}</p>
+      </div>
     </div>
-  </div>
 
-  <div class="grid grid-cols-4 gap-4 mb-4">
-    <img
-      v-for="item in place.photos.slice(0,5)"
-      :key="item.pictureUrl"
-      class="first-of-type:col-span-2 first-of-type:row-span-2
+    <div class="grid grid-cols-4 gap-4 mb-4">
+      <img
+        v-for="item in place.photos.slice(0,5)"
+        :key="item.pictureUrl"
+        class="first-of-type:col-span-2 first-of-type:row-span-2
        first-of-type:w-full first-of-type:h-full shadow-2xl"
-      :src="item.pictureUrl"
-      :alt="item.caption"
-    >
-  </div>
+        :src="item.pictureUrl"
+        :alt="item.caption"
+      >
+    </div>
 
-  <p class="text-lg font-bold"> {{ place.roomType }} hosted by {{ place.primaryHost.firstName }}</p>
-  <p class="pb-4 border-b-[1px] border-black mb-3"> {{ placeInfo }}</p>
+    <p class="text-lg font-bold"> {{ place.roomType }} hosted by {{ place.primaryHost.firstName }}</p>
+    <p class="pb-4 border-b-[1px] border-black mb-3"> {{ placeInfo }}</p>
 
-  <div>
-    <div class="flex">
-      <div>
-        <h3 class="text-xl font-bold mb-3">What this place offers</h3>
+    <div class="">
+      <div class="flex justify-between">
+        <div>
+          <h3 class="text-xl font-bold mb-3">What this place offers</h3>
 
-        <ul class="grid grid-cols-2 mb-8 p-2 shadow-2xl">
-          <li v-for="item in place.amenities.essentials" :key="item">
-            <p class="font-medium mb-1"> - {{ item }}</p>
-          </li>
+          <ul class="grid grid-cols-2 mb-8 p-2 shadow-2xl w-[451px] h-[296px]">
+            <li v-for="item in place.amenities.essentials" :key="item">
+              <p class="font-medium mb-1 text-sm"> - {{ item }}</p>
+            </li>
 
-          <li v-for="item in place.amenities.features" :key="item">
-            <p class="font-medium mb-1">- {{ item }}</p>
-          </li>
-        </ul>
+            <li v-for="item in place.amenities.features" :key="item">
+              <p class="font-medium mb-1 text-sm">- {{ item }}</p>
+            </li>
+          </ul>
+        </div>
+
+        <GMapMap
+          :center="center"
+          :zoom="7"
+          map-type-id="terrain"
+          class="mt-10 ml-5 shadow-2xl w-full h-[296px]"
+        />
+      </div>
+      <div class="w-[451px] mb-5">
+        <PlaceItemReserve />
       </div>
 
-      <PlaceItemReserve />
-    </div>
-
-    <div class="grid gap-5 grid-container">
-      <div
-        v-for="item in place.reviews"
-        :key="item.author.id"
-        class="w-full mb-4 shadow-2xl p-2"
-      >
-        <div class="flex mb-2">
-          <img
-            class=" w-10 h-10 mr-8"
-            :src="item.author.pictureUrl"
-            :alt="item.author.firstName"
-          >
-          <div>
-            <p class=" text-sm font-bold">{{ item.author.firstName }}</p>
-            <p class=" text-sm font-bold">{{ formatDate(item.createdAt) }}</p>
+      <div class="grid grid-container gap-5">
+        <div
+          v-for="item in place.reviews"
+          :key="item.author.id"
+          class="w-full mb-4 shadow-2xl p-2 mr-5"
+        >
+          <div class="flex mb-2">
+            <img
+              class="w-10 h-10 mr-8"
+              :src="item.author.pictureUrl"
+              :alt="item.author.firstName"
+            >
+            <div>
+              <p class=" text-sm font-bold">{{ item.author.firstName }}</p>
+              <p class=" text-sm font-bold">{{ formatDate(item.createdAt) }}</p>
+            </div>
           </div>
+          <p class="text-xs">{{ item.comments }}</p>
         </div>
-        <p class="text-sm">{{ item.comments }}</p>
       </div>
     </div>
   </div>
@@ -68,6 +78,13 @@
 <script lang='ts' setup>
 const placeItemStore = usePlaceItemStore()
 const { place } = storeToRefs(placeItemStore)
+
+const position = {
+  lat: place.value.location.lat,
+  lng: place.value.location.lng
+}
+
+const center = position
 
 const placeInfo = computed(() => {
   const text = []
@@ -115,6 +132,7 @@ function formatDate (date: string) {
 
 <style>
 .grid-container {
-  grid-template-columns: repeat(auto-fit, minmax(300px, 450px));
+  /* grid-template-columns: repeat(2,minmax(451px ,1fr)); */
+  grid-template-columns: repeat(2,1fr);
 }
 </style>
