@@ -41,11 +41,13 @@
         </div>
 
         <GMapMap
-          :center="center"
+          :center="position"
           :zoom="7"
           map-type-id="terrain"
           class="mt-10 ml-5 shadow-2xl w-full h-[296px]"
-        />
+        >
+          <GMapMarker :position="position" />
+        </GMapMap>
       </div>
       <div class="w-[451px] mb-5">
         <PlaceItemReserve />
@@ -83,8 +85,6 @@ const position = {
   lat: place.value.location.lat,
   lng: place.value.location.lng
 }
-
-const center = position
 
 const placeInfo = computed(() => {
   const text = []
