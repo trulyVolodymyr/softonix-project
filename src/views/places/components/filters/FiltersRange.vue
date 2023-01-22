@@ -4,9 +4,8 @@
     <el-slider
       v-model="priceRange"
       range
-      show-stops
-      :min="minPrice"
-      :max="maxPrice"
+      :min="min"
+      :max="max"
     />
   </div>
 
@@ -34,9 +33,19 @@
 <script lang="ts" setup>
 import IconDollar from '@/components/icons/IconDollar.vue'
 
-const filtersStore = useFiltersStore()
+const { getPrices } = usePlacesStore()
 
-const { minPrice, maxPrice } = useFiltersStore()
-const { priceRange } = storeToRefs(filtersStore)
+const filtersStore = useFiltersStore()
+const { priceRange, min, max } = storeToRefs(filtersStore)
+
+onMounted(async () => {
+  if (min.value === 0 || max.value === 0) {
+    const prices = await getPrices()
+    min.value = Math.min(...prices.map((item: any) => item.pricing))
+    max.value = Math.max(...prices.map((item: any) => item.pricing))
+    priceRange.value[0] = min.value
+    priceRange.value[1] = max.value
+  }
+})
 
 </script>

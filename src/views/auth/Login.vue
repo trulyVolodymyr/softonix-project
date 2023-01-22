@@ -71,7 +71,7 @@ function submit () {
       loading.value = true
 
       login(formModel)
-        .then(() => { router.push({ name: $routeNames.home }) })
+        .then(() => { router.push({ name: $routeNames.places }) })
         .catch((e) => {
           ElNotification({
             title: 'Error',

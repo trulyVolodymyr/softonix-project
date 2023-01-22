@@ -2,11 +2,10 @@
 export const useFiltersStore = defineStore('filterStore', () => {
   const filtersModalVisability = ref<boolean>(false)
 
-  // min and max price from backend on store mounted
-  const minPrice = 0
-  const maxPrice = 5000
+  const min = ref<number>(0)
+  const max = ref<number>(0)
 
-  const priceRange = ref([minPrice + 500, maxPrice - 500])
+  const priceRange = ref<number[]>([])
 
   const typeEntire = ref<boolean>(false)
   const typePrivate = ref<boolean>(false)
@@ -59,8 +58,6 @@ export const useFiltersStore = defineStore('filterStore', () => {
   return {
     filtersModalVisability,
     priceRange,
-    minPrice,
-    maxPrice,
     typeEntire,
     typePrivate,
     bedroms,
@@ -69,6 +66,9 @@ export const useFiltersStore = defineStore('filterStore', () => {
     propertyType,
     propertyTypes,
     amenities,
-    typeShared
+    typeShared,
+    min,
+    max
+
   }
 })

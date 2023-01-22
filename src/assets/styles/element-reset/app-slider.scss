@@ -1,8 +1,5 @@
-.el-slider{
-  &__bar{
-    @apply bg-white;
-  }
-  &__stop{
+.el-slider {
+  &__bar {
     @apply bg-gray-500
   }
 }

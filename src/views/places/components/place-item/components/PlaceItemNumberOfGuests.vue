@@ -1,6 +1,6 @@
 <template>
   <div class="w-full">
-    <h3 class="mb-4">This place has a maximum of {{ place.numberOfGuests }} guests</h3>
+    <h3 class="mb-4">This place has a maximum of {{ place?.numberOfGuests }} guests</h3>
 
     <div class="flex justify-between w-full mb-4">
       <div>
@@ -44,7 +44,7 @@ const infants = ref(0)
 
 const placeItemStore = usePlaceItemStore()
 const { place, guests } = storeToRefs(placeItemStore)
-const numberOfGuests = ref<number>(place.value.numberOfGuests)
+const numberOfGuests = ref<number | undefined>(place.value?.numberOfGuests)
 
 const adultsMax = ref(numberOfGuests.value)
 const childrenMax = ref(numberOfGuests.value)

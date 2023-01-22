@@ -1,5 +1,5 @@
 import type { NavigationGuardNext, RouteLocationNormalized } from 'vue-router'
-import { homeRouteNames } from '@/views/home/home.routes'
+import { placesRouteNames } from '@/views/places/places.routes'
 
 export const routeGuard = async (
   to: RouteLocationNormalized,
@@ -9,7 +9,7 @@ export const routeGuard = async (
   const { accessToken } = useAuthStore()
 
   if (to.meta.isAuthGuarded && !accessToken) {
-    return next({ name: homeRouteNames.home })
+    return next({ name: placesRouteNames.places })
   }
   next()
 }

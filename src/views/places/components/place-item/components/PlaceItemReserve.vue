@@ -1,6 +1,6 @@
 <template>
   <div class="ml-auto shadow-2xl p-2 h-[max-content]">
-    <p class="mb-4"><span class="font-bold text-lg">$ {{ place.pricing.rate.amount }}</span> night</p>
+    <p class="mb-4"><span class="font-bold text-lg">$ {{ place?.pricing }}</span> night</p>
     <el-date-picker
       v-model="dates"
       type="daterange"
@@ -32,7 +32,7 @@
 
     <div v-if="numberOfDays" class="mt-5">
       <div class="flex justify-between mb-2">
-        <p class="text-sm">${{ place.pricing.rate.amount }} x {{ numberOfDays }} nigths </p>
+        <p class="text-sm">${{ place?.pricing }} x {{ numberOfDays }} nigths </p>
         <p class="text-sm">${{ totalSum }}</p>
       </div>
 
@@ -61,8 +61,8 @@ const numberOfGuest = computed(() => {
 })
 
 const totalSum = computed(() => {
-  if (numberOfDays.value) {
-    return numberOfDays.value * place.value.pricing.rate.amount
+  if (numberOfDays.value && place.value) {
+    return numberOfDays.value * place.value.pricing
   }
 })
 

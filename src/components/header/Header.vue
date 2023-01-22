@@ -20,7 +20,7 @@ import { routeNames } from '@/router'
 const { name } = useRoute()
 
 const isHomePage = computed(() => {
-  return name === routeNames.home
+  return name === routeNames.places
 })
 
 </script>

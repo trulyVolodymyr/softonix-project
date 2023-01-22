@@ -10,7 +10,7 @@
       </el-carousel-item>
     </el-carousel>
 
-    <div class="p-3">
+    <div class="p-3 cursor-pointer" @click="openPlace">
       <div class="flex justify-between mt-1">
         <p class="font-bold text-xs whitespace-nowrap overflow-hidden text-ellipsis">{{ address }}</p>
         <div v-if="stars" class="flex items-center space-x-1 ml-2">
@@ -18,18 +18,24 @@
         </div>
       </div>
 
-      <p class="mt-1 font-medium text-xs">{{ price }}<span class="font-normal"> night</span></p>
+      <p class="mt-1 font-medium text-xs">$ {{ price }}<span class="font-normal"> night</span></p>
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+const router = useRouter()
 
-defineProps<{
+const props = defineProps<{
   photos: IGridItemPhoto[]
   address: string
   stars: number
-  price: string
+  price: number
+  id: number
 }>()
+
+function openPlace () {
+  router.push({ path: `place/${props.id}` })
+}
 
 </script>
