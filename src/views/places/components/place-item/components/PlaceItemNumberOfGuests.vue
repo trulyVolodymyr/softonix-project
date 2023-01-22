@@ -72,4 +72,10 @@ const handleChange = () => {
   guests.value.infants = infants.value
 }
 
+onMounted(() => {
+  guests.value.adults = 1
+  guests.value.children = 0
+  guests.value.infants = 0
+})
+
 </script>
