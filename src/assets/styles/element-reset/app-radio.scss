@@ -1,17 +1,24 @@
-.el-radio{
-  &__label{
-    @apply text-black absolute right-1 w-full text-center
-  }
-  &__input.is-checked + &__label{
-    @apply text-white
-  }
-  &__inner::after{
-    @apply w-0 h-0
-  }
-  &__inner{
-    @apply w-[71px] h-[20px] rounded-xl
-  }
-  &__input.is-checked &__inner{
-    @apply border-[1px] border-white
+.app-radio {
+
+  .el-radio {
+    &__label {
+      @apply text-black absolute right-1 w-full text-center
+    }
+
+    &__input.is-checked + .el-radio__label {
+      @apply text-white
+    }
+
+    &__inner::after {
+      @apply w-0 h-0
+    }
+
+    &__inner {
+      @apply w-[56px] h-[20px] rounded-xl
+    }
+
+    &__input.is-checked .el-radio__inner {
+      @apply border-[1px] border-white
+    }
   }
 }

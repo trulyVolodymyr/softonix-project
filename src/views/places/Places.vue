@@ -34,7 +34,6 @@ const { getChank, getLength, getFiltered } = usePlacesStore()
 
 const start = ref<number>(0)
 const end = ref<number>(19)
-
 const trigger = ref<Element>()
 const loadingChunck = ref<boolean>(false)
 
@@ -57,7 +56,7 @@ function loadItems () {
 
     .then((data: IPlace[]) => {
       places.value.push(...data)
-
+      console.log(data)
       start.value = start.value + 20
       end.value = end.value + 20
     }).finally(() => {

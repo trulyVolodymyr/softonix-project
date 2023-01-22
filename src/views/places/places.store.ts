@@ -1,7 +1,3 @@
-const filtersStore = useFiltersStore()
-
-const { filtersModalVisability } = storeToRefs(filtersStore)
-
 export const usePlacesStore = defineStore('placesStore', () => {
   const places = ref<IPlace[]>([])
   const placesFiltered = ref<IPlace[]>([])
@@ -34,11 +30,10 @@ export const usePlacesStore = defineStore('placesStore', () => {
 
           startFiltered.value += 20
           endFiltered.value += 20
+
           getFilteredLength(http).then(data => (filteredLength.value = data.length))
-          filtersModalVisability.value = false
         })
     }
-    filtersModalVisability.value = false
   }
 
   return {

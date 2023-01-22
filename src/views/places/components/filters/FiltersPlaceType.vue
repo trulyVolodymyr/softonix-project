@@ -1,15 +1,13 @@
 <template>
   <h3 class="text-white text-lg text-center">Type of place</h3>
-  <div class="flex">
-    <el-checkbox v-model="typeEntire" label="Entire place" size="large" />
-    <el-checkbox v-model="typePrivate" label="Private room" size="large" />
-    <el-checkbox v-model="typeShared" label="Shared room" size="large" />
-  </div>
+  <el-radio-group v-model="roomType" class="ml-4">
+    <el-radio label="Entire" size="large">Entire</el-radio>
+    <el-radio label="Private" size="large">Private</el-radio>
+    <el-radio label="Shared" size="large">Shared</el-radio>
+  </el-radio-group>
 </template>
 
 <script lang='ts' setup>
-
 const filtersStore = useFiltersStore()
-const { typeEntire, typePrivate, typeShared } = storeToRefs(filtersStore)
-
+const { roomType } = storeToRefs(filtersStore)
 </script>
