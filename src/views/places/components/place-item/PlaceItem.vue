@@ -85,6 +85,7 @@
 <script lang='ts' setup>
 const route = useRoute()
 const placeItemStore = usePlaceItemStore()
+
 const { place } = storeToRefs(placeItemStore)
 
 const position = ref<IPosition>()

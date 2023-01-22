@@ -133,7 +133,7 @@ onMounted(() => {
   startFiltered.value = 0
   endFiltered.value = 19
 })
-// https://pcdokqjfsewijuqgscrk.supabase.co/rest/v1/places?select=*&features=ov.%7BPool%7D&essentials=ov.%7BWifi%2CDryer%2CTV%2CHeating%2CDedicated+workspace%2CKitchen%2CAir+conditioning%2CDedicated+workspace%7D&pricing=gt.80000&pricing=lt.100000
+
 </script>
 
 <style lang='scss'>

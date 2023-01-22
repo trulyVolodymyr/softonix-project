@@ -8,7 +8,7 @@ export const ordersRoutes: Array<RouteRecordRaw> = [
   {
     path: 'orders',
     name: ordersRouteNames.orders,
-    component: () => import('@/views/orders/orders.vue'),
+    component: () => import('@/views/orders/Orders.vue'),
     meta: { isAuthGuarded: true }
   }
 ]
