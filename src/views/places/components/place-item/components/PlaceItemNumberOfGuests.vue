@@ -44,7 +44,12 @@ const infants = ref(0)
 
 const placeItemStore = usePlaceItemStore()
 const { place, guests } = storeToRefs(placeItemStore)
-const numberOfGuests = ref<number | undefined>(place.value?.numberOfGuests)
+
+const numberOfGuests = computed(() => {
+  if (place.value?.numberOfGuests) {
+    return place.value.numberOfGuests
+  }
+})
 
 const adultsMax = ref(numberOfGuests.value)
 const childrenMax = ref(numberOfGuests.value)
