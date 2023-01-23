@@ -1,10 +1,16 @@
 <template>
   <div class="p-6">
+    <div v-if="userProfile?.is_admin" class="mb-4">
+      <el-button class="app-button">Edit place</el-button>
+      <el-button class="app-button">Create new place</el-button>
+      <el-button class="app-button">Delete place</el-button>
+    </div>
+
     <h3 class="text-xl font-bold mb-3">{{ place?.name }}</h3>
 
     <div class="flex space-x-5 mb-3">
       <p>{{ place?.address }}</p>
-      <p v-if="place?.reviews">{{ place?.reviews.length }} reviews</p>
+      <p v-if="place?.reviews">{{ reviews?.length }} reviews</p>
       <div class="flex items-center space-x-1">
         <IconStar v-if="place?.stars" /><p class="text-sm">{{ place?.stars }}</p>
       </div>
@@ -85,7 +91,9 @@
 <script lang='ts' setup>
 const route = useRoute()
 const placeItemStore = usePlaceItemStore()
+const authStore = useAuthStore()
 
+const { userProfile } = storeToRefs(authStore)
 const { place } = storeToRefs(placeItemStore)
 
 const position = ref<IPosition>()
