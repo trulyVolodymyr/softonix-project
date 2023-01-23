@@ -1,5 +1,6 @@
 <template>
   <div class="ml-auto shadow-2xl p-2 h-[max-content]">
+    {{ dates }}
     <p class="mb-4"><span class="font-bold text-lg">$ {{ place?.pricing }}</span> night</p>
     <el-date-picker
       v-model="dates"
@@ -41,20 +42,33 @@
         <p class="text-sm">${{ serviceFee }}</p>
       </div>
 
-      <el-button class="app-button w-full mt-4">Check out</el-button>
+      <el-button class="app-button w-full mt-4" @click="setOrder">Check out</el-button>
     </div>
   </div>
 </template>
 
 <script lang='ts' setup>
+const { userProfile } = useAuthStore()
 
 const placeItemStore = usePlaceItemStore()
-const { place, guests, dates, numberOfDays } = storeToRefs(placeItemStore)
+const { place, guests } = storeToRefs(placeItemStore)
+
+const props = defineProps<{
+  reservedDates?: Date[] | null
+}>()
+
+const dates = ref<any>(['', ''])
+
+const numberOfDays = computed(() => {
+  if (dates.value) {
+    return (new Date(dates.value[1]).getTime() - new Date(dates.value[0]).getTime()) / 1000 / 60 / 60 / 24
+  }
+})
 
 const numberOfGuest = computed(() => {
   const sum = ref(guests.value.adults + guests.value.children + guests.value.infants)
   if (sum.value === 1) {
-    return ` ${sum.value} guest`
+    return `${sum.value} guest`
   } else {
     return `${sum.value} guests`
   }
@@ -73,8 +87,26 @@ const serviceFee = computed(() => {
 })
 
 const disabledDates = (time: Date) => {
-  const date1 = new Date('2023-01-10T22:00:00.000Z').getTime()
-  const date2 = new Date('2023-01-13T22:00:00.000Z').getTime()
-  return time.getTime() >= date1 && time.getTime() <= date2
+  if (props.reservedDates) {
+    const date1 = new Date(props.reservedDates[0]).getTime()
+    const date2 = new Date(props.reservedDates[1]).getTime()
+
+    return time.getTime() >= date1 && time.getTime() <= date2
+  }
+}
+
+function setOrder () {
+  if (userProfile && place.value) {
+    const sum = guests.value.children + guests.value.adults + guests.value.infants
+    const order = {
+      user_id: userProfile.id,
+      place_id: place.value.id,
+      place_name: place.value.name,
+      guests: sum,
+      dates: dates.value
+    }
+
+    return placeItemService.setOrder(order)
+  }
 }
 </script>

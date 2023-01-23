@@ -8,18 +8,8 @@ export const usePlaceItemStore = defineStore('PlaceItemStore', () => {
     infants: 0
   })
 
-  const dates = ref('')
-
-  const numberOfDays = computed(() => {
-    if (dates.value) {
-      return (new Date(dates.value[1]).getTime() - new Date(dates.value[0]).getTime()) / 1000 / 60 / 60 / 24
-    }
-  })
-
   return {
     place,
-    guests,
-    dates,
-    numberOfDays
+    guests
   }
 })
