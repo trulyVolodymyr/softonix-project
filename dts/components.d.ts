@@ -35,6 +35,8 @@ declare module '@vue/runtime-core' {
     ElRadioGroup: typeof import('element-plus/es')['ElRadioGroup']
     ElSelect: typeof import('element-plus/es')['ElSelect']
     ElSlider: typeof import('element-plus/es')['ElSlider']
+    ElTable: typeof import('element-plus/es')['ElTable']
+    ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
     ExampleViewComponent: typeof import('../src/views/places/components/ExampleViewComponent.vue')['default']
     FilterRange: typeof import('../src/views/places/components/filters/FiltersRange.vue')['default']
     Filters: typeof import('./../src/views/places/components/filters/Filters.vue')['default']
