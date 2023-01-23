@@ -10,7 +10,7 @@
 
     <div class="flex space-x-5 mb-3">
       <p>{{ place?.address }}</p>
-      <p v-if="place?.reviews">{{ reviews?.length }} reviews</p>
+      <p v-if="place?.reviews">{{ place.reviews?.length }} reviews</p>
       <div class="flex items-center space-x-1">
         <IconStar v-if="place?.stars" /><p class="text-sm">{{ place?.stars }}</p>
       </div>
@@ -18,7 +18,7 @@
 
     <div class="grid grid-cols-4 gap-4 mb-4 gird-imgs">
       <img
-        v-for="item in photos"
+        v-for="item in place?.photos"
         :key="item.pictureUrl"
         class="first-of-type:col-span-2 first-of-type:row-span-2
        first-of-type:w-full first-of-type:h-full shadow-2xl h-full"
@@ -47,23 +47,23 @@
         </div>
 
         <GMapMap
-          v-if="position"
-          :center="position"
+          v-if="place?.location"
+          :center="place?.location"
           :zoom="6"
           map-type-id="terrain"
           class="mt-10 ml-5 shadow-2xl w-full h-[296px]"
         >
-          <GMapMarker :position="position" />
+          <GMapMarker :position="place?.location" />
         </GMapMap>
       </div>
 
       <div class="w-[451px] mb-5">
-        <PlaceItemReserve />
+        <PlaceItemReserve :reservedDates="place?.reserved_dates" />
       </div>
 
       <div class="grid grid-reviews gap-5">
         <div
-          v-for="item in reviews"
+          v-for="item in place?.reviews"
           :key="item.author.id"
           class="w-full mb-4 shadow-2xl p-2 mr-5"
         >
@@ -95,10 +95,6 @@ const authStore = useAuthStore()
 
 const { userProfile } = storeToRefs(authStore)
 const { place } = storeToRefs(placeItemStore)
-
-const position = ref<IPosition>()
-const reviews = ref<IReview[]>()
-const photos = ref<IPhoto[]>()
 
 const placeInfo = computed(() => {
   const text = []
@@ -148,10 +144,12 @@ async function getData () {
   const id = route.params.id as string
   placeItemService.getPlaceItem(id)
     .then((data) => {
-      place.value = data[0]
-      position.value = JSON.parse(data[0].location)
-      reviews.value = JSON.parse(data[0].reviews)
-      photos.value = JSON.parse(data[0].photos)
+      place.value = {
+        ...data[0],
+        location: JSON.parse(data[0].location),
+        reviews: JSON.parse(data[0].reviews),
+        photos: JSON.parse(data[0].photos)
+      }
     })
 }
 
