@@ -2,7 +2,7 @@ import { routeNames, router } from '@/router'
 export const useAuthStore = defineStore('authStore', () => {
   const accessToken = ref(localStorage.getItem('si-token'))
   const refreshToken = ref(localStorage.getItem('ref-token'))
-  const userProfile = ref(null)
+  const userProfile = ref<IUserProfile>()
 
   function setToken (token: string) {
     accessToken.value = token
@@ -54,6 +54,7 @@ export const useAuthStore = defineStore('authStore', () => {
   return {
     accessToken,
     refreshToken,
+    userProfile,
     login,
     register,
     logout,
