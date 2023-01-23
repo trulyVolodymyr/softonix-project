@@ -1,10 +1,10 @@
 class PlacesService {
   getChank (range: string) {
-    return useHttp.get('https://pcdokqjfsewijuqgscrk.supabase.co/rest/v1/places', { headers: { Range: range } })
+    return useHttp.get('/rest/v1/places', { headers: { Range: range } })
   }
 
   getLength () {
-    return useHttp.get('https://pcdokqjfsewijuqgscrk.supabase.co/rest/v1/places?select=id')
+    return useHttp.get('/rest/v1/places?select=id')
   }
 
   getFiltered (http: string, range: string) {
@@ -16,7 +16,7 @@ class PlacesService {
   }
 
   getPrice () {
-    return useHttp.get('https://pcdokqjfsewijuqgscrk.supabase.co/rest/v1/places?select=pricing')
+    return useHttp.get('/rest/v1/places?select=pricing')
   }
 }
 

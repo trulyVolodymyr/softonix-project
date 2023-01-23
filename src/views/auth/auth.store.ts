@@ -2,6 +2,7 @@ import { routeNames, router } from '@/router'
 export const useAuthStore = defineStore('authStore', () => {
   const accessToken = ref(localStorage.getItem('si-token'))
   const refreshToken = ref(localStorage.getItem('ref-token'))
+  const userProfile = ref(null)
 
   function setToken (token: string) {
     accessToken.value = token
@@ -18,6 +19,13 @@ export const useAuthStore = defineStore('authStore', () => {
       .then((res) => {
         setToken(res.access_token)
         setRefreshToken(res.refresh_token)
+
+        return res
+      })
+      .then(({ user }) => {
+        return authService.getUserProfile(user.id)
+      }).then((user) => {
+        userProfile.value = user[0]
       })
   }
 

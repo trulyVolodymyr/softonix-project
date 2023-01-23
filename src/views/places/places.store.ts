@@ -7,6 +7,7 @@ export const usePlacesStore = defineStore('placesStore', () => {
   const maxlength = ref<number>(0)
   const startFiltered = ref<number>(0)
   const endFiltered = ref<number>(19)
+
   const url = computed(() => {
     const urlArr = ['https://pcdokqjfsewijuqgscrk.supabase.co/rest/v1/places?select=*']
 
@@ -113,7 +114,7 @@ export const usePlacesStore = defineStore('placesStore', () => {
           startFiltered.value += 20
           endFiltered.value += 20
 
-          getFilteredLength(http).then(data => (filteredLength.value = data.length))
+          getFilteredLength(http.replace('*', 'id')).then(data => (filteredLength.value = data.length))
         })
     }
   }

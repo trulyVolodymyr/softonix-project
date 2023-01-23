@@ -4,7 +4,7 @@
 
     <div class="flex space-x-5 mb-3">
       <p>{{ place?.address }}</p>
-      <p v-if="place?.reviews">{{ place?.reviews }} reviews</p>
+      <p v-if="place?.reviews">{{ place?.reviews.length }} reviews</p>
       <div class="flex items-center space-x-1">
         <IconStar v-if="place?.stars" /><p class="text-sm">{{ place?.stars }}</p>
       </div>
@@ -12,7 +12,7 @@
 
     <div class="grid grid-cols-4 gap-4 mb-4 gird-imgs">
       <img
-        v-for="item in photos?.slice(0,5)"
+        v-for="item in photos"
         :key="item.pictureUrl"
         class="first-of-type:col-span-2 first-of-type:row-span-2
        first-of-type:w-full first-of-type:h-full shadow-2xl h-full"
