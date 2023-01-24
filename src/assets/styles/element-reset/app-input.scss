@@ -1,6 +1,10 @@
 .el-input {
   .el-input__wrapper {
-    @apply h-11 text-sm rounded-none;
+    @apply text-xs rounded-none;
+  }
+
+  &-group__prepend {
+    @apply w-[350px]
   }
 
   .el-input__wrapper.is-focus {

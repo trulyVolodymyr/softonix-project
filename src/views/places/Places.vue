@@ -9,7 +9,7 @@
         v-for="(place) in placesShowed"
         :id="place.id"
         :key="place.id"
-        :photos="JSON.parse(place.photos) "
+        :photos="place.photos"
         :address="place.address"
         :stars="place.stars || 0"
         :price="place.pricing"
@@ -29,8 +29,8 @@ const generalStore = useGeneralStore()
 
 const { loading } = storeToRefs(generalStore)
 const { places, maxlength, placesFiltered, startFiltered, endFiltered, url, filteredLength } = storeToRefs(placesStore)
-const { filtersModalVisability } = storeToRefs(filterStore)
-const { getChank, getLength, getFiltered } = usePlacesStore()
+const { filtersModalVisability, max, min, priceRange } = storeToRefs(filterStore)
+const { getChank, getLength, getFiltered, getPrices } = usePlacesStore()
 
 const start = ref<number>(0)
 const end = ref<number>(19)
@@ -87,6 +87,16 @@ onMounted(async () => {
   if (places.value.length) loading.value = false
 
   if (trigger.value) observer.observe(trigger.value)
+
+  if (min.value === 0 || max.value === 0) {
+    const prices = await getPrices()
+
+    min.value = Math.min(...prices.map((item: any) => item.pricing))
+    max.value = Math.max(...prices.map((item: any) => item.pricing)) + 1
+
+    priceRange.value[0] = min.value
+    priceRange.value[1] = max.value
+  }
 })
 
 </script>

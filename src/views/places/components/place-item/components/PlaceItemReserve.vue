@@ -41,14 +41,14 @@
         <p class="text-sm">${{ serviceFee }}</p>
       </div>
 
-      <el-button class="app-button w-full mt-4" @click="setOrder">Check out</el-button>
+      <el-button class="app-button w-full mt-4" @click="postOrder">Check out</el-button>
     </div>
   </div>
 
   <el-dialog
     v-model="dialogUserIsAuth"
     title="Congratulations"
-    width="35%"
+    width="450px"
   >
     <span>You successfully ordered this place!</span>
     <template #footer>
@@ -65,7 +65,7 @@
     v-model="dialogUserIsNotAuth"
 
     title="Warrnig"
-    width="35%"
+    width="450px"
   >
     <p>You cant order palce.</p>
     <p>Login to continue.</p>
@@ -132,7 +132,7 @@ const disabledDates = (time: Date) => {
   }
 }
 
-function setOrder () {
+function postOrder () {
   if (userProfile && place.value) {
     const sum = guests.value.children + guests.value.adults + guests.value.infants
     const order = {
@@ -140,11 +140,11 @@ function setOrder () {
       place_id: place.value.id,
       place_name: place.value.name,
       guests: sum,
-      dates: dates.value
-      // order_date: new Date()
+      dates: dates.value,
+      created_at: new Date()
     }
     dialogUserIsAuth.value = true
-    return placeItemService.setOrder(order)
+    return placeItemService.postOrder(order)
   }
   dialogUserIsNotAuth.value = true
 }

@@ -1,32 +1,41 @@
-.el-checkbox{
-  &__label{
+.el-checkbox {
+  &__label {
     @apply text-white
   }
-  &__inner{
+
+  &__inner {
     @apply rounded-none
   }
-  &__input.is-checked + &__label{
+
+  &__input.is-checked + &__label {
     @apply text-white
   }
-  &__input.is-checked &__inner{
+
+  &__input.is-checked &__inner {
     @apply border-[1px] border-white
   }
 }
-.el-checkbox-button{
-  &:first-child &__inner{
+
+.el-checkbox-button {
+  &:first-child &__inner {
     @apply rounded-none
   }
-  &:last-child &__inner{
+
+  &:last-child &__inner {
     @apply rounded-none
   }
-  & &__inner{
+
+  & &__inner {
     @apply border-[1px] border-white
   }
-  &.is-checked &__inner{
+
+  &.is-checked &__inner {
     @apply border-[1px] border-white
   }
-  &.is-checked:first-child &__inner{
+
+  &.is-checked:first-child &__inner {
     @apply border-[1px] border-white
   }
+
   @apply mr-3
 }

@@ -45,7 +45,7 @@ function applyFilters () {
   filtersModalVisability.value = false
 }
 
-onMounted(() => {
+onMounted(async () => {
   startFiltered.value = 0
   endFiltered.value = 19
 })

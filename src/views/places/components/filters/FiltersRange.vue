@@ -33,19 +33,7 @@
 <script lang="ts" setup>
 import IconDollar from '@/components/icons/IconDollar.vue'
 
-const { getPrices } = usePlacesStore()
-
 const filtersStore = useFiltersStore()
 const { priceRange, min, max } = storeToRefs(filtersStore)
-
-onMounted(async () => {
-  if (min.value === 0 || max.value === 0) {
-    const prices = await getPrices()
-    min.value = Math.min(...prices.map((item: any) => item.pricing))
-    max.value = Math.max(...prices.map((item: any) => item.pricing))
-    priceRange.value[0] = min.value
-    priceRange.value[1] = max.value
-  }
-})
 
 </script>

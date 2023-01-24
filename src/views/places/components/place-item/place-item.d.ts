@@ -10,9 +10,9 @@ interface ILocation{
 }
 
 interface IPhoto{
-  caption: string
+  caption?: string
   pictureUrl: string
-  thumbnailUrl: string
+  thumbnailUrl?: string
 }
 
 interface IAUthor{
@@ -33,7 +33,19 @@ interface IOrder{
   place_name: string
   guests: number
   dates: string[]
-  // order_date: Date
+  created_at: Date
+}
+interface IEditValue{
+  name: string
+  address: string
+  guest: number
+  bedrooms: number
+  beds: number
+  bathrooms: number
+  essentials: string
+  features: string
+  amenities_location: string
+  safety: string
 }
 
 interface IPlace {
@@ -47,12 +59,34 @@ interface IPlace {
   propertyType: string
   address: string
   roomType: string
-  location: ILocation[]
+  location: ILocation
   reviews: IReview[]
   pricing: number
   photos: IPhoto[]
   primaryHost: string
   reserved_dates: Date[] | null
+  safety: string[]
+  features: string[]
+  amenities_location: string[]
+  essentials: string[]
+}
+
+interface IPostPlace{
+  name: string
+  numberOfGuests: number
+  bedrooms: number
+  beds: number
+  bathrooms: number
+  propertyType: string
+  address: string
+  roomType: string
+  location: {
+    lat: number
+    lng: number
+  }
+  pricing: number
+  photos: IPhoto[]
+  primaryHost: string
   safety: string[]
   features: string[]
   amenities_location: string[]
