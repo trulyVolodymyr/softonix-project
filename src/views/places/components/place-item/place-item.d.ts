@@ -33,6 +33,7 @@ interface IOrder{
   place_name: string
   guests: number
   dates: string[]
+  // order_date: Date
 }
 
 interface IPlace {

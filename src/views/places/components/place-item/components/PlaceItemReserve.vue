@@ -44,18 +44,56 @@
       <el-button class="app-button w-full mt-4" @click="setOrder">Check out</el-button>
     </div>
   </div>
+
+  <el-dialog
+    v-model="dialogUserIsAuth"
+    title="Congratulations"
+    width="35%"
+  >
+    <span>You successfully ordered this place!</span>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="handleClose">Okay</el-button>
+        <el-button type="primary" @click="goToOrders">
+          Check my orders
+        </el-button>
+      </span>
+    </template>
+  </el-dialog>
+
+  <el-dialog
+    v-model="dialogUserIsNotAuth"
+
+    title="Warrnig"
+    width="35%"
+  >
+    <p>You cant order palce.</p>
+    <p>Login to continue.</p>
+
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="handleClose">Back</el-button>
+        <el-button type="primary" @click="goToOrders">
+          Go to  Login
+        </el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 
 <script lang='ts' setup>
-const { userProfile } = useAuthStore()
+import { routeNames, router } from '@/router'
 
 const placeItemStore = usePlaceItemStore()
 const { place, guests } = storeToRefs(placeItemStore)
+const { userProfile } = useAuthStore()
 
 const props = defineProps<{
   reservedDates?: Date[] | null
 }>()
 
+const dialogUserIsAuth = ref<boolean>(false)
+const dialogUserIsNotAuth = ref<boolean>(false)
 const dates = ref<any>(['', ''])
 
 const numberOfDays = computed(() => {
@@ -103,9 +141,25 @@ function setOrder () {
       place_name: place.value.name,
       guests: sum,
       dates: dates.value
+      // order_date: new Date()
     }
-
+    dialogUserIsAuth.value = true
     return placeItemService.setOrder(order)
   }
+  dialogUserIsNotAuth.value = true
+}
+
+function handleClose () {
+  if (dialogUserIsAuth.value) {
+    return (dialogUserIsAuth.value = false)
+  }
+  dialogUserIsNotAuth.value = false
+}
+
+function goToOrders () {
+  if (dialogUserIsAuth.value) {
+    return router.push({ name: routeNames.orders })
+  }
+  router.push({ name: routeNames.login })
 }
 </script>

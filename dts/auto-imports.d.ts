@@ -67,6 +67,7 @@ declare global {
   const onStartTyping: typeof import('@vueuse/core')['onStartTyping']
   const onUnmounted: typeof import('vue')['onUnmounted']
   const onUpdated: typeof import('vue')['onUpdated']
+  const orderService: typeof import('../src/views/orders/orders.service')['orderService']
   const pausableWatch: typeof import('@vueuse/core')['pausableWatch']
   const placeItemService: typeof import('../src/views/places/components/place-item/place-item.service')['placeItemService']
   const placesService: typeof import('../src/views/places/places.service')['placesService']

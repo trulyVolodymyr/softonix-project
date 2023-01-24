@@ -27,6 +27,7 @@
 @use "element-plus/theme-chalk/src/date-picker";
 @use "element-plus/theme-chalk/src/input-number";
 @use "element-plus/theme-chalk/src/table";
+@use "element-plus/theme-chalk/src/dialog";
 
 
 @import './app-input.scss';
@@ -38,3 +39,4 @@
 @import './app-radio.scss';
 @import './app-notification.scss';
 @import './app-calendar.scss';
+@import './app-dialog.scss';

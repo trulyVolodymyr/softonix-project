@@ -66,6 +66,7 @@
     "onStartTyping": true,
     "onUnmounted": true,
     "onUpdated": true,
+    "orderService": true,
     "pausableWatch": true,
     "placeItemService": true,
     "placesService": true,
