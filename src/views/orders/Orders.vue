@@ -14,6 +14,7 @@
       <el-table-column prop="dates[0]" label="Start Date" />
       <el-table-column prop="dates[1]" label="End Date" />
       <el-table-column prop="guests" label="Number of guest" />
+      <el-table-column prop="price" label="Price $" />
       <el-table-column prop="created_at" label="Created at" />
     </el-table>
   </div>
@@ -30,5 +31,12 @@ const orderInfo = ref<IOrder[]>()
 onMounted(async () => {
   await orderService.getOrder(userId.value)
     .then(data => (orderInfo.value = data))
+    .catch((e) => {
+      ElNotification({
+        title: 'Error',
+        message: e.error_description || 'Something went wrong.',
+        type: 'error'
+      })
+    })
 })
 </script>

@@ -63,7 +63,7 @@
 
   <el-dialog
     v-model="dialogUserIsNotAuth"
-
+    class="overflow-hidden"
     title="Warrnig"
     width="450px"
   >
@@ -141,10 +141,21 @@ function postOrder () {
       place_name: place.value.name,
       guests: sum,
       dates: dates.value,
-      created_at: new Date()
+      created_at: new Date(),
+      price: totalSum.value
     }
-    dialogUserIsAuth.value = true
+
     return placeItemService.postOrder(order)
+      .then(() => {
+        dialogUserIsAuth.value = true
+      })
+      .catch((e) => {
+        ElNotification({
+          title: 'Error',
+          message: e.error_description || 'Something went wrong.',
+          type: 'error'
+        })
+      })
   }
   dialogUserIsNotAuth.value = true
 }

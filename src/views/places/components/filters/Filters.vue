@@ -21,19 +21,19 @@
 
 <script lang='ts' setup>
 const placesStore = usePlacesStore()
-
+const generalStore = useGeneralStore()
+const { top } = storeToRefs(generalStore)
 const { getFiltered } = usePlacesStore()
 const { startFiltered, endFiltered, url, placesFiltered } = storeToRefs(placesStore)
 
 function applyFilters () {
   placesFiltered.value.splice(0, placesFiltered.value.length)
-
-  getFiltered(url.value, `${startFiltered.value}-${endFiltered.value}`)
-}
-
-onMounted(async () => {
   startFiltered.value = 0
   endFiltered.value = 19
-})
+  getFiltered(url.value, `${startFiltered.value}-${endFiltered.value}`)
+    ?.then(() => {
+      top.value?.scrollTo(0, 0)
+    })
+}
 
 </script>

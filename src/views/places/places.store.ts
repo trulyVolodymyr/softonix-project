@@ -110,18 +110,20 @@ export const usePlacesStore = defineStore('placesStore', () => {
 
   function getFiltered (http: string, range: string) {
     noPlaces.value = false
+
     if (url.value.length !== 64) {
       return placesService.getFiltered(http, range)
         .then(data => {
           placesFiltered.value.push(...data)
-          startFiltered.value += 20
-          endFiltered.value += 20
 
           if (!placesFiltered.value.length) {
             noPlaces.value = true
           }
 
           getFilteredLength(http.replace('*', 'id')).then(data => (filteredLength.value = data.length))
+        }).finally(() => {
+          startFiltered.value += 20
+          endFiltered.value += 20
         })
     }
   }

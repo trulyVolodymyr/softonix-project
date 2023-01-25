@@ -2,8 +2,8 @@
   <div class="flex flex-col h-full overflow-hidden items-center">
     <Header />
 
-    <div class="w-full flex-grow overflow-auto flex justify-center">
-      <div v-loading="loading" class="flex-grow  max-w-[1440px] w-full overflow-y-[overlay] scroll">
+    <div ref="top" class="w-full flex-grow overflow-auto flex justify-center scroll-smooth">
+      <div v-loading="loading" class="p-6 max-w-[1440px] w-full">
         <router-view />
       </div>
     </div>
@@ -13,11 +13,6 @@
 </template>
 <script lang='ts' setup>
 const generalStore = useGeneralStore()
-const { loading } = storeToRefs(generalStore)
-</script>
+const { loading, top } = storeToRefs(generalStore)
 
-<style lang='scss'>
-.scroll{
-  overflow-y: overlay;
-}
-</style>
+</script>

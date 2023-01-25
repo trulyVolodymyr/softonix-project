@@ -34,6 +34,7 @@ interface IOrder{
   guests: number
   dates: string[]
   created_at: Date
+  price: number | undefined
 }
 interface IEditValue{
   name: string

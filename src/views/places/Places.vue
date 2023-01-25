@@ -1,5 +1,31 @@
 <template>
-  <div class="p-6 flex">
+  <div class="flex justify-end mb-6 space-x-3">
+    <div>
+      <p class="text-xs">Sort by price</p>
+      <el-select v-model="priceSort" class="w-[150px]">
+        <el-option
+          v-for="item in sortPriceOptions"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+    </div>
+
+    <div>
+      <p class="text-xs">Sort by rating</p>
+      <el-select v-model="ratingSort" class="w-[150px]">
+        <el-option
+          v-for="item in sortRatingOptions"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
+    </div>
+  </div>
+
+  <div class="flex">
     <div class="w-[200px] mr-6">
       <Filters class="w-[200px] px-1 sticky top-1" />
     </div>
@@ -20,6 +46,7 @@
           :price="place.pricing"
         />
       </Grid>
+
       <div ref="trigger" class="trigger" />
       <div v-loading="loadingChunck" class="h-10 my-3" />
     </div>
@@ -41,6 +68,36 @@ const { getChank, getLength, getFiltered, getPrices } = usePlacesStore()
 
 const trigger = ref<Element>()
 const loadingChunck = ref<boolean>(false)
+const priceSort = ref(0)
+const ratingSort = ref(0)
+const sortPriceOptions = [
+  {
+    value: 0,
+    label: 'None'
+  },
+  {
+    value: 1,
+    label: 'Greater price'
+  },
+  {
+    value: 2,
+    label: 'Lower price'
+  }
+]
+const sortRatingOptions = [
+  {
+    value: 0,
+    label: 'None'
+  },
+  {
+    value: 1,
+    label: 'Greater rating'
+  },
+  {
+    value: 2,
+    label: 'Lower rating'
+  }
+]
 
 const placesShowed = computed(() => {
   if (placesFiltered.value.length) {
@@ -80,6 +137,27 @@ function callBack (entries: any) {
     }
   })
 }
+
+watch(priceSort, (currentValue) => {
+  if (currentValue === 1) {
+    placesShowed.value.sort((a, b) => b.pricing - a.pricing)
+    ratingSort.value = 0
+  }
+  if (currentValue === 2) {
+    ratingSort.value = 0
+    placesShowed.value.sort((a, b) => a.pricing - b.pricing)
+  }
+})
+watch(ratingSort, (currentValue) => {
+  if (currentValue === 1) {
+    priceSort.value = 0
+    placesShowed.value.sort((a, b) => b.stars - a.stars)
+  }
+  if (currentValue === 2) {
+    priceSort.value = 0
+    placesShowed.value.sort((a, b) => a.stars - b.stars)
+  }
+})
 
 onMounted(async () => {
   loading.value = true
