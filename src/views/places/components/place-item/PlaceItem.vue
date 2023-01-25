@@ -1,12 +1,8 @@
 <template>
   <div v-if="place" v-loading="loading" class="p-6">
-    <div v-if="userProfile?.is_admin" class="mb-4">
-      <template v-if="!edit && !create">
-        <el-button class="app-button" @click="edit = true">Edit place</el-button>
-        <el-button class="app-button" @click="create = true">Create place</el-button>
-        <el-button class="app-button" @click="deliteDialog = true">Delete place</el-button>
-      </template>
-    </div>
+    <el-button v-if="!edit && !create" class="app-button mb-4">
+      <router-link :to="{name:$routeNames.places}">Back to all places</router-link>
+    </el-button>
 
     <div v-if="create">
       <PlaceItemEditOrCreate />
@@ -17,105 +13,111 @@
     </div>
 
     <div v-if="!edit && !create">
-      <h3 class="text-xl font-bold mb-3">{{ place?.name }}</h3>
-
-      <div class="flex space-x-5 mb-3">
-        <p>{{ place?.address }}</p>
-
-        <p v-if="place?.reviews">{{ place.reviews?.length }} reviews</p>
-
-        <div class="flex items-center space-x-1">
-          <IconStar v-if="place?.stars" /><p class="text-sm">{{ place?.stars }}</p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-4 gap-4 mb-4 gird-imgs">
-        <img
-          v-for="item in place?.photos"
-          :key="item.pictureUrl"
-          class="first-of-type:col-span-2 first-of-type:row-span-2
-       first-of-type:w-full first-of-type:h-full shadow-2xl h-full"
-          :src="item.pictureUrl"
-          :alt="item.caption"
-        >
-      </div>
-
-      <p class="text-lg font-bold"> {{ place?.roomType }} hosted by {{ place?.primaryHost }}</p>
-      <p class="pb-4 border-b-[1px] border-black mb-3"> {{ placeInfo }}</p>
-
-      <div class="">
-        <div class="flex justify-between">
-          <div>
-            <h3 class="text-xl font-bold mb-3">What this place offers</h3>
-
-            <ul class="mb-3 p-2 shadow-2xl">
-              <h4>Essentials</h4>
-              <li v-for="item in place?.essentials" :key="item">
-                <p class="font-medium mb-1 text-sm"> - {{ item }}</p>
-              </li>
-            </ul>
-
-            <ul class="mb-3 p-2 shadow-2xl">
-              <h4>Features</h4>
-              <li v-for="item in place?.features" :key="item">
-                <p class="font-medium mb-1 text-sm">- {{ item }}</p>
-              </li>
-            </ul>
-
-            <ul class="mb-3 p-2 shadow-2xl">
-              <h4>Location</h4>
-              <li v-for="item in place?.amenities_location" :key="item">
-                <p class="font-medium mb-1 text-sm">- {{ item }}</p>
-              </li>
-            </ul>
-
-            <ul class="mb-3 p-2 shadow-2xl">
-              <h4>Safety</h4>
-              <li v-for="item in place?.safety" :key="item">
-                <p class="font-medium mb-1 text-sm">- {{ item }}</p>
-              </li>
-            </ul>
-          </div>
-
-          <GMapMap
-            v-if="place"
-            :center="place?.location"
-            :zoom="6"
-            map-type-id="terrain"
-            class="mt-10 ml-5 shadow-2xl w-full h-[296px]"
-          >
-            <GMapMarker :position="place?.location" />
-          </GMapMap>
-        </div>
-
-        <div class="w-[451px] mb-5">
-          <PlaceItemReserve :reservedDates="place?.reserved_dates" />
-        </div>
-
+      <div class="flex justify-between">
         <div>
-          <div
-            v-for="item in place?.reviews"
-            :key="item.author.id"
-            class="w-full mb-4 shadow-2xl p-2 mr-5"
-          >
-            <div class="flex mb-2">
-              <img
-                class="w-10 h-10 mr-8"
-                :src="item.author.pictureUrl"
-                :alt="item.author.firstName"
-              >
+          <h3 class="text-xl font-bold mb-1">{{ place?.name }}</h3>
 
-              <div>
-                <p class=" text-sm font-bold">{{ item.author.firstName }}</p>
+          <div class="flex space-x-5 mb-1">
+            <p>{{ place?.address }}</p>
 
-                <p class=" text-sm font-bold">{{ formatDate(item.createdAt) }}</p>
-              </div>
+            <p v-if="place?.reviews">{{ place.reviews?.length }} reviews</p>
+
+            <div class="flex items-center space-x-1">
+              <IconStar v-if="place?.stars" /><p class="text-sm">{{ place?.stars }}</p>
             </div>
+          </div>
+          <p class="pb-4 mb-3"> {{ placeInfo }}</p>
+        </div>
+        <div v-if="userProfile?.is_admin">
+          <template v-if="!edit && !create">
+            <el-button class="app-button" @click="edit = true">Edit place</el-button>
+            <el-button class="app-button" @click="create = true">Create place</el-button>
+            <el-button class="app-button" @click="deliteDialog = true">Delete place</el-button>
+          </template>
+        </div>
+      </div>
+      <div class="flex">
+        <div>
+          <!-- SLIDER -->
+          <el-carousel
+            height="484px"
+            :autoplay="false"
+            trigger="click"
+            :interval="5000" arrow="always"
+            class="min-w-[550px] shadow-2xl"
+          >
+            <el-carousel-item v-for="item in place?.photos" :key="item.pictureUrl">
+              <img class="object-cover  h-full shrink-0" :src="item.pictureUrl" :alt="item.caption">
+            </el-carousel-item>
+          </el-carousel>
 
-            <p class="text-xs">{{ item.comments }}</p>
+          <!-- REVIEWS -->
+          <div class="mt-4">
+            <div
+              v-for="item in place?.reviews"
+              :key="item.author.id"
+              class="w-[550px] mb-4 shadow-2xl p-2 h-[max-content]"
+            >
+              <div class="flex w-[550px] mb-2">
+                <img
+                  class="w-10 h-10 mr-8"
+                  :src="item.author.pictureUrl"
+                  :alt="item.author.firstName"
+                >
+
+                <div>
+                  <p class=" text-sm font-bold">{{ item.author.firstName }}</p>
+
+                  <p class=" text-sm font-bold">{{ formatDate(item.createdAt) }}</p>
+                </div>
+              </div>
+
+              <p class="text-xs">{{ item.comments }}</p>
+            </div>
+          </div>
+        </div>
+        <!-- INFO AND ORDER -->
+        <div class="ml-4 sticky top-1 h-max mb-4">
+          <div class="mb-5 p-2">
+            <h3 class="text-xl font-bold mb-1">What this place offers:</h3>
+
+            <p class="font-bold text-sm mb-5">
+              Essentials:
+              <span v-for="item in place?.essentials" :key="item" class="mx-3 font-normal">{{ item }}</span>
+            </p>
+
+            <p class="font-bold text-sm  mb-5">
+              Features:
+              <span v-for="item in place?.features" :key="item" class="mx-3 font-normal">{{ item }}</span>
+            </p>
+
+            <p class="font-bold text-sm  mb-5">
+              Location:
+              <span v-for="item in place?.amenities_location" :key="item" class="mx-3 font-normal">{{ item }}</span>
+            </p>
+
+            <p class="font-bold text-sm">
+              Safety:
+              <span v-for="item in place?.safety" :key="item" class="mx-3 font-normal">{{ item }}</span>
+            </p>
+          </div>
+
+          <div>
+            <PlaceItemReserve :reservedDates="place?.reserved_dates" />
           </div>
         </div>
       </div>
+
+      <!-- MAP -->
+      <GMapMap
+        v-if="place"
+        :center="place?.location"
+        :zoom="6"
+        map-type-id="terrain"
+        class="shadow-2xl w-full h-[296px]"
+      >
+        <GMapMarker :position="place?.location" />
+      </GMapMap>
     </div>
   </div>
 
@@ -239,3 +241,8 @@ onMounted(() => {
 })
 
 </script>
+<style lang='scss'>
+.el-range-editor.el-input__wrapper{
+  @apply w-full
+}
+</style>

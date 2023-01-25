@@ -11,7 +11,7 @@
 
   <div class="flex justify-between">
     <div>
-      <p class="text-xs mb-2">Min-price</p>
+      <p class="text-xs mb-1">Min-price</p>
 
       <el-input
         v-model.number="priceRange[0]"
@@ -20,7 +20,7 @@
     </div>
 
     <div>
-      <p class="text-xs mb-2">Max-price</p>
+      <p class="text-xs mb-1">Max-price</p>
 
       <el-input
         v-model.number="priceRange[1]"

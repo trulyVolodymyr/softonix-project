@@ -1,6 +1,6 @@
 <template>
   <el-form-item class="app-formitem">
-    <p class="text-xs">Room type</p>
+    <p class="text-xs my-[2px]">Room type</p>
     <el-select v-model="roomType">
       <el-option
         v-for="item in RoomTypes"

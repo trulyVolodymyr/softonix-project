@@ -2,4 +2,9 @@
   &__button {
     @apply h-1 w-1 bg-white rounded
   }
+
+  &__arrow--right,
+  &__arrow--left {
+    @apply bg-black
+  }
 }

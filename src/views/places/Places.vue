@@ -1,6 +1,6 @@
 <template>
   <div class="p-6 flex">
-    <div class="w-[200px] mr-2">
+    <div class="w-[200px] mr-6">
       <Filters class="w-[200px] px-1 sticky top-1" />
     </div>
 
@@ -34,13 +34,11 @@ const generalStore = useGeneralStore()
 const { loading } = storeToRefs(generalStore)
 const {
   places, maxlength, placesFiltered, startFiltered, endFiltered, url, filteredLength,
-  noPlaces
+  noPlaces, start, end
 } = storeToRefs(placesStore)
 const { max, min, priceRange } = storeToRefs(filterStore)
 const { getChank, getLength, getFiltered, getPrices } = usePlacesStore()
 
-const start = ref<number>(0)
-const end = ref<number>(19)
 const trigger = ref<Element>()
 const loadingChunck = ref<boolean>(false)
 

@@ -8,6 +8,8 @@ export const usePlacesStore = defineStore('placesStore', () => {
   const startFiltered = ref<number>(0)
   const endFiltered = ref<number>(19)
   const noPlaces = ref<boolean>(false)
+  const start = ref<number>(0)
+  const end = ref<number>(19)
 
   const url = computed(() => {
     const urlArr = ['https://pcdokqjfsewijuqgscrk.supabase.co/rest/v1/places?select=*']
@@ -136,6 +138,8 @@ export const usePlacesStore = defineStore('placesStore', () => {
     endFiltered,
     url,
     filteredLength,
-    noPlaces
+    noPlaces,
+    start,
+    end
   }
 })

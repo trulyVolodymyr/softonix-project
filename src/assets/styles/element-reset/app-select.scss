@@ -1,7 +1,11 @@
-.el-select-dropdown__wrap {
-  @apply max-h-max
-}
+.el-select {
+  &-dropdown__wrap {
+    @apply max-h-max
+  }
 
-.el-select .el-input__wrapper {
-  @apply h-[29px]
+  & .el-input__wrapper {
+    @apply h-[29px]
+  }
+
+  @apply w-full
 }
