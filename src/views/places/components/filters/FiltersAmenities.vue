@@ -1,49 +1,186 @@
 <template>
-  <h3 class="text-white text-lg text-center mb-4">Amenities</h3>
+  <h3 class="text-sm text-center mb-1">Amenities</h3>
 
-  <h4 class="text-white underline">Essentials</h4>
-  <el-checkbox-group v-model="amenities.essentials">
-    <el-checkbox label="Wifi" />
-    <el-checkbox label="Washer" />
-    <el-checkbox label="Air conditioning" />
-    <el-checkbox label="Dedicated workspace" />
-    <el-checkbox label="Hair dryer" />
-    <el-checkbox label="Kitchen" />
-    <el-checkbox label="Dryer" />
-    <el-checkbox label="Heating" />
-    <el-checkbox label="TV" />
-    <el-checkbox label="Iron" />
-  </el-checkbox-group>
+  <el-form-item class="app-formitem">
+    <p class="text-xs">Essentials</p>
+    <el-select
+      v-model="amenities.essentials"
+      multiple
+      collapse-tags
+      class="app-select"
+    >
+      <el-option
+        v-for="item in essentials"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      />
+    </el-select>
+  </el-form-item>
 
-  <h4 class="text-white underline">Features</h4>
-  <el-checkbox-group v-model="amenities.features">
-    <el-checkbox label="Pool" />
-    <el-checkbox label="Free parking on premises" />
-    <el-checkbox label="Crib" />
-    <el-checkbox label="BBQ grill" />
-    <el-checkbox label="Indoor fireplace" />
-    <el-checkbox label="Hot tub" />
-    <el-checkbox label="EV charger" />
-    <el-checkbox label="Gym" />
-    <el-checkbox label="Breakfast" />
-    <el-checkbox label="Smoking allowed" />
-  </el-checkbox-group>
+  <el-form-item class="app-formitem">
+    <p class="text-xs">Features</p>
+    <el-select
+      v-model="amenities.features"
+      multiple
+      collapse-tags
+      class="app-select"
+    >
+      <el-option
+        v-for="item in features"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      />
+    </el-select>
+  </el-form-item>
 
-  <h4 class="text-white underline">Location</h4>
-  <el-checkbox-group v-model="amenities.location">
-    <el-checkbox label="Beachfront" />
-    <el-checkbox label="Waterfront" />
-    <el-checkbox label="Ski-in/ski-out" />
-  </el-checkbox-group>
+  <el-form-item class="app-formitem">
+    <p class="text-xs">Location</p>
+    <el-select
+      v-model="amenities.location"
+      multiple
+      collapse-tags
+      class="app-select"
+    >
+      <el-option
+        v-for="item in location"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      />
+    </el-select>
+  </el-form-item>
 
-  <h4 class="text-white underline">Safety</h4>
-  <el-checkbox-group v-model="amenities.safety">
-    <el-checkbox label="Smoke alarm" />
-    <el-checkbox label="Carbon monoxide alarm" />
-  </el-checkbox-group>
+  <el-form-item class="app-formitem">
+    <p class="text-xs w-full">Safety</p>
+    <el-select
+      v-model="amenities.safety"
+      multiple
+      collapse-tags
+      class="app-select"
+    >
+      <el-option
+        v-for="item in safety"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      />
+    </el-select>
+  </el-form-item>
 </template>
 
 <script lang='ts' setup>
 const filtersStore = useFiltersStore()
 const { amenities } = storeToRefs(filtersStore)
+
+const essentials = [
+  {
+    value: 'Wifi',
+    label: 'Wifi'
+  },
+  {
+    value: 'Washer',
+    label: 'Washer'
+  },
+  {
+    value: 'Air conditionng',
+    label: 'Air conditionng'
+  },
+  {
+    value: 'Dedicated workspace',
+    label: 'Dedicated workspace'
+  },
+  {
+    value: 'Hair dryer',
+    label: 'Hair dryer'
+  },
+  {
+    value: 'Kitchen',
+    label: 'Kitchen'
+  },
+  {
+    value: 'Dryer',
+    label: 'Dryer'
+  },
+  {
+    value: 'Heating',
+    label: 'Heating'
+  },
+  {
+    value: 'TV',
+    label: 'TV'
+  },
+  {
+    value: 'Iron',
+    label: 'Iron'
+  }
+]
+const features = [
+  {
+    value: 'Pool',
+    label: 'Pool'
+  },
+  {
+    value: 'Free parking on premises',
+    label: 'Free parking on premises'
+  },
+  {
+    value: 'Ski-in/Ski-out',
+    label: 'Crib'
+  },
+  {
+    value: 'BBQ grill',
+    label: 'BBQ grill'
+  },
+  {
+    value: 'Indoor fireplace',
+    label: 'Indoor fireplace'
+  },
+  {
+    value: 'Hot tub',
+    label: 'Hot tub'
+  },
+  {
+    value: 'EV charger',
+    label: 'EV charger'
+  },
+  {
+    value: 'Gym',
+    label: 'Gym'
+  },
+  {
+    value: 'Breakfast',
+    label: 'Breakfast'
+  },
+  {
+    value: 'Smooking allowed',
+    label: 'Smooking allowed'
+  }
+]
+const location = [
+  {
+    value: 'Beachfront',
+    label: 'Beachfront'
+  },
+  {
+    value: 'Waterfront',
+    label: 'Waterfront'
+  },
+  {
+    value: 'Ski-in/Ski-out',
+    label: 'Ski-in/Ski-out'
+  }
+]
+const safety = [
+  {
+    value: 'Smoke alarm',
+    label: 'Smoke alarm'
+  },
+  {
+    value: 'Carbon monoxide alarm',
+    label: 'Carbon monoxide alarm'
+  }
+
+]
 </script>

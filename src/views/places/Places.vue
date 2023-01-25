@@ -1,24 +1,28 @@
 <template>
-  <Modal v-if="filtersModalVisability">
-    <Filters />
-  </Modal>
+  <div class="p-6 flex">
+    <div class="w-[200px] mr-2">
+      <Filters class="w-[200px] px-1 sticky top-1" />
+    </div>
 
-  <div class="p-6">
-    <Grid>
-      <GridItem
-        v-for="(place) in placesShowed"
-        :id="place.id"
-        :key="place.id"
-        :photos="place.photos"
-        :address="place.address"
-        :stars="place.stars || 0"
-        :price="place.pricing"
-      />
-    </Grid>
+    <div v-if="noPlaces" class="w-full">
+      <h2 class="text-center text-lg">No places found...</h2>
+    </div>
 
-    <div v-loading="loadingChunck" class="h-10 my-3" />
-
-    <div ref="trigger" />
+    <div v-if="!noPlaces" class="w-full">
+      <Grid>
+        <GridItem
+          v-for="place in placesShowed"
+          :id="place.id"
+          :key="place.id"
+          :photos="place.photos"
+          :address="place.address"
+          :stars="place.stars || 0"
+          :price="place.pricing"
+        />
+      </Grid>
+      <div ref="trigger" class="trigger" />
+      <div v-loading="loadingChunck" class="h-10 my-3" />
+    </div>
   </div>
 </template>
 
@@ -28,8 +32,11 @@ const filterStore = useFiltersStore()
 const generalStore = useGeneralStore()
 
 const { loading } = storeToRefs(generalStore)
-const { places, maxlength, placesFiltered, startFiltered, endFiltered, url, filteredLength } = storeToRefs(placesStore)
-const { filtersModalVisability, max, min, priceRange } = storeToRefs(filterStore)
+const {
+  places, maxlength, placesFiltered, startFiltered, endFiltered, url, filteredLength,
+  noPlaces
+} = storeToRefs(placesStore)
+const { max, min, priceRange } = storeToRefs(filterStore)
 const { getChank, getLength, getFiltered, getPrices } = usePlacesStore()
 
 const start = ref<number>(0)

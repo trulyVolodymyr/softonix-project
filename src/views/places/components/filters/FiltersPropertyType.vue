@@ -1,16 +1,38 @@
 <template>
-  <h3 class="text-white text-lg text-center mb-4">Property type</h3>
-
-  <el-radio-group v-model="propertyType" size="large">
-    <el-radio-button label="House" />
-    <el-radio-button label="Apartment" />
-    <el-radio-button label="Guesthouse" />
-    <el-radio-button label="Hotel" />
-  </el-radio-group>
+  <el-form-item class="app-formitem">
+    <p class="text-xs">Property Type</p>
+    <el-select v-model="propertyType">
+      <el-option
+        v-for="item in propertyTypes"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      />
+    </el-select>
+  </el-form-item>
 </template>
 
 <script lang='ts' setup>
 const filtersStore = useFiltersStore()
 
 const { propertyType } = storeToRefs(filtersStore)
+
+const propertyTypes = [
+  {
+    value: 'house',
+    label: 'House'
+  },
+  {
+    value: 'apartment',
+    label: 'Apartment'
+  },
+  {
+    value: 'guesthouse',
+    label: 'Guesthouse'
+  },
+  {
+    value: 'hotel',
+    label: 'Hotel'
+  }
+]
 </script>

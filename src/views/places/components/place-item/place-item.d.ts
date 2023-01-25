@@ -10,9 +10,9 @@ interface ILocation{
 }
 
 interface IPhoto{
-  caption?: string
+  caption: string
   pictureUrl: string
-  thumbnailUrl?: string
+  thumbnailUrl: string
 }
 
 interface IAUthor{

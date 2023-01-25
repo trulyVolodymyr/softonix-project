@@ -3,172 +3,185 @@
     <el-form
       ref="formRef"
       :model="form"
-      label-width="150px"
+      label-width="120px"
       :rules="isRulseActive"
       @submit.prevent="submit"
     >
-      <el-form-item ref="vova" label="Name" prop="name">
-        <el-input v-model="form.name" />
-      </el-form-item>
+      <div class="form-item">
+        <el-form-item ref="vova" label="Name" prop="name">
+          <el-input v-model="form.name" class="form-input" />
+        </el-form-item>
 
-      <el-form-item label="Address" prop="address">
-        <el-input v-model="form.address" />
-      </el-form-item>
+        <el-form-item label="Address" prop="address">
+          <el-input v-model="form.address" class="form-input" />
+        </el-form-item>
 
-      <el-form-item label="Primary host" prop="primaryHost">
-        <el-input v-model="form.primaryHost" />
-      </el-form-item>
+        <el-form-item label="Primary host" prop="primaryHost">
+          <el-input v-model="form.primaryHost" class="form-input" />
+        </el-form-item>
+      </div>
 
-      <el-form-item label="Bedrooms" prop="bedrooms">
-        <el-select v-model="form.bedrooms">
-          <el-option
-            v-for="item in numberOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-      </el-form-item>
+      <div class="form-item">
+        <el-form-item label="Bedrooms" prop="bedrooms">
+          <el-select v-model="form.bedrooms" class="form-input">
+            <el-option
+              v-for="item in numberOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
 
-      <el-form-item label="Beds" prop="beds">
-        <el-select v-model="form.beds">
-          <el-option
-            v-for="item in numberOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-      </el-form-item>
+        <el-form-item label="Beds" prop="beds">
+          <el-select v-model="form.beds" class="form-input">
+            <el-option
+              v-for="item in numberOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
 
-      <el-form-item label="Bathrooms" prop="bathrooms">
-        <el-select v-model="form.bathrooms">
-          <el-option
-            v-for="item in numberOptions"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-      </el-form-item>
+        <el-form-item label="Bathrooms" prop="bathrooms">
+          <el-select v-model="form.bathrooms" class="form-input">
+            <el-option
+              v-for="item in numberOptions"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
 
-      <el-form-item label="Property Type" prop="propertyType">
-        <el-select v-model="form.propertyType">
-          <el-option
-            v-for="item in propertyTypes"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-      </el-form-item>
+        <el-form-item label="Property Type" prop="propertyType">
+          <el-select v-model="form.propertyType" class="form-input">
+            <el-option
+              v-for="item in propertyTypes"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
 
-      <el-form-item label="Room Type" prop="roomType">
-        <el-select v-model="form.roomType">
-          <el-option
-            v-for="item in RoomTypes"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-      </el-form-item>
+        <el-form-item label="Room Type" prop="roomType">
+          <el-select v-model="form.roomType" class="form-input">
+            <el-option
+              v-for="item in RoomTypes"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
 
-      <el-form-item label="Essentials" prop="essentials">
-        <el-select
-          v-model="form.essentials"
-          multiple
-          class="app-select"
-        >
-          <el-option
-            v-for="item in essentials"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-      </el-form-item>
+        <el-form-item label="Essentials" prop="essentials">
+          <el-select
+            v-model="form.essentials"
+            class="form-input app-select"
+            multiple
+            collapse-tags
+          >
+            <el-option
+              v-for="item in essentials"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
 
-      <el-form-item label="Features" prop="features">
-        <el-select
-          v-model="form.features"
-          multiple
-          class="app-select"
-        >
-          <el-option
-            v-for="item in features"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-      </el-form-item>
+        <el-form-item label="Features" prop="features">
+          <el-select
+            v-model="form.features"
+            class="form-input app-select"
+            multiple
+            collapse-tags
+          >
+            <el-option
+              v-for="item in features"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
 
-      <el-form-item label="Location" prop="amenities_location">
-        <el-select
-          v-model="form.amenities_location"
-          multiple
-          class="app-select"
-        >
-          <el-option
-            v-for="item in location"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-      </el-form-item>
+        <el-form-item label="Location" prop="amenities_location">
+          <el-select
+            v-model="form.amenities_location"
+            class="form-input app-select"
+            multiple
+            collapse-tags
+          >
+            <el-option
+              v-for="item in location"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
 
-      <el-form-item label="Safety" prop="safety">
-        <el-select
-          v-model="form.safety"
-          multiple
-          class="app-select"
-        >
-          <el-option
-            v-for="item in safety"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          />
-        </el-select>
-      </el-form-item>
+        <el-form-item label="Safety" prop="safety">
+          <el-select
+            v-model="form.safety"
+            class="form-input app-select"
+            multiple
+            collapse-tags
+          >
+            <el-option
+              v-for="item in safety"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+            />
+          </el-select>
+        </el-form-item>
+      </div>
 
-      <el-form-item label="Guest" prop="numberOfGuests">
-        <el-input-number v-model="form.numberOfGuests" :min="1" />
-      </el-form-item>
+      <div class="form-item">
+        <el-form-item label="Guest" prop="numberOfGuests">
+          <el-input-number v-model="form.numberOfGuests" :min="1" />
+        </el-form-item>
 
-      <el-form-item label="Price in $" prop="pricing">
-        <el-input-number v-model="form.pricing" />
-      </el-form-item>
+        <el-form-item label="Price in $" prop="pricing">
+          <el-input-number v-model="form.pricing" />
+        </el-form-item>
+      </div>
 
-      <el-form-item label="Latitude" prop="location">
-        <el-input v-model="form.location.lat" :precision="5" />
-      </el-form-item>
+      <div class="form-item">
+        <el-form-item label="Latitude" prop="location">
+          <el-input v-model="form.location.lat" class="form-input" :precision="5" />
+        </el-form-item>
 
-      <el-form-item label="Longitude" prop="location">
-        <el-input v-model="form.location.lng" :precision="5" />
-      </el-form-item>
+        <el-form-item label="Longitude" prop="location">
+          <el-input v-model="form.location.lng" class="form-input" :precision="5" />
+        </el-form-item>
+      </div>
+      <div class="form-item">
+        <el-form-item label="Photo 1 url" prop="photos">
+          <el-input v-model="form.photos[0].pictureUrl" class="form-input" />
+        </el-form-item>
 
-      <el-form-item label="Photo 1 url" prop="photos">
-        <el-input v-model="form.photos[0].pictureUrl" />
-      </el-form-item>
+        <el-form-item label="Photo 2 url" prop="photos">
+          <el-input v-model="form.photos[1].pictureUrl" class="form-input" />
+        </el-form-item>
 
-      <el-form-item label="Photo 2 url" prop="photos">
-        <el-input v-model="form.photos[1].pictureUrl" />
-      </el-form-item>
+        <el-form-item label="Photo 3 url" prop="photos">
+          <el-input v-model="form.photos[2].pictureUrl" class="form-input" />
+        </el-form-item>
 
-      <el-form-item label="Photo 3 url" prop="photos">
-        <el-input v-model="form.photos[2].pictureUrl" />
-      </el-form-item>
+        <el-form-item label="Photo 4 url" prop="photos">
+          <el-input v-model="form.photos[3].pictureUrl" class="form-input" />
+        </el-form-item>
 
-      <el-form-item label="Photo 4 url" prop="photos">
-        <el-input v-model="form.photos[3].pictureUrl" />
-      </el-form-item>
-
-      <el-form-item label="Photo 5 url" prop="photos">
-        <el-input v-model="form.photos[4].pictureUrl" />
-      </el-form-item>
+        <el-form-item label="Photo 5 url" prop="photos">
+          <el-input v-model="form.photos[4].pictureUrl" class="form-input" />
+        </el-form-item>
+      </div>
 
       <el-button
         native-type="submit"
@@ -385,19 +398,29 @@ const form = useElFormModel<IPostPlace>({
   pricing: 0,
   photos: [
     {
-      pictureUrl: ''
+      caption: '',
+      pictureUrl: '',
+      thumbnailUrl: ''
     },
     {
-      pictureUrl: ''
+      caption: '',
+      pictureUrl: '',
+      thumbnailUrl: ''
     },
     {
-      pictureUrl: ''
+      caption: '',
+      pictureUrl: '',
+      thumbnailUrl: ''
     },
     {
-      pictureUrl: ''
+      caption: '',
+      pictureUrl: '',
+      thumbnailUrl: ''
     },
     {
-      pictureUrl: ''
+      caption: '',
+      pictureUrl: '',
+      thumbnailUrl: ''
     }
   ],
   primaryHost: '',
@@ -506,3 +529,10 @@ onMounted(() => {
   }
 })
 </script>
+
+<style lang='scss'>
+.form-item{
+ @apply flex flex-wrap border-b-[1px] border-black mb-2 pb-2
+
+}
+</style>

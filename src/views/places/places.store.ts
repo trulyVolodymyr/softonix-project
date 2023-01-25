@@ -1,12 +1,13 @@
 const filtersStore = useFiltersStore()
 
-const { max, min, priceRange, roomType, bedroms, beds, bathrooms, propertyType, amenities } = storeToRefs(filtersStore)
+const { max, min, priceRange, roomType, bedrooms, beds, bathrooms, propertyType, amenities } = storeToRefs(filtersStore)
 export const usePlacesStore = defineStore('placesStore', () => {
   const places = ref<IPlace[]>([])
   const placesFiltered = ref<IPlace[]>([])
   const maxlength = ref<number>(0)
   const startFiltered = ref<number>(0)
   const endFiltered = ref<number>(19)
+  const noPlaces = ref<boolean>(false)
 
   const url = computed(() => {
     const urlArr = ['https://pcdokqjfsewijuqgscrk.supabase.co/rest/v1/places?select=*']
@@ -23,11 +24,11 @@ export const usePlacesStore = defineStore('placesStore', () => {
     }
 
     /// bedrooms
-    if (bedroms.value < 6 && bedroms.value !== 0) {
-      urlArr.push(`&bedrooms=eq.${bedroms.value}`)
+    if (bedrooms.value < 6 && bedrooms.value !== 0) {
+      urlArr.push(`&bedrooms=eq.${bedrooms.value}`)
     }
-    if (bedroms.value === 6) {
-      urlArr.push(`&bedrooms=gt.${bedroms.value - 1}`)
+    if (bedrooms.value === 6) {
+      urlArr.push(`&bedrooms=gt.${bedrooms.value - 1}`)
     }
 
     /// beds
@@ -106,13 +107,17 @@ export const usePlacesStore = defineStore('placesStore', () => {
   }
 
   function getFiltered (http: string, range: string) {
+    noPlaces.value = false
     if (url.value.length !== 64) {
       return placesService.getFiltered(http, range)
         .then(data => {
           placesFiltered.value.push(...data)
-
           startFiltered.value += 20
           endFiltered.value += 20
+
+          if (!placesFiltered.value.length) {
+            noPlaces.value = true
+          }
 
           getFilteredLength(http.replace('*', 'id')).then(data => (filteredLength.value = data.length))
         })
@@ -130,6 +135,7 @@ export const usePlacesStore = defineStore('placesStore', () => {
     startFiltered,
     endFiltered,
     url,
-    filteredLength
+    filteredLength,
+    noPlaces
   }
 })

@@ -1,0 +1,9 @@
+.app-formitem {
+  &.el-form-item {
+    @apply mb-0
+  }
+}
+
+.el-form-item {
+  @apply mb-1
+}
