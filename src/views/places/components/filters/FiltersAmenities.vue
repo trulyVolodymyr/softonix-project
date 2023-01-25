@@ -1,8 +1,8 @@
 <template>
-  <h3 class="text-sm text-center">Amenities</h3>
+  <h3 class="mt-2 font-bold">Amenities</h3>
 
   <el-form-item class="app-formitem">
-    <p class="text-xs my-[2px]">Essentials</p>
+    <p class="my-[2px]">Essentials</p>
     <el-select
       v-model="amenities.essentials"
       multiple
@@ -19,7 +19,7 @@
   </el-form-item>
 
   <el-form-item class="app-formitem">
-    <p class="text-xs my-[2px]">Features</p>
+    <p class="my-[2px]">Features</p>
     <el-select
       v-model="amenities.features"
       multiple
@@ -36,7 +36,7 @@
   </el-form-item>
 
   <el-form-item class="app-formitem">
-    <p class="text-xs my-[2px]">Location</p>
+    <p class="my-[2px]">Location</p>
     <el-select
       v-model="amenities.location"
       multiple
@@ -53,7 +53,7 @@
   </el-form-item>
 
   <el-form-item class="app-formitem">
-    <p class="text-xs my-[2px] w-full">Safety</p>
+    <p class="my-[2px] w-full">Safety</p>
     <el-select
       v-model="amenities.safety"
       multiple

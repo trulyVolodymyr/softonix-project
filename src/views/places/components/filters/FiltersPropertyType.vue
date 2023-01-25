@@ -1,6 +1,6 @@
 <template>
   <el-form-item class="app-formitem">
-    <p class="text-xs my-[2px]">Property Type</p>
+    <p class="my-[2px]">Property Type</p>
     <el-select v-model="propertyType">
       <el-option
         v-for="item in propertyTypes"

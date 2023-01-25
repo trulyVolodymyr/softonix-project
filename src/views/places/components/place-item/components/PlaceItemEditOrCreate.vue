@@ -533,6 +533,5 @@ onMounted(() => {
 <style lang='scss'>
 .form-item{
  @apply flex flex-wrap border-b-[1px] border-black mb-2 pb-2
-
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
-  <h3 class="text-sm text-center">Beds & rooms</h3>
+  <h3 class="mt-2 font-bold">Beds & rooms</h3>
   <el-form-item class="app-formitem">
-    <p class="text-xs my-[2px]">Bedrooms</p>
+    <p class="my-[2px]">Bedrooms</p>
     <el-select v-model="bedrooms">
       <el-option
         v-for="item in numberOptions"
@@ -13,7 +13,7 @@
   </el-form-item>
 
   <el-form-item class="app-formitem">
-    <p class="text-xs my-[2px] w-full">Beds</p>
+    <p class="my-[2px] w-full">Beds</p>
     <el-select v-model="beds">
       <el-option
         v-for="item in numberOptions"
@@ -25,7 +25,7 @@
   </el-form-item>
 
   <el-form-item class="app-formitem">
-    <p class="text-xs my-[2px]">Bathrooms</p>
+    <p class="my-[2px]">Bathrooms</p>
     <el-select v-model="bathrooms">
       <el-option
         v-for="item in numberOptions"

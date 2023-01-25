@@ -26,8 +26,8 @@
   </div>
 
   <div class="flex">
-    <div class="w-[200px] mr-6">
-      <Filters class="w-[200px] px-1 sticky top-1" />
+    <div class="mr-6">
+      <Filters />
     </div>
 
     <div v-if="noPlaces" class="w-full">
@@ -155,7 +155,7 @@ watch(ratingSort, (currentValue) => {
   }
   if (currentValue === 2) {
     priceSort.value = 0
-    placesShowed.value.sort((a, b) => a.stars - b.stars)
+    placesShowed.value.sort((a, b) => a.stars > 0 ? a.stars - b.stars : b.stars)
   }
 })
 

@@ -1,17 +1,18 @@
 <template>
-  <div>
-    <FiltersRange />
+  <div class="w-[250px]  sticky top-10">
+    <div class=" h-[450px] px-1 overflow-y-auto overflow-x-hidden">
+      <FiltersRange />
 
-    <FiltersRoomType />
+      <FiltersRoomType />
 
-    <FiltersPropertyType />
+      <FiltersPropertyType />
 
-    <FiltersBedsAndRooms />
+      <FiltersBedsAndRooms />
 
-    <FiltersAmenities />
-
+      <FiltersAmenities />
+    </div>
     <el-button
-      class="app-button border-[1px] mt-3 border-white hover:border-[1px] hover:border-black"
+      class="app-button border-[1px] mt-3 border-white hover:border-[1px] hover:border-black bottom-0"
       @click="applyFilters"
     >
       Aplly filters

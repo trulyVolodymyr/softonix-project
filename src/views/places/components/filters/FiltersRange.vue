@@ -1,5 +1,5 @@
 <template>
-  <h3 class="text-sm text-center">Price range</h3>
+  <h3 class="font-bold">Price range</h3>
   <div class="px-2 my-1">
     <el-slider
       v-model="priceRange"
@@ -11,7 +11,7 @@
 
   <div class="flex justify-between">
     <div>
-      <p class="text-xs mb-1">Min-price</p>
+      <p class="mb-1">Min-price</p>
 
       <el-input
         v-model.number="priceRange[0]"
@@ -20,7 +20,7 @@
     </div>
 
     <div>
-      <p class="text-xs mb-1">Max-price</p>
+      <p class="mb-1">Max-price</p>
 
       <el-input
         v-model.number="priceRange[1]"

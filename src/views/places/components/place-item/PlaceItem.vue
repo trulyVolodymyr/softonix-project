@@ -233,6 +233,13 @@ function deletePlace () {
       })
   }
 }
+
+watch(edit, (currentValue) => {
+  if (currentValue === false) {
+    getData()
+  }
+})
+
 loading.value = true
 onMounted(() => {
   getData()
