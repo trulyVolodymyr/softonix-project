@@ -1,8 +1,15 @@
 <template>
   <div v-if="place" v-loading="loading" class="p-6">
-    <el-button v-if="!edit && !create" class="app-button mb-4">
-      <router-link :to="{name:$routeNames.places}">Back to all places</router-link>
-    </el-button>
+    <div class="flex justify-between">
+      <el-button v-if="!edit && !create" class="app-button mb-4" @click="routeBack">Back</el-button>
+      <div v-if="userProfile?.is_admin">
+        <template v-if="!edit && !create">
+          <el-button class="app-button" @click="edit = true">Edit place</el-button>
+          <el-button class="app-button" @click="create = true">Create place</el-button>
+          <el-button class="app-button" @click="deliteDialog = true">Delete place</el-button>
+        </template>
+      </div>
+    </div>
 
     <div v-if="create">
       <PlaceItemEditOrCreate />
@@ -13,28 +20,19 @@
     </div>
 
     <div v-if="!edit && !create">
-      <div class="flex justify-between">
-        <div>
-          <h3 class="text-xl font-bold mb-1">{{ place?.name }}</h3>
+      <div>
+        <h3 class="text-xl font-bold mb-1">{{ place?.name }}</h3>
 
-          <div class="flex space-x-5 mb-1">
-            <p>{{ place?.address }}</p>
+        <div class="flex space-x-5 mb-1">
+          <p>{{ place?.address }}</p>
 
-            <p v-if="place?.reviews">{{ place.reviews?.length }} reviews</p>
+          <p v-if="place?.reviews">{{ place.reviews?.length }} reviews</p>
 
-            <div class="flex items-center space-x-1">
-              <IconStar v-if="place?.stars" /><p class="text-sm">{{ place?.stars }}</p>
-            </div>
+          <div class="flex items-center space-x-1">
+            <IconStar v-if="place?.stars" /><p class="text-sm">{{ place?.stars }}</p>
           </div>
-          <p class="pb-4 mb-3"> {{ placeInfo }}</p>
         </div>
-        <div v-if="userProfile?.is_admin">
-          <template v-if="!edit && !create">
-            <el-button class="app-button" @click="edit = true">Edit place</el-button>
-            <el-button class="app-button" @click="create = true">Create place</el-button>
-            <el-button class="app-button" @click="deliteDialog = true">Delete place</el-button>
-          </template>
-        </div>
+        <p class="pb-4 mb-3"> {{ placeInfo }}</p>
       </div>
       <div class="flex">
         <div>
@@ -234,6 +232,10 @@ function deletePlace () {
   }
 }
 
+function routeBack () {
+  router.back()
+}
+
 watch(edit, (currentValue) => {
   if (currentValue === false) {
     getData()
@@ -247,7 +249,12 @@ onMounted(() => {
   edit.value = false
 })
 
+onUnmounted(() => {
+  place.value = undefined
+})
+
 </script>
+
 <style lang='scss'>
 .el-range-editor.el-input__wrapper{
   @apply w-full

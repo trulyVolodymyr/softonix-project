@@ -1,13 +1,13 @@
 <template>
   <div v-loading="loading">
-    <div class="shadow-2xl">
+    <div class="tablet:shadow-2xl">
       <h3 class="mb-5 text-center text-[20px] py-5 border-b-[1px]">Registration</h3>
 
       <el-form
         ref="formRef"
         :rules="formRules"
         :model="formModel"
-        class="w-[500px] space-y-6 px-5"
+        class="tablet:w-[500px] w-[310px] space-y-6 px-5"
         @submit.prevent="submit"
       >
         <el-form-item prop="email">
