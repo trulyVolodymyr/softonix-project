@@ -10,7 +10,14 @@
               :to="{path:`place/${row.place_id}`}"
               class="underline whitespace-nowrap overflow-hidden text-ellipsis"
             >
-              {{ row.place_name }}
+              <el-tooltip
+                class="box-item"
+                effect="dark"
+                :content="row.place_name"
+                placement="top"
+              >
+                <p>{{ row.place_name }}</p>
+              </el-tooltip>
             </router-link>
           </template>
         </el-table-column>

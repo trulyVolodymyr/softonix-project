@@ -8,18 +8,8 @@
           :key="item.value"
           :label="item.label"
           :value="item.value"
-        />
-      </el-select>
-    </div>
-
-    <div>
-      <p class="text-xs">Sort by rating</p>
-      <el-select v-model="ratingSort" class="w-[150px]">
-        <el-option
-          v-for="item in sortRatingOptions"
-          :key="item.value"
-          :label="item.label"
-          :value="item.value"
+          :disabled="item.disabled"
+          @click="sortByName"
         />
       </el-select>
     </div>
@@ -30,8 +20,8 @@
       <Filters />
     </div>
 
-    <div v-if="noPlaces" class="w-full">
-      <h2 class="text-center text-lg">No places found...</h2>
+    <div v-if="noPlaces" class="w-full flex items-center">
+      <h2 class="text-center w-full text-lg">No places found...</h2>
     </div>
 
     <div v-if="!noPlaces" class="w-full">
@@ -69,11 +59,12 @@ const { getChank, getLength, getFiltered, getPrices } = usePlacesStore()
 const trigger = ref<Element>()
 const loadingChunck = ref<boolean>(false)
 const priceSort = ref(0)
-const ratingSort = ref(0)
+
 const sortPriceOptions = [
   {
     value: 0,
-    label: 'None'
+    label: 'None',
+    disabled: true
   },
   {
     value: 1,
@@ -82,20 +73,6 @@ const sortPriceOptions = [
   {
     value: 2,
     label: 'Lower price'
-  }
-]
-const sortRatingOptions = [
-  {
-    value: 0,
-    label: 'None'
-  },
-  {
-    value: 1,
-    label: 'Greater rating'
-  },
-  {
-    value: 2,
-    label: 'Lower rating'
   }
 ]
 
@@ -111,6 +88,9 @@ function loadItems () {
 
   if (placesFiltered.value.length) {
     return getFiltered(url.value, `${startFiltered.value}-${endFiltered.value}`)
+      ?.then(() => {
+        sortByName()
+      })
       ?.finally(() => (loadingChunck.value = false))
   }
 
@@ -118,6 +98,10 @@ function loadItems () {
 
     .then((data: IPlace[]) => {
       places.value.push(...data)
+      if (priceSort.value !== 0) {
+        sortByName()
+      }
+
       start.value = start.value + 20
       end.value = end.value + 20
     }).finally(() => {
@@ -138,26 +122,14 @@ function callBack (entries: any) {
   })
 }
 
-watch(priceSort, (currentValue) => {
-  if (currentValue === 1) {
+function sortByName () {
+  if (priceSort.value === 1) {
     placesShowed.value.sort((a, b) => b.pricing - a.pricing)
-    ratingSort.value = 0
   }
-  if (currentValue === 2) {
-    ratingSort.value = 0
+  if (priceSort.value === 2) {
     placesShowed.value.sort((a, b) => a.pricing - b.pricing)
   }
-})
-watch(ratingSort, (currentValue) => {
-  if (currentValue === 1) {
-    priceSort.value = 0
-    placesShowed.value.sort((a, b) => b.stars - a.stars)
-  }
-  if (currentValue === 2) {
-    priceSort.value = 0
-    placesShowed.value.sort((a, b) => a.stars > 0 ? a.stars - b.stars : b.stars)
-  }
-})
+}
 
 onMounted(async () => {
   loading.value = true
@@ -174,7 +146,6 @@ onMounted(async () => {
   if (min.value === 0 || max.value === 0) {
     const prices = await getPrices()
 
-    min.value = Math.min(...prices.map((item: any) => item.pricing))
     max.value = Math.max(...prices.map((item: any) => item.pricing)) + 1
 
     priceRange.value[0] = min.value

@@ -7,10 +7,10 @@
         ref="formRef"
         :rules="formRules"
         :model="formModel"
-        class="tablet:w-[500px] w-[310px] space-y-6 px-5"
+        class="tablet:w-[500px] w-[310px] px-5"
         @submit.prevent="submit"
       >
-        <el-form-item prop="email">
+        <el-form-item class="mb-6" prop="email">
           <el-input
             v-model="formModel.email"
             size="large"
@@ -19,7 +19,7 @@
           />
         </el-form-item>
 
-        <el-form-item prop="password">
+        <el-form-item class="mb-10" prop="password">
           <el-input
             v-model="formModel.password"
             size="large"
@@ -71,7 +71,14 @@ function submit () {
       loading.value = true
 
       login(formModel)
-        .then(() => { router.push({ name: $routeNames.places }) })
+        .then(() => {
+          ElNotification({
+            title: 'Success',
+            message: 'Successfully loged in',
+            type: 'success'
+          })
+          router.push({ name: $routeNames.places })
+        })
         .catch((e) => {
           ElNotification({
             title: 'Error',

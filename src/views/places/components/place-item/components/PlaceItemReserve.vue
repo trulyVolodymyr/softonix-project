@@ -1,6 +1,8 @@
 <template>
   <div class="ml-auto shadow-2xl p-2 h-[max-content]">
     <p class="mb-4"><span class="font-bold text-lg">$ {{ place?.pricing }}</span> night</p>
+
+    <p class="underline mb-3">Pick dates to check out this place</p>
     <el-date-picker
       v-model="dates"
       type="daterange"

@@ -1,6 +1,8 @@
 const filtersStore = useFiltersStore()
-
 const { max, min, priceRange, roomType, bedrooms, beds, bathrooms, propertyType, amenities } = storeToRefs(filtersStore)
+const generalStore = useGeneralStore()
+const { loading } = storeToRefs(generalStore)
+
 export const usePlacesStore = defineStore('placesStore', () => {
   const places = ref<IPlace[]>([])
   const placesFiltered = ref<IPlace[]>([])
@@ -112,10 +114,11 @@ export const usePlacesStore = defineStore('placesStore', () => {
     noPlaces.value = false
 
     if (url.value.length !== 64) {
+      loading.value = true
       return placesService.getFiltered(http, range)
         .then(data => {
           placesFiltered.value.push(...data)
-
+          loading.value = false
           if (!placesFiltered.value.length) {
             noPlaces.value = true
           }

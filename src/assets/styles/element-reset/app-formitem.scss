@@ -5,5 +5,9 @@
 }
 
 .el-form-item {
+  &__error {
+    @apply mt-1 text-[10px]
+  }
+
   @apply mb-1
 }

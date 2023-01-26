@@ -19,6 +19,10 @@ const { propertyType } = storeToRefs(filtersStore)
 
 const propertyTypes = [
   {
+    value: '',
+    label: 'Any'
+  },
+  {
     value: 'house',
     label: 'House'
   },

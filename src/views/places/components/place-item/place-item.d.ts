@@ -81,10 +81,6 @@ interface IPostPlace{
   propertyType: string
   address: string
   roomType: string
-  location: {
-    lat: number
-    lng: number
-  }
   pricing: number
   photos: IPhoto[]
   primaryHost: string

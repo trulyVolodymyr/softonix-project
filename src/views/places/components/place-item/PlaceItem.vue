@@ -20,20 +20,19 @@
     </div>
 
     <div v-if="!edit && !create">
-      <div>
-        <h3 class="text-xl font-bold mb-1">{{ place?.name }}</h3>
+      <h3 class="text-xl font-bold mb-1">{{ place?.name }}</h3>
 
-        <div class="flex space-x-5 mb-1">
-          <p>{{ place?.address }}</p>
+      <div class="flex space-x-5 mb-1">
+        <p>{{ place?.address }}</p>
 
-          <p v-if="place?.reviews">{{ place.reviews?.length }} reviews</p>
+        <p v-if="place?.reviews">{{ place.reviews?.length }} reviews</p>
 
-          <div class="flex items-center space-x-1">
-            <IconStar v-if="place?.stars" /><p class="text-sm">{{ place?.stars }}</p>
-          </div>
+        <div class="flex items-center space-x-1">
+          <IconStar v-if="place?.stars" /><p class="text-sm">{{ place?.stars }}</p>
         </div>
-        <p class="pb-4 mb-3"> {{ placeInfo }}</p>
       </div>
+      <p class="pb-4 mb-3"> {{ placeInfo }}</p>
+
       <div class="flex">
         <div>
           <!-- SLIDER -->

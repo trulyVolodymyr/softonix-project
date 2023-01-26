@@ -28,3 +28,7 @@
     @apply w-[200px]
   }
 }
+
+.el-input-number .el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6);
+}

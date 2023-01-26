@@ -34,6 +34,7 @@ declare module '@vue/runtime-core' {
     ElSlider: typeof import('element-plus/es')['ElSlider']
     ElTable: typeof import('element-plus/es')['ElTable']
     ElTableColumn: typeof import('element-plus/es')['ElTableColumn']
+    ElTooltip: typeof import('element-plus/es')['ElTooltip']
     Filters: typeof import('./../src/views/places/components/filters/Filters.vue')['default']
     FiltersAmenities: typeof import('./../src/views/places/components/filters/FiltersAmenities.vue')['default']
     FiltersBedsAndRooms: typeof import('./../src/views/places/components/filters/FiltersBedsAndRooms.vue')['default']

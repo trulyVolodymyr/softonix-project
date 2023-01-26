@@ -18,6 +18,10 @@ const { roomType } = storeToRefs(filtersStore)
 
 const RoomTypes = [
   {
+    value: '',
+    label: 'Any'
+  },
+  {
     value: 'Entire',
     label: 'Entire'
   },

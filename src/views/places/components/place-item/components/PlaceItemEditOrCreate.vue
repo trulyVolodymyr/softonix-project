@@ -23,36 +23,15 @@
 
       <div class="form-item">
         <el-form-item label="Bedrooms" prop="bedrooms">
-          <el-select v-model="form.bedrooms" class="form-input">
-            <el-option
-              v-for="item in numberOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
+          <el-input-number v-model="form.bedrooms" class="form-input" />
         </el-form-item>
 
         <el-form-item label="Beds" prop="beds">
-          <el-select v-model="form.beds" class="form-input">
-            <el-option
-              v-for="item in numberOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
+          <el-input-number v-model="form.beds" class="form-input" />
         </el-form-item>
 
         <el-form-item label="Bathrooms" prop="bathrooms">
-          <el-select v-model="form.bathrooms" class="form-input">
-            <el-option
-              v-for="item in numberOptions"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value"
-            />
-          </el-select>
+          <el-input-number v-model="form.bathrooms" class="form-input" />
         </el-form-item>
 
         <el-form-item label="Property Type" prop="propertyType">
@@ -153,15 +132,6 @@
       </div>
 
       <div class="form-item">
-        <el-form-item label="Latitude" prop="location">
-          <el-input v-model="form.location.lat" class="form-input" :precision="5" />
-        </el-form-item>
-
-        <el-form-item label="Longitude" prop="location">
-          <el-input v-model="form.location.lng" class="form-input" :precision="5" />
-        </el-form-item>
-      </div>
-      <div class="form-item">
         <el-form-item label="Photo 1 url" prop="photos">
           <el-input v-model="form.photos[0].pictureUrl" class="form-input" />
         </el-form-item>
@@ -213,33 +183,6 @@ const props = defineProps<{
 
 const formRef = useElFormRef()
 
-const numberOptions = [
-  {
-    value: 1,
-    label: '1'
-  },
-  {
-    value: 2,
-    label: '2'
-  },
-  {
-    value: 3,
-    label: '3'
-  },
-  {
-    value: 4,
-    label: '4'
-  },
-  {
-    value: 5,
-    label: '5'
-  },
-  {
-    value: 6,
-    label: '6+'
-  }
-
-]
 const propertyTypes = [
   {
     value: 'house',
@@ -391,10 +334,6 @@ const form = useElFormModel<IPostPlace>({
   propertyType: '',
   address: '',
   roomType: '',
-  location: {
-    lat: 0,
-    lng: 0
-  },
   pricing: 0,
   photos: [
     {
@@ -481,7 +420,7 @@ function submit () {
         if (props.place) {
           ElNotification({
             title: 'Success',
-            message: 'Successfyly edited place',
+            message: 'Successfully edited place',
             type: 'success'
           })
           router.push({ name: routeNames.place, params: { id: props.place.id } })
@@ -514,8 +453,6 @@ onMounted(() => {
     form.address = props.place.address
     form.roomType = props.place.roomType
     form.primaryHost = props.place.primaryHost
-    form.location.lat = props.place.location.lat
-    form.location.lng = props.place.location.lng
     form.pricing = props.place.pricing
     form.photos[0].pictureUrl = props.place.photos[0].pictureUrl
     form.photos[1].pictureUrl = props.place.photos[1].pictureUrl
