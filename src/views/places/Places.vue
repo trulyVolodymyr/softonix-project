@@ -51,14 +51,13 @@ const generalStore = useGeneralStore()
 const { loading } = storeToRefs(generalStore)
 const {
   places, maxlength, placesFiltered, startFiltered, endFiltered, url, filteredLength,
-  noPlaces, start, end
+  noPlaces, start, end, priceSort
 } = storeToRefs(placesStore)
 const { max, min, priceRange } = storeToRefs(filterStore)
 const { getChank, getLength, getFiltered, getPrices } = usePlacesStore()
 
 const trigger = ref<Element>()
 const loadingChunck = ref<boolean>(false)
-const priceSort = ref(0)
 
 const sortPriceOptions = [
   {
