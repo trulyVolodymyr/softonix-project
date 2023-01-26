@@ -51,7 +51,7 @@ declare module '@vue/runtime-core' {
     Header: typeof import('./../src/components/header/Header.vue')['default']
     HeaderDropdown: typeof import('./../src/components/header/HeaderDropdown.vue')['default']
     IconAvatar: typeof import('./../src/components/icons/IconAvatar.vue')['default']
-    IconBack: typeof import('~icons/icon/back')['default']
+    IconBack: typeof import('./../src/components/icons/IconBack.vue')['default']
     IconClose: typeof import('./../src/components/icons/IconClose.vue')['default']
     IconDollar: typeof import('./../src/components/icons/IconDollar.vue')['default']
     IconHouse: typeof import('./../src/components/icons/IconHouse.vue')['default']

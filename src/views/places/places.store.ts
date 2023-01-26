@@ -133,12 +133,12 @@ export const usePlacesStore = defineStore('placesStore', () => {
   }
 
   return {
-    places,
-    placesFiltered,
     getChank,
     getLength,
     getFiltered,
     getPrices,
+    places,
+    placesFiltered,
     maxlength,
     startFiltered,
     endFiltered,

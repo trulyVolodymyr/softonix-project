@@ -45,6 +45,7 @@ function applyFilters () {
 }
 
 function resetFilters () {
+  top.value?.scrollTo(0, 0)
   placesFiltered.value.splice(0, placesFiltered.value.length)
   priceRange.value[0] = min.value
   priceRange.value[1] = max.value
