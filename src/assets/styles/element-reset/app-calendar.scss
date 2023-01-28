@@ -1,6 +1,12 @@
-.el-range{
-  &-editor.el-input__wrapper{
+.el-range {
+  &-editor.el-input__wrapper {
     @apply border-black rounded-none
   }
-  
+}
+
+.el-picker__popper.el-popper {
+  @media (max-width:770px) {
+    inset: 734px auto auto -160px !important;
+  }
+  @apply laptop:scale-100 scale-[0.4] 
 }

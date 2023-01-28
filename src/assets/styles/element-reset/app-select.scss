@@ -1,0 +1,19 @@
+.el-select {
+  &-dropdown__wrap {
+    @apply max-h-max
+  }
+
+  & .el-input__wrapper {
+    @apply h-[35px]
+  }
+
+  &__tags .el-tag--info {
+    @apply bg-transparent
+  }
+
+  &-dropdown__item {
+    @apply text-xs flex items-center
+  }
+
+  @apply w-full
+}

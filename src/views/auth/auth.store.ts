@@ -2,6 +2,7 @@ import { routeNames, router } from '@/router'
 export const useAuthStore = defineStore('authStore', () => {
   const accessToken = ref(localStorage.getItem('si-token'))
   const refreshToken = ref(localStorage.getItem('ref-token'))
+  const userId = ref(localStorage.getItem('user-id'))
   const userProfile = ref<IUserProfile>()
 
   function setToken (token: string) {
@@ -13,19 +14,27 @@ export const useAuthStore = defineStore('authStore', () => {
     refreshToken.value = token
     localStorage.setItem('ref-token', token)
   }
+  function setUserId (id: string) {
+    userId.value = id
+    localStorage.setItem('user-id', id)
+  }
 
   function login (payload: ILoginRequest) {
     return authService.login(payload)
       .then((res) => {
         setToken(res.access_token)
         setRefreshToken(res.refresh_token)
+        setUserId(res.user.id)
 
+        setUserProfile()
         return res
       })
-      .then(({ user }) => {
-        return authService.getUserProfile(user.id)
-      }).then((user) => {
-        userProfile.value = user[0]
+  }
+
+  function setUserProfile () {
+    return authService.getUserProfile(userId.value)
+      .then(data => {
+        userProfile.value = data[0]
       })
   }
 
@@ -39,10 +48,12 @@ export const useAuthStore = defineStore('authStore', () => {
   function logout () {
     accessToken.value = null
     refreshToken.value = null
+    userId.value = null
     localStorage.removeItem('si-token')
     localStorage.removeItem('ref-token')
+    localStorage.removeItem('user-id')
 
-    window.location.href = router.resolve(routeNames.place).href
+    router.push({ name: routeNames.places })
 
     ElNotification({
       title: 'You are logged out.',
@@ -54,11 +65,14 @@ export const useAuthStore = defineStore('authStore', () => {
   return {
     accessToken,
     refreshToken,
+    userId,
     userProfile,
     login,
     register,
     logout,
     setRefreshToken,
-    setToken
+    setToken,
+    setUserProfile,
+    setUserId
   }
 })

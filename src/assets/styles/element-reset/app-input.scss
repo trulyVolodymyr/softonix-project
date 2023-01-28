@@ -1,6 +1,10 @@
 .el-input {
-  .el-input__wrapper {
-    @apply h-11 text-sm rounded-none;
+  &__wrapper {
+    @apply text-xs rounded-none w-full;
+  }
+
+  &-group__prepend {
+    @apply w-[350px]
   }
 
   .el-input__wrapper.is-focus {
@@ -17,4 +21,14 @@
       -webkit-box-shadow: 0 0 0 30px white inset !important;
     }
   }
+}
+
+.form-input {
+  .el-input__wrapper {
+    @apply laptop:w-[200px] w-[180px]
+  }
+}
+
+.el-input-number .el-input__wrapper.is-focus {
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.6);
 }

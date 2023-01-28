@@ -1,7 +1,8 @@
 <template>
   <div class="ml-auto shadow-2xl p-2 h-[max-content]">
-    {{ dates }}
     <p class="mb-4"><span class="font-bold text-lg">$ {{ place?.pricing }}</span> night</p>
+
+    <p class="underline mb-3">Pick dates to check out this place</p>
     <el-date-picker
       v-model="dates"
       type="daterange"
@@ -13,8 +14,6 @@
 
     <div class="mt-5">
       <el-dropdown
-        size="default"
-        type="primary"
         trigger="click"
         :hide-on-click="false"
         class="w-full"
@@ -31,7 +30,7 @@
       </el-dropdown>
     </div>
 
-    <div v-if="numberOfDays" class="mt-5">
+    <div v-if="numberOfDays">
       <div class="flex justify-between mb-2">
         <p class="text-sm">${{ place?.pricing }} x {{ numberOfDays }} nigths </p>
         <p class="text-sm">${{ totalSum }}</p>
@@ -42,21 +41,56 @@
         <p class="text-sm">${{ serviceFee }}</p>
       </div>
 
-      <el-button class="app-button w-full mt-4" @click="setOrder">Check out</el-button>
+      <el-button class="app-button w-full mt-4" @click="postOrder">Check out</el-button>
     </div>
   </div>
+
+  <el-dialog
+    v-model="dialogUserIsAuth"
+    append-to-body
+  >
+    <span>You successfully ordered this place!</span>
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="handleClose">Okay</el-button>
+        <el-button type="primary" @click="goToOrders">
+          Check my orders
+        </el-button>
+      </span>
+    </template>
+  </el-dialog>
+
+  <el-dialog
+    v-model="dialogUserIsNotAuth"
+    append-to-body
+  >
+    <p>You cant order palce.</p>
+    <p>Login to continue.</p>
+
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="handleClose">Back</el-button>
+        <el-button type="primary" @click="goToOrders">
+          Go to  Login
+        </el-button>
+      </span>
+    </template>
+  </el-dialog>
 </template>
 
 <script lang='ts' setup>
-const { userProfile } = useAuthStore()
+import { routeNames, router } from '@/router'
 
 const placeItemStore = usePlaceItemStore()
 const { place, guests } = storeToRefs(placeItemStore)
+const { userProfile } = useAuthStore()
 
 const props = defineProps<{
   reservedDates?: Date[] | null
 }>()
 
+const dialogUserIsAuth = ref<boolean>(false)
+const dialogUserIsNotAuth = ref<boolean>(false)
 const dates = ref<any>(['', ''])
 
 const numberOfDays = computed(() => {
@@ -95,7 +129,7 @@ const disabledDates = (time: Date) => {
   }
 }
 
-function setOrder () {
+function postOrder () {
   if (userProfile && place.value) {
     const sum = guests.value.children + guests.value.adults + guests.value.infants
     const order = {
@@ -103,10 +137,37 @@ function setOrder () {
       place_id: place.value.id,
       place_name: place.value.name,
       guests: sum,
-      dates: dates.value
+      dates: dates.value,
+      created_at: new Date(),
+      price: totalSum.value
     }
 
-    return placeItemService.setOrder(order)
+    return placeItemService.postOrder(order)
+      .then(() => {
+        dialogUserIsAuth.value = true
+      })
+      .catch((e) => {
+        ElNotification({
+          title: 'Error',
+          message: e.error_description || 'Something went wrong.',
+          type: 'error'
+        })
+      })
   }
+  dialogUserIsNotAuth.value = true
+}
+
+function handleClose () {
+  if (dialogUserIsAuth.value) {
+    return (dialogUserIsAuth.value = false)
+  }
+  dialogUserIsNotAuth.value = false
+}
+
+function goToOrders () {
+  if (dialogUserIsAuth.value) {
+    return router.push({ name: routeNames.orders })
+  }
+  router.push({ name: routeNames.login })
 }
 </script>

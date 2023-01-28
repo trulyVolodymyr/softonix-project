@@ -1,6 +1,9 @@
 
 export const usePlaceItemStore = defineStore('PlaceItemStore', () => {
   const place = ref<IPlace>()
+  const edit = ref<boolean>(false)
+  const create = ref<boolean>(false)
+  const deliteDialogVisability = ref<boolean>(false)
 
   const guests = ref<IGuests>({
     adults: 1,
@@ -10,6 +13,9 @@ export const usePlaceItemStore = defineStore('PlaceItemStore', () => {
 
   return {
     place,
-    guests
+    guests,
+    edit,
+    create,
+    deliteDialogVisability
   }
 })

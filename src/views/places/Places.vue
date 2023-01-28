@@ -1,24 +1,38 @@
 <template>
-  <Modal v-if="filtersModalVisability">
-    <Filters />
-  </Modal>
+  <div class="flex justify-end mb-6 space-x-3">
+    <div class="laptop:hidden self-end mr-auto">
+      <el-button class="app-button" @click="toggleFilters">Filters</el-button>
+    </div>
 
-  <div class="p-6">
-    <Grid>
-      <GridItem
-        v-for="(place) in placesShowed"
-        :id="place.id"
-        :key="place.id"
-        :photos="JSON.parse(place.photos) "
-        :address="place.address"
-        :stars="place.stars || 0"
-        :price="place.pricing"
-      />
-    </Grid>
+    <PlacesSort />
+  </div>
 
-    <div v-loading="loadingChunck" class="h-10 my-3" />
+  <div class="laptop:flex">
+    <Transition>
+      <Filters v-if="adaptiveFilters" />
+    </Transition>
+    <Filters class="hidden laptop:block" />
 
-    <div ref="trigger" />
+    <div v-if="noPlaces" class="w-full flex items-center">
+      <h2 class="text-center w-full text-lg">No places found...</h2>
+    </div>
+
+    <div v-if="!noPlaces" class="w-full">
+      <Grid>
+        <GridItem
+          v-for="place in placesShowed"
+          :id="place.id"
+          :key="place.id"
+          :photos="place.photos"
+          :address="place.address"
+          :stars="place.stars || 0"
+          :price="place.pricing"
+        />
+      </Grid>
+
+      <div ref="trigger" class="trigger" />
+      <div v-loading="loadingChunck" class="h-10 my-3" />
+    </div>
   </div>
 </template>
 
@@ -28,27 +42,25 @@ const filterStore = useFiltersStore()
 const generalStore = useGeneralStore()
 
 const { loading } = storeToRefs(generalStore)
-const { places, maxlength, placesFiltered, startFiltered, endFiltered, url, filteredLength } = storeToRefs(placesStore)
-const { filtersModalVisability } = storeToRefs(filterStore)
-const { getChank, getLength, getFiltered } = usePlacesStore()
+const {
+  places, maxlength, placesFiltered, startFiltered, endFiltered, url, filteredLength,
+  noPlaces, start, end, priceSort, placesShowed
+} = storeToRefs(placesStore)
+const { max, min, priceRange } = storeToRefs(filterStore)
+const { getChank, getLength, getFiltered, getPrices, sortByName } = usePlacesStore()
 
-const start = ref<number>(0)
-const end = ref<number>(19)
 const trigger = ref<Element>()
 const loadingChunck = ref<boolean>(false)
-
-const placesShowed = computed(() => {
-  if (placesFiltered.value.length) {
-    return placesFiltered.value
-  }
-  return places.value
-})
+const adaptiveFilters = ref<boolean>(false)
 
 function loadItems () {
   if (start.value !== 0 || startFiltered.value !== 0) loadingChunck.value = true
 
   if (placesFiltered.value.length) {
     return getFiltered(url.value, `${startFiltered.value}-${endFiltered.value}`)
+      ?.then(() => {
+        sortByName()
+      })
       ?.finally(() => (loadingChunck.value = false))
   }
 
@@ -56,6 +68,10 @@ function loadItems () {
 
     .then((data: IPlace[]) => {
       places.value.push(...data)
+      if (priceSort.value !== 0) {
+        sortByName()
+      }
+
       start.value = start.value + 20
       end.value = end.value + 20
     }).finally(() => {
@@ -64,9 +80,7 @@ function loadItems () {
     })
 }
 
-const observer = new IntersectionObserver(callBack, { rootMargin: '300px' })
-
-function callBack (entries: any) {
+const observer = new IntersectionObserver((entries: any) => {
   if (start.value >= maxlength.value) return
   if (filteredLength.value > 0 && startFiltered.value >= filteredLength.value) return (loadingChunck.value = false)
   entries.forEach((entry: any) => {
@@ -74,6 +88,10 @@ function callBack (entries: any) {
       loadItems()
     }
   })
+}, { rootMargin: '300px' })
+
+function toggleFilters () {
+  adaptiveFilters.value = !adaptiveFilters.value
 }
 
 onMounted(async () => {
@@ -87,6 +105,28 @@ onMounted(async () => {
   if (places.value.length) loading.value = false
 
   if (trigger.value) observer.observe(trigger.value)
+
+  if (min.value === 0 || max.value === 0) {
+    const prices = await getPrices()
+
+    max.value = Math.max(...prices.map((item: any) => item.pricing)) + 1
+
+    priceRange.value[0] = min.value
+    priceRange.value[1] = max.value
+  }
 })
 
 </script>
+
+<style lang='scss'>
+.v-enter-active,
+.v-leave-active {
+  transition: all 0.3s ease;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.v-enter-from,
+.v-leave-to {
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+}
+</style>

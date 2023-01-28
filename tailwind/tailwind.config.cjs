@@ -17,6 +17,9 @@ module.exports = {
       borderWidth: {
         DEFAULT: '1px'
       },
+      colors: {
+        'modal-bg': 'rgba(0,0,0,0.5)'
+      },
       boxShadow: {
         '1white': '0px 0px 10px 5px  rgba(255,255,255,0.3);'
       },
@@ -25,8 +28,8 @@ module.exports = {
       },
       screens: {
         tablet: '550px',
-        laptop: '950px',
-        desktop: '1130px'
+        laptop: '770px',
+        desktop: '1180px'
       }
     }
   },

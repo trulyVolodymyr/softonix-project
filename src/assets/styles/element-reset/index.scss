@@ -19,14 +19,15 @@
 @use "element-plus/theme-chalk/src/carousel";
 @use "element-plus/theme-chalk/src/carousel-item";
 @use "element-plus/theme-chalk/src/slider";
-@use "element-plus/theme-chalk/src/checkbox";
-@use "element-plus/theme-chalk/src/checkbox-button";
-@use "element-plus/theme-chalk/src/radio";
-@use "element-plus/theme-chalk/src/radio-button";
 @use "element-plus/theme-chalk/src/notification";
 @use "element-plus/theme-chalk/src/date-picker";
 @use "element-plus/theme-chalk/src/input-number";
 @use "element-plus/theme-chalk/src/table";
+@use "element-plus/theme-chalk/src/dialog";
+@use "element-plus/theme-chalk/src/backtop";
+@use "element-plus/theme-chalk/src/scrollbar";
+
+
 
 
 @import './app-input.scss';
@@ -34,7 +35,8 @@
 @import './app-carousel.scss';
 @import './app-dropdown.scss';
 @import './app-slider.scss';
-@import './app-checkbox.scss';
-@import './app-radio.scss';
+@import './app-formitem.scss';
 @import './app-notification.scss';
 @import './app-calendar.scss';
+@import './app-dialog.scss';
+@import './app-select.scss';

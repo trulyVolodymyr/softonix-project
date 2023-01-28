@@ -1,0 +1,13 @@
+.app-formitem {
+  &.el-form-item {
+    @apply mb-0
+  }
+}
+
+.el-form-item {
+  &__error {
+    @apply mt-1 text-[10px]
+  }
+
+  @apply mb-1
+}

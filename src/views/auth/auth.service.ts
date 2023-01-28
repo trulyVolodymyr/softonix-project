@@ -11,7 +11,7 @@ class AuthService {
     return useHttp.post('auth/v1/token?grant_type=refresh_token', { refresh_token: refreshToken })
   }
 
-  getUserProfile (id: string) {
+  getUserProfile (id: string | null) {
     return useHttp.get(`/rest/v1/profiles?select=*&id=eq.${id}`)
   }
 }

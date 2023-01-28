@@ -1,16 +1,16 @@
 <template>
-  <div class=" hover:shadow-2xl hover:-translate-y-1 transition-all duration-300">
+  <div class=" hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 max-w-[600px]">
     <el-carousel
       height="250px"
       :autoplay="false"
       trigger="click"
     >
-      <el-carousel-item v-for="item in photos.slice(0,8)" :key="item.pictureUrl">
-        <img class="object-cover w-full h-full shrink-0" :src="item.pictureUrl" :alt="item.caption">
+      <el-carousel-item v-for="item in photos" :key="item.pictureUrl">
+        <img class="object-cover w-full  h-full shrink-0" :src="item.pictureUrl" :alt="item.caption">
       </el-carousel-item>
     </el-carousel>
 
-    <div class="p-3 cursor-pointer" @click="openPlace">
+    <div class="p-3 cursor-pointer " @click="openPlace">
       <div class="flex justify-between mt-1">
         <p class="font-bold text-xs whitespace-nowrap overflow-hidden text-ellipsis">{{ address }}</p>
         <div v-if="stars" class="flex items-center space-x-1 ml-2">

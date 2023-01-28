@@ -1,6 +1,6 @@
 <template>
-  <h3 class="text-white text-lg text-center">Price range</h3>
-  <div class="px-2 my-5">
+  <h3 class="font-bold">Price range</h3>
+  <div class="px-2 my-1">
     <el-slider
       v-model="priceRange"
       range
@@ -11,7 +11,7 @@
 
   <div class="flex justify-between">
     <div>
-      <p class="text-white mb-2">Min-price</p>
+      <p class="mb-1">Min</p>
 
       <el-input
         v-model.number="priceRange[0]"
@@ -20,7 +20,7 @@
     </div>
 
     <div>
-      <p class="text-white mb-2">Max-price</p>
+      <p class="mb-1">Max</p>
 
       <el-input
         v-model.number="priceRange[1]"
@@ -33,19 +33,7 @@
 <script lang="ts" setup>
 import IconDollar from '@/components/icons/IconDollar.vue'
 
-const { getPrices } = usePlacesStore()
-
 const filtersStore = useFiltersStore()
 const { priceRange, min, max } = storeToRefs(filtersStore)
-
-onMounted(async () => {
-  if (min.value === 0 || max.value === 0) {
-    const prices = await getPrices()
-    min.value = Math.min(...prices.map((item: any) => item.pricing))
-    max.value = Math.max(...prices.map((item: any) => item.pricing))
-    priceRange.value[0] = min.value
-    priceRange.value[1] = max.value
-  }
-})
 
 </script>

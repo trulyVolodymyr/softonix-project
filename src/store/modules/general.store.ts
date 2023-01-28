@@ -1,8 +1,10 @@
 export const useGeneralStore = defineStore('generalStore', () => {
   const loading = ref<boolean>(false)
+  const top = ref<Element>()
 
   return {
-    loading
+    loading,
+    top
   }
 })
 

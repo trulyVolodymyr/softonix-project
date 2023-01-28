@@ -1,7 +1,5 @@
 
 export const useFiltersStore = defineStore('filterStore', () => {
-  const filtersModalVisability = ref<boolean>(false)
-
   const min = ref<number>(0)
   const max = ref<number>(0)
 
@@ -9,7 +7,7 @@ export const useFiltersStore = defineStore('filterStore', () => {
 
   const roomType = ref<string>('')
 
-  const bedroms = ref<number>(0)
+  const bedrooms = ref<number>(0)
   const beds = ref<number>(0)
   const bathrooms = ref<number>(0)
 
@@ -24,10 +22,9 @@ export const useFiltersStore = defineStore('filterStore', () => {
   })
 
   return {
-    filtersModalVisability,
     priceRange,
     roomType,
-    bedroms,
+    bedrooms,
     beds,
     bathrooms,
     propertyType,

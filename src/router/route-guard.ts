@@ -6,10 +6,14 @@ export const routeGuard = async (
   from: RouteLocationNormalized,
   next: NavigationGuardNext
 ) => {
-  const { accessToken } = useAuthStore()
+  const { accessToken, userId, userProfile, setUserProfile } = useAuthStore()
 
   if (to.meta.isAuthGuarded && !accessToken) {
     return next({ name: placesRouteNames.places })
   }
+  if (accessToken && userId && !userProfile) {
+    await setUserProfile()
+  }
+
   next()
 }

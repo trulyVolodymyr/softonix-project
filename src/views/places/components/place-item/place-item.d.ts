@@ -33,6 +33,20 @@ interface IOrder{
   place_name: string
   guests: number
   dates: string[]
+  created_at: Date
+  price: number | undefined
+}
+interface IEditValue{
+  name: string
+  address: string
+  guest: number
+  bedrooms: number
+  beds: number
+  bathrooms: number
+  essentials: string
+  features: string
+  amenities_location: string
+  safety: string
 }
 
 interface IPlace {
@@ -46,12 +60,30 @@ interface IPlace {
   propertyType: string
   address: string
   roomType: string
-  location: ILocation[]
+  location: ILocation
   reviews: IReview[]
   pricing: number
   photos: IPhoto[]
   primaryHost: string
   reserved_dates: Date[] | null
+  safety: string[]
+  features: string[]
+  amenities_location: string[]
+  essentials: string[]
+}
+
+interface IPostPlace{
+  name: string
+  numberOfGuests: number
+  bedrooms: number
+  beds: number
+  bathrooms: number
+  propertyType: string
+  address: string
+  roomType: string
+  pricing: number
+  photos: IPhoto[]
+  primaryHost: string
   safety: string[]
   features: string[]
   amenities_location: string[]

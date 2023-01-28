@@ -1,159 +1,133 @@
 <template>
-  <div class="p-6">
-    <h3 class="text-xl font-bold mb-3">{{ place?.name }}</h3>
-
-    <div class="flex space-x-5 mb-3">
-      <p>{{ place?.address }}</p>
-      <p v-if="place?.reviews">{{ place?.reviews.length }} reviews</p>
-      <div class="flex items-center space-x-1">
-        <IconStar v-if="place?.stars" /><p class="text-sm">{{ place?.stars }}</p>
-      </div>
+  <div v-if="place" v-loading="loading">
+    <div class="flex justify-between">
+      <el-button v-if="!edit && !create" class="app-button mb-4" @click="router.back()">Back</el-button>
+      <PlaceItemAdmin />
     </div>
 
-    <div class="grid grid-cols-4 gap-4 mb-4 gird-imgs">
-      <img
-        v-for="item in place?.photos"
-        :key="item.pictureUrl"
-        class="first-of-type:col-span-2 first-of-type:row-span-2
-       first-of-type:w-full first-of-type:h-full shadow-2xl h-full"
-        :src="item.pictureUrl"
-        :alt="item.caption"
-      >
+    <div v-if="create">
+      <PlaceItemEditOrCreate />
     </div>
 
-    <p class="text-lg font-bold"> {{ place?.roomType }} hosted by {{ place?.primaryHost }}</p>
-    <p class="pb-4 border-b-[1px] border-black mb-3"> {{ placeInfo }}</p>
+    <div v-if="edit">
+      <PlaceItemEditOrCreate :place="place" />
+    </div>
 
-    <div class="">
-      <div class="flex justify-between">
+    <div v-if="!edit && !create">
+      <PlaceItemHeader :place="place" />
+
+      <div class="desktop:flex justify-between">
         <div>
-          <h3 class="text-xl font-bold mb-3">What this place offers</h3>
+          <PlaceItemSlider :photos="place.photos" />
 
-          <ul class="grid grid-cols-2 mb-8 p-2 shadow-2xl w-[451px]">
-            <li v-for="item in place?.essentials" :key="item">
-              <p class="font-medium mb-1 text-sm"> - {{ item }}</p>
-            </li>
-
-            <li v-for="item in place?.features" :key="item">
-              <p class="font-medium mb-1 text-sm">- {{ item }}</p>
-            </li>
-          </ul>
-        </div>
-
-        <GMapMap
-          v-if="place?.location"
-          :center="place?.location"
-          :zoom="6"
-          map-type-id="terrain"
-          class="mt-10 ml-5 shadow-2xl w-full h-[296px]"
-        >
-          <GMapMarker :position="place?.location" />
-        </GMapMap>
-      </div>
-
-      <div class="w-[451px] mb-5">
-        <PlaceItemReserve :reservedDates="place?.reserved_dates" />
-      </div>
-
-      <div class="grid grid-reviews gap-5">
-        <div
-          v-for="item in place?.reviews"
-          :key="item.author.id"
-          class="w-full mb-4 shadow-2xl p-2 mr-5"
-        >
-          <div class="flex mb-2">
-            <img
-              class="w-10 h-10 mr-8"
-              :src="item.author.pictureUrl"
-              :alt="item.author.firstName"
-            >
-
-            <div>
-              <p class=" text-sm font-bold">{{ item.author.firstName }}</p>
-
-              <p class=" text-sm font-bold">{{ formatDate(item.createdAt) }}</p>
-            </div>
+          <div class="desktop:ml-4 desktop:hidden block laptop:flex h-max mt-4 laptop:ml-4 ml-0">
+            <PlaceItemInfo
+              :essentials="place.essentials"
+              :features="place.features"
+              :amenitiesLocation="place.amenities_location"
+              :safety="place.safety"
+            />
+            <PlaceItemReserve :reservedDates="place?.reserved_dates" class=" desktop:hidden" />
           </div>
 
-          <p class="text-xs">{{ item.comments }}</p>
+          <PlaceItemReviews :reviews="place.reviews" />
+        </div>
+
+        <div class="desktop:ml-4 sticky desktop:block hidden top-1 h-max mb-4">
+          <PlaceItemInfo
+            :essentials="place.essentials"
+            :features="place.features"
+            :amenitiesLocation="place.amenities_location"
+            :safety="place.safety"
+          />
+          <PlaceItemReserve :reservedDates="place?.reserved_dates" class=" desktop:hidden" />
         </div>
       </div>
+      <PlaceItemMap :location="place.location" />
     </div>
   </div>
+
+  <el-dialog
+    v-model="deliteDialogVisability"
+  >
+    <p class="text-xl">Are you sure you want to delete this place?</p>
+
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button class="app-button mr-2" @click="deliteDialogVisability = false">No</el-button>
+        <el-button class="app-button" @click="deletePlace">Yes</el-button>
+      </span>
+    </template>
+  </el-dialog>
+  <div />
 </template>
 
 <script lang='ts' setup>
+import { routeNames, router } from '@/router'
+
 const route = useRoute()
 const placeItemStore = usePlaceItemStore()
+const generalStore = useGeneralStore()
 
-const { place } = storeToRefs(placeItemStore)
+const { loading } = storeToRefs(generalStore)
+const { place, create, edit, deliteDialogVisability } = storeToRefs(placeItemStore)
 
-const placeInfo = computed(() => {
-  const text = []
-  if (place.value) {
-    if (place.value.numberOfGuests > 1) {
-      text.push(`${place.value.numberOfGuests} guests /`)
-    } else {
-      text.push(`${place.value.numberOfGuests} guest /`)
-    }
-
-    if (place.value.bedrooms > 1) {
-      text.push(` ${place.value.bedrooms} bedrooms /`)
-    } else {
-      text.push(` ${place.value.bedrooms} bedroom /`)
-    }
-
-    if (place.value.beds > 1) {
-      text.push(` ${place.value.beds} beds /`)
-    } else {
-      text.push(` ${place.value.beds} bed /`)
-    }
-
-    if (place.value.bathrooms > 1) {
-      text.push(` ${place.value.bathrooms} bathrooms`)
-    } else {
-      text.push(` ${place.value.bathrooms} bathroom`)
-    }
-  }
-
-  return text.join('')
-})
-
-function formatDate (date: string) {
-  const d = new Date(date)
-  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'October', 'November', 'December'
-  ]
-  let month = '' + monthNames[(d.getMonth() + 1)]
-  const year = d.getFullYear()
-
-  if (month.length < 2) { month = '0' + month }
-
-  return [month, year].join(' ')
-}
-
-async function getData () {
+function getPlace () {
   const id = route.params.id as string
-  placeItemService.getPlaceItem(id)
+  placeItemService.getPlace(id)
     .then((data) => {
-      place.value = {
-        ...data[0],
-        location: JSON.parse(data[0].location),
-        reviews: JSON.parse(data[0].reviews),
-        photos: JSON.parse(data[0].photos)
+      if (!data.length) {
+        console.log(1)
+        router.push({ name: routeNames.places })
       }
+      place.value = data[0]
+    }).finally(() => {
+      loading.value = false
     })
 }
 
+function deletePlace () {
+  if (place.value) {
+    placeItemService.deletePlace(place.value.id)
+      .then(() => {
+        ElNotification({
+          title: 'Success',
+          message: 'Successfyly deleted place',
+          type: 'success'
+        })
+      }).catch((e) => {
+        ElNotification({
+          title: 'Error',
+          message: e.error_description || 'Something went wrong.',
+          type: 'error'
+        })
+      }).finally(() => {
+        router.push({ name: routeNames.places })
+      })
+  }
+}
+
+watch(edit, (currentValue) => {
+  if (currentValue === false) {
+    getPlace()
+  }
+})
+
 onMounted(() => {
-  getData()
+  getPlace()
+  loading.value = true
+  create.value = false
+  edit.value = false
+})
+
+onUnmounted(() => {
+  place.value = undefined
 })
 
 </script>
 
-<style lang="scss">
-.grid-reviews {
-  grid-template-columns: repeat(2,1fr);
-
+<style lang='scss'>
+.el-range-editor.el-input__wrapper{
+  @apply w-full
 }
 </style>
