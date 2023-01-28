@@ -14,8 +14,6 @@
 
     <div class="mt-5">
       <el-dropdown
-        size="default"
-        type="primary"
         trigger="click"
         :hide-on-click="false"
         class="w-full"
@@ -32,7 +30,7 @@
       </el-dropdown>
     </div>
 
-    <div v-if="numberOfDays" class="mt-5">
+    <div v-if="numberOfDays">
       <div class="flex justify-between mb-2">
         <p class="text-sm">${{ place?.pricing }} x {{ numberOfDays }} nigths </p>
         <p class="text-sm">${{ totalSum }}</p>
@@ -49,8 +47,7 @@
 
   <el-dialog
     v-model="dialogUserIsAuth"
-    title="Congratulations"
-    width="450px"
+    append-to-body
   >
     <span>You successfully ordered this place!</span>
     <template #footer>
@@ -65,9 +62,7 @@
 
   <el-dialog
     v-model="dialogUserIsNotAuth"
-    class="overflow-hidden"
-    title="Warrnig"
-    width="450px"
+    append-to-body
   >
     <p>You cant order palce.</p>
     <p>Login to continue.</p>

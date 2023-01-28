@@ -1,5 +1,5 @@
 <template>
-  <h3 class="mt-2 font-bold">Amenities</h3>
+  <h3 class="mt-6 font-bold">Amenities</h3>
 
   <el-form-item class="app-formitem">
     <p class="my-[2px]">Essentials</p>

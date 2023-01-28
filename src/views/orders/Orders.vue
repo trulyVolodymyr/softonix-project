@@ -1,8 +1,7 @@
 <template>
-  <div class="p-6">
-    <el-button class="app-button mb-4" @click="routeBack">Back</el-button>
-
-    <div class="flex justify-center">
+  <el-button class="app-button mb-4" @click="routeBack">Back</el-button>
+  <div class="pb-5">
+    <el-scrollbar>
       <el-table :data="orderInfo" class="w-full">
         <el-table-column prop="place_name" label="Place">
           <template #default="{ row }">
@@ -22,13 +21,13 @@
           </template>
         </el-table-column>
 
-        <el-table-column prop="dates[0]" label="Start Date" />
-        <el-table-column prop="dates[1]" label="End Date" />
-        <el-table-column prop="guests" label="Number of guest" />
-        <el-table-column prop="price" label="Price $" />
-        <el-table-column prop="created_at" label="Created at" />
+        <el-table-column prop="dates[0]" label="Start Date" width="120" />
+        <el-table-column prop="dates[1]" label="End Date" width="120" />
+        <el-table-column prop="guests" label="Guest" width="70" />
+        <el-table-column prop="price" label="Price $" width="90" />
+        <el-table-column prop="created_at" label="Created at" width="120" />
       </el-table>
-    </div>
+    </el-scrollbar>
   </div>
 </template>
 

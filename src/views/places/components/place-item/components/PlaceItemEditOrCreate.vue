@@ -153,14 +153,22 @@
         </el-form-item>
       </div>
 
-      <el-button
-        native-type="submit"
-        class="w-full app-button"
-      >
-        Submit
-      </el-button>
+      <div class="mt-6 flex flex-col items-center">
+        <el-button
+          class="w-[250px] app-button"
+          @click="close"
+        >
+          Cancel
+        </el-button>
+
+        <el-button
+          native-type="submit"
+          class="w-[250px] app-button !ml-0 mt-1"
+        >
+          Submit
+        </el-button>
+      </div>
     </el-form>
-    <el-button class="w-full app-button mt-6" @click="close">Cancel</el-button>
   </div>
 </template>
 

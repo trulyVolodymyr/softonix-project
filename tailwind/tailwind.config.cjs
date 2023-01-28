@@ -28,8 +28,8 @@ module.exports = {
       },
       screens: {
         tablet: '550px',
-        laptop: '950px',
-        desktop: '1130px'
+        laptop: '770px',
+        desktop: '1180px'
       }
     }
   },

@@ -21,7 +21,9 @@ app
   .use(router)
   .use(VueGoogleMaps, {
     load: {
-      key: 'AIzaSyCgQLrGCbhadhxQ4SvcWZY911Do3H1mZRs'
+      key: 'AIzaSyCgQLrGCbhadhxQ4SvcWZY911Do3H1mZRs',
+      region: 'UA',
+      language: 'ua'
     }
   })
   .use(I18nPlugin)

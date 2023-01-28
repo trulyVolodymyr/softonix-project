@@ -13,6 +13,14 @@ export const usePlacesStore = defineStore('placesStore', () => {
   const start = ref<number>(0)
   const end = ref<number>(19)
   const priceSort = ref<number>(0)
+  const filteredLength = ref<number>(0)
+
+  const placesShowed = computed(() => {
+    if (placesFiltered.value.length) {
+      return placesFiltered.value
+    }
+    return places.value
+  })
 
   const url = computed(() => {
     let urlArr = `${import.meta.env.VITE_API_URL}/rest/v1/places?select=*`
@@ -94,8 +102,6 @@ export const usePlacesStore = defineStore('placesStore', () => {
     return urlArr
   })
 
-  const filteredLength = ref<number>(0)
-
   function getChank (range: string) {
     return placesService.getChank(range)
   }
@@ -131,6 +137,14 @@ export const usePlacesStore = defineStore('placesStore', () => {
         })
     }
   }
+  function sortByName () {
+    if (priceSort.value === 1) {
+      placesShowed.value.sort((a, b) => b.pricing - a.pricing)
+    }
+    if (priceSort.value === 2) {
+      placesShowed.value.sort((a, b) => a.pricing - b.pricing)
+    }
+  }
 
   return {
     getChank,
@@ -147,6 +161,8 @@ export const usePlacesStore = defineStore('placesStore', () => {
     noPlaces,
     start,
     end,
-    priceSort
+    priceSort,
+    placesShowed,
+    sortByName
   }
 })

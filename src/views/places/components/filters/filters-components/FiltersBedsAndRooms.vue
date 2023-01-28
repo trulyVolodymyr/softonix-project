@@ -1,5 +1,5 @@
 <template>
-  <h3 class="mt-2 font-bold">Beds & rooms</h3>
+  <h3 class="mt-6 font-bold">Beds & rooms</h3>
   <el-form-item class="app-formitem">
     <p class="my-[2px]">Bedrooms</p>
     <el-select v-model="bedrooms">
