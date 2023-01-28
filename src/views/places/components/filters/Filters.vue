@@ -1,7 +1,7 @@
 <template>
   <div
     class="laptop:w-[350px] shadow-2xl laptop:shadow-none mb-5 laptop:mb-0 sticky top-10
-    laptop:p-0 p-4 laptop:mr-6"
+    laptop:p-0 p-4 laptop:mr-6 h-[450px]"
   >
     <div class="h-[450px] px-1 overflow-y-auto overflow-x-hidden">
       <FiltersRange />

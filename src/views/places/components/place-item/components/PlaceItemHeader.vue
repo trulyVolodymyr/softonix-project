@@ -19,33 +19,21 @@ const props = defineProps<{
 }>()
 
 const placeInfo = computed(() => {
-  const text = []
+  let text = ''
   if (props.place) {
     if (props.place.numberOfGuests > 1) {
-      text.push(`${props.place.numberOfGuests} guests /`)
+      text += `${props.place.numberOfGuests} guests /`
     } else {
-      text.push(`${props.place.numberOfGuests} guest /`)
-    }
-
-    if (props.place.bedrooms > 1) {
-      text.push(` ${props.place.bedrooms} bedrooms /`)
-    } else {
-      text.push(` ${props.place.bedrooms} bedroom /`)
+      text += `${props.place.numberOfGuests} guest /`
     }
 
     if (props.place.beds > 1) {
-      text.push(` ${props.place.beds} beds /`)
+      text += ` ${props.place.beds} beds /`
     } else {
-      text.push(` ${props.place.beds} bed /`)
-    }
-
-    if (props.place.bathrooms > 1) {
-      text.push(` ${props.place.bathrooms} bathrooms`)
-    } else {
-      text.push(` ${props.place.bathrooms} bathroom`)
+      text += ` ${props.place.beds} bed /`
     }
   }
 
-  return text.join('')
+  return text
 })
 </script>

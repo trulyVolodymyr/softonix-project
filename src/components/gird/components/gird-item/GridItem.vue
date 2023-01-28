@@ -11,14 +11,20 @@
     </el-carousel>
 
     <div class="p-3 cursor-pointer " @click="openPlace">
-      <div class="flex justify-between mt-1">
-        <p class="font-bold text-xs whitespace-nowrap overflow-hidden text-ellipsis">{{ address }}</p>
+      <p class="font-bold text-sm whitespace-nowrap overflow-hidden text-ellipsis mb-1">{{ address }}</p>
+
+      <p class="text-xs">
+        <span class="font-bold">{{ beds }}</span>{{ bedsText }}
+        <span class="font-bold">{{ guests }}</span>{{ gestsText }}
+      </p>
+
+      <div class="flex justify-between">
+        <p class="font-bold text-xs">$ {{ price.toLocaleString() }}<span class="font-normal"> night</span></p>
+
         <div v-if="stars" class="flex items-center space-x-1 ml-2">
           <IconStar /><p class="text-xs">{{ stars }}</p>
         </div>
       </div>
-
-      <p class="mt-1 font-medium text-xs">$ {{ price }}<span class="font-normal"> night</span></p>
     </div>
   </div>
 </template>
@@ -32,7 +38,30 @@ const props = defineProps<{
   stars: number
   price: number
   id: number
+  beds: number
+  guests: number
 }>()
+
+const bedsText = computed(() => {
+  let text = ''
+
+  if (props.beds > 1) {
+    text += ' beds /  '
+  } else {
+    text += ' bed /  '
+  }
+
+  return text
+})
+const gestsText = computed(() => {
+  let text = ''
+  if (props.guests > 1) {
+    text += ' guests'
+  } else {
+    text += ' guest'
+  }
+  return text
+})
 
 function openPlace () {
   router.push({ path: `place/${props.id}` })

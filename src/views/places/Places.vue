@@ -11,6 +11,7 @@
     <Transition>
       <Filters v-if="adaptiveFilters" />
     </Transition>
+
     <Filters class="hidden laptop:block" />
 
     <div v-if="noPlaces" class="w-full flex items-center">
@@ -27,6 +28,8 @@
           :address="place.address"
           :stars="place.stars || 0"
           :price="place.pricing"
+          :beds="place.beds"
+          :guests="place.numberOfGuests"
         />
       </Grid>
 
