@@ -65,7 +65,6 @@ function getPlace () {
   placeItemService.getPlace(id)
     .then((data) => {
       if (!data.length) {
-        console.log(1)
         router.push({ name: routeNames.places })
       }
       place.value = data[0]
