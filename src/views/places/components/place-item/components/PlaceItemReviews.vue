@@ -1,9 +1,9 @@
 <template>
-  <div class="mt-4">
+  <div class="mt-4 flex flex-wrap justify-between">
     <div
       v-for="item in reviews"
       :key="item.author.id"
-      class="laptop:w-[550px] p-2 w-full mb-4 shadow-2xl  h-[max-content]"
+      class="max-w-[400px] p-2 mb-4 h-[max-content]"
     >
       <div class="flex w-full mb-2">
         <img
@@ -15,7 +15,7 @@
         <div>
           <p class="font-bold">{{ item.author.firstName }}</p>
 
-          <p class="text-sm italic">{{ formatDate(item.createdAt) }}</p>
+          <p class="text-sm text-gray-500">{{ formatDate(item.createdAt) }}</p>
         </div>
       </div>
 

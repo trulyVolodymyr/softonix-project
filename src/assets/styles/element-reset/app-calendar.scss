@@ -1,6 +1,6 @@
 .el-range {
   &-editor.el-input__wrapper {
-    @apply border-black rounded-none
+    @apply border-black rounded-none p-0
   }
 }
 
@@ -9,4 +9,19 @@
     inset: 734px auto auto -160px !important;
   }
   @apply laptop:scale-100 scale-[0.4] 
+}
+
+.el-date-editor .el-range-separator{
+ @apply text-white h-8 bg-white transition-all duration-300 border-x
+}
+.el-range-editor.is-active{
+  .el-range-separator{
+    @apply border-x-black
+  }
+}
+.el-date-editor .el-range-input{
+  @apply text-xs text-left px-2 w-[110px]
+}
+.el-date-editor .el-range__icon{
+  @apply hidden
 }

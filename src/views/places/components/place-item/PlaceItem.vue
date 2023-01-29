@@ -16,34 +16,22 @@
     <div v-if="!edit && !create">
       <PlaceItemHeader :place="place" />
 
-      <div class="desktop:flex justify-between">
-        <div>
+      <div class="flex">
+        <PlaceItemReserve :reservedDates="place?.reserved_dates" />
+        <div class="w-full">
           <PlaceItemSlider :photos="place.photos" />
-
-          <div class="desktop:ml-4 desktop:hidden block laptop:flex h-max mt-4 laptop:ml-4 ml-0">
+          <div class="mt-10 flex border-b border-b-gray">
             <PlaceItemInfo
               :essentials="place.essentials"
               :features="place.features"
               :amenitiesLocation="place.amenities_location"
               :safety="place.safety"
             />
-            <PlaceItemReserve :reservedDates="place?.reserved_dates" class=" desktop:hidden" />
+            <PlaceItemMap :location="place.location" />
           </div>
-
           <PlaceItemReviews :reviews="place.reviews" />
         </div>
-
-        <div class="desktop:ml-4 sticky desktop:block hidden top-1 h-max mb-4">
-          <PlaceItemInfo
-            :essentials="place.essentials"
-            :features="place.features"
-            :amenitiesLocation="place.amenities_location"
-            :safety="place.safety"
-          />
-          <PlaceItemReserve :reservedDates="place?.reserved_dates" class=" desktop:hidden" />
-        </div>
       </div>
-      <PlaceItemMap :location="place.location" />
     </div>
   </div>
 

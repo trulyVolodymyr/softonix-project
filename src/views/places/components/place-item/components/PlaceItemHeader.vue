@@ -1,16 +1,24 @@
 <template>
-  <h3 class="laptop:text-xl font-bold mb-1">{{ place?.name }}</h3>
+  <h3 class="text-3xl font-bold mb-10">{{ place?.name }}</h3>
 
-  <div class="flex space-x-5 mb-1">
-    <p class="text-xs laptop:text-base">{{ place?.address }}</p>
-
-    <p v-if="place?.reviews" class="text-xs laptop:text-base">{{ place.reviews?.length }} reviews</p>
-
-    <div class="flex items-center space-x-1">
-      <IconStar v-if="place?.stars" /><p class="text-xs laptop:text-base">{{ place?.stars }}</p>
+  <div class="flex justify-between mb-5">
+    <div class="text-sm flex space-x-1">
+      <p> {{ place.address }}</p>
+      <p>|</p>
+      <p>&#9733; {{ place.stars }}</p>
+      <p>|</p>
+      <p class="border-b border-black"> {{ place.reviews?.length }} reviews</p>
+    </div>
+    <div class="flex text-sm space-x-2">
+      <p>{{ placeInfo[0] }}</p>
+      <p>|</p>
+      <p>{{ placeInfo[1] }}</p>
+      <p>|</p>
+      <p>{{ placeInfo[2] }}</p>
+      <p>|</p>
+      <p>{{ placeInfo[3] }}</p>
     </div>
   </div>
-  <p class="pb-4 mb-3 text-xs laptop:text-base"> {{ placeInfo }}</p>
 </template>
 
 <script lang='ts' setup>
@@ -19,18 +27,30 @@ const props = defineProps<{
 }>()
 
 const placeInfo = computed(() => {
-  let text = ''
+  const text = []
   if (props.place) {
     if (props.place.numberOfGuests > 1) {
-      text += `${props.place.numberOfGuests} guests /`
+      text.push(`${props.place.numberOfGuests} guests`)
     } else {
-      text += `${props.place.numberOfGuests} guest /`
+      text.push(`${props.place.numberOfGuests} guest`)
+    }
+
+    if (props.place.bedrooms > 1) {
+      text.push(` ${props.place.bedrooms} bedrooms`)
+    } else {
+      text.push(` ${props.place.bedrooms} bedroom`)
     }
 
     if (props.place.beds > 1) {
-      text += ` ${props.place.beds} beds /`
+      text.push(` ${props.place.beds} beds`)
     } else {
-      text += ` ${props.place.beds} bed /`
+      text.push(` ${props.place.beds} bed`)
+    }
+
+    if (props.place.bathrooms > 1) {
+      text.push(` ${props.place.bathrooms} bathrooms`)
+    } else {
+      text.push(` ${props.place.bathrooms} bathroom`)
     }
   }
 

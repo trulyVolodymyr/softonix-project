@@ -22,7 +22,7 @@
         <p class="font-bold text-xs">$ {{ price.toLocaleString() }}<span class="font-normal"> night</span></p>
 
         <div v-if="stars" class="flex items-center space-x-1 ml-2">
-          <IconStar /><p class="text-xs">{{ stars }}</p>
+          <p class="text-xs">&#9733; {{ stars }}</p>
         </div>
       </div>
     </div>

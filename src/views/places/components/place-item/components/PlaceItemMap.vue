@@ -3,8 +3,7 @@
     :center="location"
     :zoom="6"
     map-type-id="terrain"
-    class="shadow-2xl w-full h-[296px]"
-    lang="ua"
+    class="shadow-2xl w-full h-[300px]"
   >
     <GMapMarker :position="location" />
   </GMapMap>
