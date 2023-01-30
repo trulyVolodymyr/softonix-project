@@ -1,15 +1,15 @@
 <template>
   <h3 class="text-3xl font-bold mb-10">{{ place?.name }}</h3>
 
-  <div class="tablet:flex block justify-between mb-5">
-    <div class="tablet:text-sm text-[9px] flex space-x-1">
+  <div class="laptop:flex block justify-between mb-5">
+    <div class="laptop:text-sm text-[9px] flex space-x-1">
       <p> {{ place.address }}</p>
       <p>|</p>
       <p>&#9733; {{ place.stars }}</p>
       <p>|</p>
       <p class="border-b border-black"> {{ place.reviews?.length }} reviews</p>
     </div>
-    <div class="flex tablet:text-sm text-[9px] space-x-2">
+    <div class="flex laptop:text-sm text-[9px] space-x-2">
       <p>{{ placeInfo[0] }}</p>
       <p>|</p>
       <p>{{ placeInfo[1] }}</p>
