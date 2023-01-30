@@ -29,6 +29,7 @@ module.exports = {
       screens: {
         tablet: '550px',
         laptop: '770px',
+        'laptop-wide': '950px',
         desktop: '1180px'
       }
     }

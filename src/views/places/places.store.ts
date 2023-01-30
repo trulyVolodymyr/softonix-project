@@ -14,6 +14,7 @@ export const usePlacesStore = defineStore('placesStore', () => {
   const end = ref<number>(19)
   const priceSort = ref<number>(0)
   const filteredLength = ref<number>(0)
+  const adaptiveFilters = ref<boolean>(false)
 
   const placesShowed = computed(() => {
     if (placesFiltered.value.length) {
@@ -163,6 +164,7 @@ export const usePlacesStore = defineStore('placesStore', () => {
     end,
     priceSort,
     placesShowed,
-    sortByName
+    sortByName,
+    adaptiveFilters
   }
 })

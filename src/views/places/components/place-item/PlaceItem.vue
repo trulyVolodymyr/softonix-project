@@ -17,15 +17,19 @@
       <PlaceItemHeader :place="place" />
 
       <div class="flex">
-        <PlaceItemReserve :reservedDates="place?.reserved_dates" />
+        <PlaceItemReserve :reservedDates="place?.reserved_dates" class="laptop-wide:flex hidden" />
         <div class="w-full">
           <PlaceItemSlider :photos="place.photos" />
-          <div class="mt-10 flex border-b border-b-gray">
+          <div class="mt-10 desktop:flex block border-b border-b-gray pb-5">
             <PlaceItemInfo
               :essentials="place.essentials"
               :features="place.features"
               :amenitiesLocation="place.amenities_location"
               :safety="place.safety"
+            />
+            <PlaceItemReserve
+              :reservedDates="place?.reserved_dates"
+              class="laptop-wide:hidden flex mr-0 mb-6 min-w-[280px]"
             />
             <PlaceItemMap :location="place.location" />
           </div>

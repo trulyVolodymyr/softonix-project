@@ -1,8 +1,11 @@
 <template>
-  <div class="mb-5">
+  <div>
     <h3 class="text-xl font-bold mb-3">What this place offers:</h3>
 
-    <div v-for="type,index in placeInfo" :key="index" class="font-bold text-sm mb-4">
+    <div
+      v-for="type,index in placeInfo" :key="index"
+      class="font-bold text-sm mb-4"
+    >
       <p class="mb-1 text-lg">{{ type[0] }}</p>
       <div class="flex flex-wrap">
         <p

@@ -78,16 +78,19 @@
         <p class="mt-1 text-xs text-gray-400 text-center">You will NOT be charged for reservation</p>
       </div>
     </div>
+
     <el-dialog
       v-model="dialogUserIsAuth"
       append-to-body
+      width="500px"
     >
       <span>You successfully ordered this place!</span>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="handleClose">Okay</el-button>
-          <el-button type="primary" @click="goToOrders">
-            Check my orders
+
+          <el-button type="primary">
+            <router-link :to="{name:$routeNames.orders}">Go to orders</router-link>
           </el-button>
         </span>
       </template>
@@ -96,6 +99,7 @@
     <el-dialog
       v-model="dialogUserIsNotAuth"
       append-to-body
+      width="500px"
     >
       <p>You cant order palce.</p>
       <p>Login to continue.</p>
@@ -103,8 +107,9 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="handleClose">Back</el-button>
-          <el-button type="primary" @click="goToOrders">
-            Go to  Login
+
+          <el-button type="primary">
+            <router-link :to="{name:$routeNames.login}">Go to login</router-link>
           </el-button>
         </span>
       </template>
@@ -113,7 +118,6 @@
 </template>
 
 <script lang='ts' setup>
-import { routeNames, router } from '@/router'
 
 const placeItemStore = usePlaceItemStore()
 const { place, guests } = storeToRefs(placeItemStore)
@@ -203,10 +207,4 @@ function handleClose () {
   dialogUserIsNotAuth.value = false
 }
 
-function goToOrders () {
-  if (dialogUserIsAuth.value) {
-    return router.push({ name: routeNames.orders })
-  }
-  router.push({ name: routeNames.login })
-}
 </script>

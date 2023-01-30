@@ -1,15 +1,15 @@
 <template>
   <div class="flex justify-end mb-6 space-x-3">
-    <div class="laptop:hidden self-end mr-auto">
-      <el-button class="app-button" @click="toggleFilters">Filters</el-button>
+    <div class="laptop:hidden self-end mr-auto mb-6 ">
+      <div class="py-3 pr-3 bg-white z-50 fixed w-full mt-[-8px]">
+        <el-button class="app-button" @click="toggleFilters">Filters</el-button>
+      </div>
     </div>
-
-    <PlacesSort />
   </div>
 
   <div class="laptop:flex">
     <Transition>
-      <Filters v-if="adaptiveFilters" />
+      <Filters v-if="adaptiveFilters" class=" overflow-hidden z-50 bg-white mb-10" />
     </Transition>
 
     <Filters class="hidden laptop:block" />
@@ -47,14 +47,13 @@ const generalStore = useGeneralStore()
 const { loading } = storeToRefs(generalStore)
 const {
   places, maxlength, placesFiltered, startFiltered, endFiltered, url, filteredLength,
-  noPlaces, start, end, priceSort, placesShowed
+  noPlaces, start, end, priceSort, placesShowed, adaptiveFilters
 } = storeToRefs(placesStore)
 const { max, min, priceRange } = storeToRefs(filterStore)
 const { getChank, getLength, getFiltered, getPrices, sortByName } = usePlacesStore()
 
 const trigger = ref<Element>()
 const loadingChunck = ref<boolean>(false)
-const adaptiveFilters = ref<boolean>(false)
 
 function loadItems () {
   if (start.value !== 0 || startFiltered.value !== 0) loadingChunck.value = true

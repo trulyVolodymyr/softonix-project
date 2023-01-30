@@ -1,11 +1,11 @@
 <template>
   <div class="w-full">
-    <h3 class="mb-4">This place has a maximum of {{ place?.numberOfGuests }} guests</h3>
+    <h3 class="mb-4">Maximum: {{ place?.numberOfGuests }} guests</h3>
 
     <div class="flex justify-between w-full mb-4">
-      <div>
-        <p class=" text-sm font-bold">Adults</p>
-        <p class=" text-sm ">Age +13</p>
+      <div class="mr-2">
+        <p class="text-xs font-bold">Adults</p>
+        <p class="text-xs ">Age +13</p>
       </div>
 
       <div>
@@ -14,9 +14,9 @@
     </div>
 
     <div class="flex justify-between w-full mb-4">
-      <div>
-        <p class=" text-sm font-bold">Children</p>
-        <p class=" text-sm ">Ages 2–12</p>
+      <div class="mr-2">
+        <p class="text-xs font-bold">Children</p>
+        <p class="text-xs ">Ages 2–12</p>
       </div>
 
       <div>
@@ -26,8 +26,8 @@
 
     <div class="flex justify-between w-full">
       <div>
-        <p class=" text-sm font-bold">Infants</p>
-        <p class=" text-sm ">Under 2</p>
+        <p class="text-xs font-bold">Infants</p>
+        <p class="text-xs ">Under 2</p>
       </div>
 
       <div>

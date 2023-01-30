@@ -1,5 +1,8 @@
 .el-slider {
   &__bar {
-    @apply bg-gray-500
+    @apply bg-black
+  }
+  &__button{
+    @apply bg-black
   }
 }

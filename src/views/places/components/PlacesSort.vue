@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <p class="text-xs">Sort by price</p>
+  <div class="mb-2">
+    <p class="mb-1">Sort by price</p>
     <el-select v-model="priceSort" class="w-[150px]">
       <el-option
         v-for="item in sortPriceOptions"
