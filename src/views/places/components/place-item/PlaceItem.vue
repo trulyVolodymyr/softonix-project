@@ -85,7 +85,7 @@ function deletePlace () {
       .then(() => {
         ElNotification({
           title: 'Success',
-          message: 'Successfyly deleted place',
+          message: 'Successfuly deleted place',
           type: 'success'
         })
       }).catch((e) => {
