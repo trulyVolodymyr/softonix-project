@@ -1,5 +1,7 @@
 <template>
-  <el-button class="app-button mb-4" @click="routeBack">Back</el-button>
+  <el-button class="app-button mb-4">
+    <router-link :to="{name:$routeNames.places}">Back</router-link>
+  </el-button>
   <div class="pb-5">
     <el-scrollbar>
       <el-table :data="orderInfo" class="w-full">
@@ -32,17 +34,12 @@
 </template>
 
 <script lang='ts' setup>
-import { router } from '@/router'
 import { orderService } from './orders.service'
 
 const authStore = useAuthStore()
 const { userId } = storeToRefs(authStore)
 
 const orderInfo = ref<IOrder[]>()
-
-function routeBack () {
-  router.back()
-}
 
 onMounted(async () => {
   await orderService.getOrder(userId.value)

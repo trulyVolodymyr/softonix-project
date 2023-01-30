@@ -1,7 +1,9 @@
 <template>
   <div v-if="place" v-loading="loading">
     <div class="flex justify-between">
-      <el-button v-if="!edit && !create" class="app-button mb-4" @click="router.back()">Back</el-button>
+      <el-button v-if="!edit && !create" class="app-button mb-4">
+        <router-link :to="{name:$routeNames.places}">Back</router-link>
+      </el-button>
       <PlaceItemAdmin />
     </div>
 
