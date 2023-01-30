@@ -10,10 +10,8 @@
     from = "/*"
     to = "/index.html"
     status = 200
+  headers = { X-From = "https://pcdokqjfsewijuqgscrk.supabase.co", X-Api-Key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBjZG9rcWpmc2V3aWp1cWdzY3JrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzM2MTc1MTQsImV4cCI6MTk4OTE5MzUxNH0.1GFbU44f6Cyy9STK755xd5RA-2G0c8OxDVevjvxDbDQ" }
 
-  [redirects.headers]
-    X-From = "https://pcdokqjfsewijuqgscrk.supabase.co"
-    X-Api-Key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBjZG9rcWpmc2V3aWp1cWdzY3JrIiwicm9sZSI6ImFub24iLCJpYXQiOjE2NzM2MTc1MTQsImV4cCI6MTk4OTE5MzUxNH0.1GFbU44f6Cyy9STK755xd5RA-2G0c8OxDVevjvxDbDQ"
 
   ## (optional) Settings for Netlify Dev
   ## https://github.com/netlify/cli/blob/main/docs/netlify-dev.md#project-detection
