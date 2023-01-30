@@ -1,4 +1,5 @@
 <template>
+  <h1>vova</h1>
   <div class="flex justify-end mb-6 space-x-3">
     <div class="laptop:hidden self-end mr-auto mb-6 ">
       <div class="py-3 pr-3 bg-white z-50 fixed w-full mt-[-8px]">
