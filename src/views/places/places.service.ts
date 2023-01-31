@@ -11,10 +11,6 @@ class PlacesService {
     return useHttp.get(http, { headers: { Range: range } })
   }
 
-  getFilteredLength (http: string) {
-    return useHttp.get(http)
-  }
-
   getPrice () {
     return useHttp.get('/rest/v1/places?select=pricing')
   }

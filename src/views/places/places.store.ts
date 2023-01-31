@@ -13,8 +13,8 @@ export const usePlacesStore = defineStore('placesStore', () => {
   const start = ref<number>(0)
   const end = ref<number>(19)
   const priceSort = ref<number>(0)
-  const filteredLength = ref<number>(0)
   const adaptiveFilters = ref<boolean>(false)
+  const noMoreFiltered = ref<boolean>(false)
 
   const placesShowed = computed(() => {
     if (placesFiltered.value.length) {
@@ -114,25 +114,26 @@ export const usePlacesStore = defineStore('placesStore', () => {
   function getPrices () {
     return placesService.getPrice()
   }
-  function getFilteredLength (http: string) {
-    return placesService.getFilteredLength(http)
-  }
 
   function getFiltered (http: string, range: string) {
     noPlaces.value = false
 
     if (url.value.length !== 64) {
       loading.value = true
+
       return placesService.getFiltered(http, range)
         .then(data => {
+          if (!data.length) {
+            noMoreFiltered.value = true
+          }
+
           placesFiltered.value.push(...data)
+
           loading.value = false
+
           if (!placesFiltered.value.length) {
             noPlaces.value = true
           }
-
-          getFilteredLength(http.replace('*', 'id'))
-            .then(data => (filteredLength.value = data.length))
         })
         .finally(() => {
           startFiltered.value += 20
@@ -154,19 +155,19 @@ export const usePlacesStore = defineStore('placesStore', () => {
     getLength,
     getFiltered,
     getPrices,
+    sortByName,
     places,
     placesFiltered,
     maxlength,
     startFiltered,
     endFiltered,
     url,
-    filteredLength,
     noPlaces,
     start,
     end,
     priceSort,
     placesShowed,
-    sortByName,
-    adaptiveFilters
+    adaptiveFilters,
+    noMoreFiltered
   }
 })

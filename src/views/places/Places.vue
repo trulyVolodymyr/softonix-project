@@ -46,8 +46,9 @@ const generalStore = useGeneralStore()
 
 const { loading } = storeToRefs(generalStore)
 const {
-  places, maxlength, placesFiltered, startFiltered, endFiltered, url, filteredLength,
-  noPlaces, start, end, priceSort, placesShowed, adaptiveFilters
+  places, maxlength, placesFiltered, startFiltered, endFiltered, url,
+  noPlaces, start, end, priceSort, placesShowed, adaptiveFilters,
+  noMoreFiltered
 } = storeToRefs(placesStore)
 const { max, min, priceRange } = storeToRefs(filterStore)
 const { getChank, getLength, getFiltered, getPrices, sortByName } = usePlacesStore()
@@ -84,7 +85,9 @@ function loadItems () {
 
 const observer = new IntersectionObserver((entries: any) => {
   if (start.value >= maxlength.value) return
-  if (filteredLength.value > 0 && startFiltered.value >= filteredLength.value) return (loadingChunck.value = false)
+
+  if (noMoreFiltered.value === true) return (loadingChunck.value = false)
+
   entries.forEach((entry: any) => {
     if (entry.isIntersecting) {
       loadItems()
