@@ -38,8 +38,8 @@
 </template>
 
 <script lang='ts' setup>
-const filtersStore = useFiltersStore()
-const { bedrooms, beds, bathrooms } = storeToRefs(filtersStore)
+const placesStore = usePlacesStore()
+const { bedrooms, beds, bathrooms } = storeToRefs(placesStore)
 
 const numberOptions = [
   {

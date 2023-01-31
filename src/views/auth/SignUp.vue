@@ -12,6 +12,7 @@
       >
         <el-form-item class="mb-6" prop="email">
           <el-input
+            ref="firstInput"
             v-model="formModel.email"
             type="email"
             placeholder="Email"
@@ -48,19 +49,19 @@
 </template>
 
 <script lang="ts" setup>
-const router = useRouter()
 const { $routeNames } = useGlobalProperties()
-
 const { register } = useAuthStore()
 
+const router = useRouter()
 const formRef = useElFormRef()
-
 const formModel = useElFormModel({
   email: '',
   password: '',
   passwordRepeat: ''
 })
+
 const loading = ref(false)
+const firstInput = ref<HTMLInputElement>()
 
 const isPasswordRepeats = (rule: any, value: any, callback: any) => {
   if (value === '') {
@@ -104,4 +105,8 @@ function submit () {
   }
   )
 }
+
+onMounted(() => {
+  firstInput.value?.focus()
+})
 </script>

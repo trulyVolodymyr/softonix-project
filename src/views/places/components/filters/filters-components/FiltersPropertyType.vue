@@ -13,9 +13,9 @@
 </template>
 
 <script lang='ts' setup>
-const filtersStore = useFiltersStore()
+const placesStore = usePlacesStore()
 
-const { propertyType } = storeToRefs(filtersStore)
+const { propertyType } = storeToRefs(placesStore)
 
 const propertyTypes = [
   {

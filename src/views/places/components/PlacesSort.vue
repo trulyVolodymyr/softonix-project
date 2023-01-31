@@ -20,16 +20,16 @@ const { priceSort } = storeToRefs(placesStore)
 
 const sortPriceOptions = [
   {
-    value: 0,
+    value: 'none',
     label: 'None',
     disabled: true
   },
   {
-    value: 1,
+    value: 'greaterToLower',
     label: 'Greater price'
   },
   {
-    value: 2,
+    value: 'lowerToGreater',
     label: 'Lower price'
   }
 ]

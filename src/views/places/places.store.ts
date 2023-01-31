@@ -1,5 +1,4 @@
-const filtersStore = useFiltersStore()
-const { max, min, priceRange, roomType, bedrooms, beds, bathrooms, propertyType, amenities } = storeToRefs(filtersStore)
+
 const generalStore = useGeneralStore()
 const { loading } = storeToRefs(generalStore)
 
@@ -12,15 +11,193 @@ export const usePlacesStore = defineStore('placesStore', () => {
   const noPlaces = ref<boolean>(false)
   const start = ref<number>(0)
   const end = ref<number>(19)
-  const priceSort = ref<number>(0)
+  const priceSort = ref<string>('none')
   const adaptiveFilters = ref<boolean>(false)
   const noMoreFiltered = ref<boolean>(false)
+
+  const min = ref<number>(0)
+  const max = ref<number>(0)
+  const priceRange = ref<number[]>([])
+  const roomType = ref<string>('')
+  const bedrooms = ref<number>(0)
+  const beds = ref<number>(0)
+  const bathrooms = ref<number>(0)
+  const propertyType = ref<string>('')
+
+  const amenities = ref({
+    essentials: [],
+    features: [],
+    location: [],
+    safety: []
+  })
 
   const placesShowed = computed(() => {
     if (placesFiltered.value.length) {
       return placesFiltered.value
     }
     return places.value
+  })
+
+  const url1 = computed(() => {
+    const filters = [
+      {
+        queryName: '&bedrooms',
+        model: bedrooms.value,
+        getModifier (bedrooms: any) {
+          return bedrooms < 6 ? '=eq.' : '=gte.'
+        },
+        getQueryWithValue (bedrooms: any) {
+          if (bedrooms === 0) return ''
+
+          return `${this.queryName}${this.getModifier(bedrooms)}${bedrooms}`
+        }
+
+      },
+
+      {
+        queryName: '&beds',
+        model: beds.value,
+        getModifier (beds: any) {
+          return beds < 6 ? '=eq.' : '=gte.'
+        },
+        getQueryWithValue (beds: any) {
+          if (beds === 0) return ''
+
+          return `${this.queryName}${this.getModifier(beds)}${beds}`
+        }
+      },
+
+      {
+        queryName: '&bathrooms',
+        model: bathrooms.value,
+        getModifier (bathrooms: any) {
+          return bathrooms < 6 ? '=eq.' : '=gte.'
+        },
+        getQueryWithValue (bathrooms: any) {
+          if (bathrooms === 0) return ''
+
+          return `${this.queryName}${this.getModifier(bathrooms)}${bathrooms}`
+        }
+      },
+
+      {
+        queryName: '&roomType',
+        model: roomType.value,
+        getModifier (roomType: any) {
+          return roomType ? '=eq.' : ''
+        },
+        getQueryWithValue (roomType: any) {
+          if (!roomType) return ''
+
+          return `${this.queryName}${this.getModifier(roomType)}${roomType}`
+        }
+      },
+
+      {
+        queryName: '&propertyType',
+        model: propertyType.value,
+        getModifier (propertyType: any) {
+          return propertyType ? '=eq.' : ''
+        },
+        getQueryWithValue (propertyType: any) {
+          if (!propertyType) return ''
+
+          return `${this.queryName}${this.getModifier(propertyType)}${propertyType}`
+        }
+      },
+
+      {
+        queryName: '&pricing',
+        model: priceRange.value[0],
+        getModifier (priceRange: any) {
+          return priceRange ? '=gt.' : ''
+        },
+        getQueryWithValue (priceRange: any) {
+          if (priceRange === min.value) return ''
+
+          return `${this.queryName}${this.getModifier(roomType)}${priceRange}`
+        }
+      },
+
+      {
+        queryName: '&pricing',
+        model: priceRange.value[1],
+        getModifier (priceRange: any) {
+          return priceRange ? '=lt.' : ''
+        },
+        getQueryWithValue (priceRange: any) {
+          if (priceRange === max.value) return ''
+
+          return `${this.queryName}${this.getModifier(roomType)}${priceRange}`
+        }
+      },
+
+      {
+        queryName: '&essentials',
+        model: amenities.value.essentials,
+        getModifier (essentials: any) {
+          return essentials.length ? '=ov.' : ''
+        },
+        getQueryWithValue (essentials: any) {
+          if (!essentials.length) return ''
+
+          const addPlusToElems = amenities.value.essentials.map((el: string) => el.replace(' ', '+'))
+
+          return `${this.queryName}${this.getModifier(essentials)}%7B${addPlusToElems.join('%2C')}%7D`
+        }
+      },
+
+      {
+        queryName: '&features',
+        model: amenities.value.features,
+        getModifier (features: any) {
+          return features.length ? '=ov.' : ''
+        },
+        getQueryWithValue (features: any) {
+          if (!features.length) return ''
+
+          const addPlusToElems = amenities.value.features.map((el: string) => el.replace(' ', '+'))
+
+          return `${this.queryName}${this.getModifier(features)}%7B${addPlusToElems.join('%2C')}%7D`
+        }
+      },
+      {
+        queryName: '&amenities_location',
+        model: amenities.value.location,
+        getModifier (location: any) {
+          return location.length ? '=ov.' : ''
+        },
+        getQueryWithValue (location: any) {
+          if (!location.length) return ''
+
+          const addPlusToElems = amenities.value.location.map((el: string) => el.replace(' ', '+'))
+
+          return `${this.queryName}${this.getModifier(location)}%7B${addPlusToElems.join('%2C')}%7D`
+        }
+      },
+
+      {
+        queryName: '&safety',
+        model: amenities.value.safety,
+        getModifier (safety: any) {
+          return safety.length ? '=ov.' : ''
+        },
+        getQueryWithValue (safety: any) {
+          if (!safety.length) return ''
+
+          const addPlusToElems = amenities.value.safety.map((el: string) => el.replace(' ', '+'))
+
+          return `${this.queryName}${this.getModifier(safety)}%7B${addPlusToElems.join('%2C')}%7D`
+        }
+      }
+
+    ]
+
+    const finalUrl = filters.reduce((acc, el) => {
+      return acc + el.getQueryWithValue(el.model)
+    }, `${import.meta.env.VITE_API_URL}/rest/v1/places?select=*`)
+
+    return finalUrl
   })
 
   const url = computed(() => {
@@ -142,10 +319,10 @@ export const usePlacesStore = defineStore('placesStore', () => {
     }
   }
   function sortByName () {
-    if (priceSort.value === 1) {
+    if (priceSort.value === 'greaterToLower') {
       placesShowed.value.sort((a, b) => b.pricing - a.pricing)
     }
-    if (priceSort.value === 2) {
+    if (priceSort.value === 'lowerToGreater') {
       placesShowed.value.sort((a, b) => a.pricing - b.pricing)
     }
   }
@@ -168,6 +345,16 @@ export const usePlacesStore = defineStore('placesStore', () => {
     priceSort,
     placesShowed,
     adaptiveFilters,
-    noMoreFiltered
+    noMoreFiltered,
+    priceRange,
+    roomType,
+    bedrooms,
+    beds,
+    bathrooms,
+    propertyType,
+    amenities,
+    min,
+    max,
+    url1
   }
 })

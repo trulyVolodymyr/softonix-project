@@ -13,8 +13,8 @@
 </template>
 
 <script lang='ts' setup>
-const filtersStore = useFiltersStore()
-const { roomType } = storeToRefs(filtersStore)
+const placesStore = usePlacesStore()
+const { roomType } = storeToRefs(placesStore)
 
 const RoomTypes = [
   {

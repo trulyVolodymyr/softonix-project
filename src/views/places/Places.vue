@@ -1,4 +1,11 @@
 <template>
+  <p class="text-xs">
+    {{ url1 }}
+  </p>
+  <p class="text-xs">
+    {{ url }}
+  </p>
+
   <div class="flex justify-end mb-6 space-x-3">
     <div class="laptop:hidden self-end mr-auto mb-6 ">
       <div class="py-3 pr-3 bg-white z-50 fixed w-full mt-[-8px]">
@@ -18,7 +25,7 @@
       <h2 class="text-center w-full text-lg">No places found...</h2>
     </div>
 
-    <div v-if="!noPlaces" class="w-full">
+    <div v-if="!noPlaces" class="flex-grow">
       <Grid>
         <GridItem
           v-for="place in placesShowed"
@@ -41,16 +48,14 @@
 
 <script lang="ts" setup>
 const placesStore = usePlacesStore()
-const filterStore = useFiltersStore()
 const generalStore = useGeneralStore()
 
 const { loading } = storeToRefs(generalStore)
 const {
   places, maxlength, placesFiltered, startFiltered, endFiltered, url,
   noPlaces, start, end, priceSort, placesShowed, adaptiveFilters,
-  noMoreFiltered
+  noMoreFiltered, max, min, priceRange, url1
 } = storeToRefs(placesStore)
-const { max, min, priceRange } = storeToRefs(filterStore)
 const { getChank, getLength, getFiltered, getPrices, sortByName } = usePlacesStore()
 
 const trigger = ref<Element>()
@@ -71,7 +76,7 @@ function loadItems () {
 
     .then((data: IPlace[]) => {
       places.value.push(...data)
-      if (priceSort.value !== 0) {
+      if (priceSort.value !== 'none') {
         sortByName()
       }
 

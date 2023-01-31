@@ -1,6 +1,6 @@
 <template>
   <div v-loading="loading">
-    <div class="tablet:shadow-2xl">
+    <div class="tablet:shadow-2xl h-[369px]">
       <h3 class="mb-5 text-center text-5 py-5 border-b-[1px]">Login</h3>
 
       <el-form
@@ -12,8 +12,8 @@
       >
         <el-form-item class="mb-6" prop="email">
           <el-input
+            ref="firstInput"
             v-model="formModel.email"
-            size="large"
             type="email"
             placeholder="Email"
           />
@@ -22,7 +22,6 @@
         <el-form-item class="mb-10" prop="password">
           <el-input
             v-model="formModel.password"
-            size="large"
             type="password"
             placeholder="Password"
           />
@@ -30,7 +29,7 @@
 
         <el-button
           native-type="submit"
-          class="w-full app-button"
+          class="w-full app-button mt-14"
           aria-label="Sumbit"
         >
           Submit
@@ -48,18 +47,17 @@
 </template>
 
 <script lang="ts" setup>
-const router = useRouter()
 const { $routeNames } = useGlobalProperties()
-
 const { login } = useAuthStore()
-
+const router = useRouter()
 const formRef = useElFormRef()
-
 const formModel = useElFormModel({
   email: '',
   password: ''
 })
+
 const loading = ref(false)
+const firstInput = ref<HTMLInputElement>()
 
 const formRules = useElFormRules({
   email: [useRequiredRule(), useEmailRule()],
@@ -93,4 +91,7 @@ function submit () {
   )
 }
 
+onMounted(() => {
+  firstInput.value?.focus()
+})
 </script>

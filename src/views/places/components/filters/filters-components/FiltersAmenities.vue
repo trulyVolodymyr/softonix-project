@@ -71,8 +71,8 @@
 </template>
 
 <script lang='ts' setup>
-const filtersStore = useFiltersStore()
-const { amenities } = storeToRefs(filtersStore)
+const placesStore = usePlacesStore()
+const { amenities } = storeToRefs(placesStore)
 
 const essentials = [
   {

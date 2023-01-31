@@ -1,6 +1,6 @@
 <template>
   <div
-    class="laptop:w-[350px] shadow-2xl laptop:shadow-none mb-5 laptop:mb-0 sticky laptop:top-10 top-16
+    class="w-[250px] shadow-2xl laptop:shadow-none mb-5 laptop:mb-0 sticky laptop:top-10 top-16
     laptop:p-0 p-4 laptop:mr-6 h-[450px]"
   >
     <div class="h-[450px] px-1 overflow-y-auto overflow-x-hidden">
@@ -30,17 +30,16 @@
 <script lang='ts' setup>
 const placesStore = usePlacesStore()
 const generalStore = useGeneralStore()
-const filtersStore = useFiltersStore()
 
-const { min, max, priceRange, roomType, propertyType, amenities, bedrooms, beds, bathrooms } = storeToRefs(filtersStore)
 const { top } = storeToRefs(generalStore)
 const { getFiltered } = usePlacesStore()
 const {
-  startFiltered, endFiltered, url, placesFiltered, noPlaces, adaptiveFilters, noMoreFiltered
+  startFiltered, endFiltered, url, placesFiltered, noPlaces, adaptiveFilters, noMoreFiltered,
+  min, max, priceRange, roomType, propertyType, amenities, bedrooms, beds, bathrooms
 } = storeToRefs(placesStore)
 
 function applyFilters () {
-  placesFiltered.value.splice(0, placesFiltered.value.length)
+  placesFiltered.value = []
   startFiltered.value = 0
   endFiltered.value = 19
   top.value?.scrollTo(0, 0)
@@ -52,7 +51,7 @@ function applyFilters () {
 function resetFilters () {
   top.value?.scrollTo(0, 0)
   adaptiveFilters.value = false
-  placesFiltered.value.splice(0, placesFiltered.value.length)
+  placesFiltered.value = []
   priceRange.value[0] = min.value
   priceRange.value[1] = max.value
   roomType.value = propertyType.value = ''

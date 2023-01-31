@@ -33,7 +33,7 @@
 <script lang="ts" setup>
 import IconDollar from '@/components/icons/IconDollar.vue'
 
-const filtersStore = useFiltersStore()
-const { priceRange, min, max } = storeToRefs(filtersStore)
+const placesStore = usePlacesStore()
+const { priceRange, min, max } = storeToRefs(placesStore)
 
 </script>
