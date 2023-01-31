@@ -35,7 +35,7 @@ const { top } = storeToRefs(generalStore)
 const { getFiltered } = usePlacesStore()
 const {
   startFiltered, endFiltered, url, placesFiltered, noPlaces, adaptiveFilters, noMoreFiltered,
-  min, max, priceRange, roomType, propertyType, amenities, bedrooms, beds, bathrooms
+  min, max, allFilters
 } = storeToRefs(placesStore)
 
 function applyFilters () {
@@ -52,11 +52,11 @@ function resetFilters () {
   top.value?.scrollTo(0, 0)
   adaptiveFilters.value = false
   placesFiltered.value = []
-  priceRange.value[0] = min.value
-  priceRange.value[1] = max.value
-  roomType.value = propertyType.value = ''
-  amenities.value.essentials = amenities.value.features = amenities.value.location = amenities.value.safety = []
-  bedrooms.value = beds.value = bathrooms.value = 0
+  allFilters.value.priceRange[0] = min.value
+  allFilters.value.priceRange[1] = max.value
+  allFilters.value.roomType = allFilters.value.propertyType = ''
+  allFilters.value.essentials = allFilters.value.features = allFilters.value.location = allFilters.value.safety = []
+  allFilters.value.bedrooms = allFilters.value.beds = allFilters.value.bathrooms = 0
   noPlaces.value = false
 }
 

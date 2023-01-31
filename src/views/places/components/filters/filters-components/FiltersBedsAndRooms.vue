@@ -2,7 +2,7 @@
   <h3 class="mt-6 font-bold">Beds & rooms</h3>
   <el-form-item class="app-formitem">
     <p class="my-[2px]">Bedrooms</p>
-    <el-select v-model="bedrooms">
+    <el-select v-model="allFilters.bedrooms">
       <el-option
         v-for="item in numberOptions"
         :key="item.value"
@@ -14,7 +14,7 @@
 
   <el-form-item class="app-formitem">
     <p class="my-[2px] w-full">Beds</p>
-    <el-select v-model="beds">
+    <el-select v-model="allFilters.beds">
       <el-option
         v-for="item in numberOptions"
         :key="item.value"
@@ -26,7 +26,7 @@
 
   <el-form-item class="app-formitem">
     <p class="my-[2px]">Bathrooms</p>
-    <el-select v-model="bathrooms">
+    <el-select v-model="allFilters.bathrooms">
       <el-option
         v-for="item in numberOptions"
         :key="item.value"
@@ -39,7 +39,7 @@
 
 <script lang='ts' setup>
 const placesStore = usePlacesStore()
-const { bedrooms, beds, bathrooms } = storeToRefs(placesStore)
+const { allFilters } = storeToRefs(placesStore)
 
 const numberOptions = [
   {

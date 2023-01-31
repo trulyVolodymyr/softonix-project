@@ -4,7 +4,7 @@
   <el-form-item class="app-formitem">
     <p class="my-[2px]">Essentials</p>
     <el-select
-      v-model="amenities.essentials"
+      v-model="allFilters.essentials"
       multiple
       collapse-tags
       class="app-select"
@@ -21,7 +21,7 @@
   <el-form-item class="app-formitem">
     <p class="my-[2px]">Features</p>
     <el-select
-      v-model="amenities.features"
+      v-model="allFilters.features"
       multiple
       collapse-tags
       class="app-select"
@@ -38,7 +38,7 @@
   <el-form-item class="app-formitem">
     <p class="my-[2px]">Location</p>
     <el-select
-      v-model="amenities.location"
+      v-model="allFilters.location"
       multiple
       collapse-tags
       class="app-select"
@@ -55,7 +55,7 @@
   <el-form-item class="app-formitem">
     <p class="my-[2px] w-full">Safety</p>
     <el-select
-      v-model="amenities.safety"
+      v-model="allFilters.safety"
       multiple
       collapse-tags
       class="app-select"
@@ -72,7 +72,7 @@
 
 <script lang='ts' setup>
 const placesStore = usePlacesStore()
-const { amenities } = storeToRefs(placesStore)
+const { allFilters } = storeToRefs(placesStore)
 
 const essentials = [
   {

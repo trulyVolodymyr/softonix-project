@@ -1,7 +1,7 @@
 <template>
   <el-form-item class="app-formitem">
     <p class="my-[2px]">Room type</p>
-    <el-select v-model="roomType">
+    <el-select v-model="allFilters.roomType">
       <el-option
         v-for="item in RoomTypes"
         :key="item.value"
@@ -14,7 +14,7 @@
 
 <script lang='ts' setup>
 const placesStore = usePlacesStore()
-const { roomType } = storeToRefs(placesStore)
+const { allFilters } = storeToRefs(placesStore)
 
 const RoomTypes = [
   {

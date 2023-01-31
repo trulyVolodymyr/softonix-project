@@ -1,7 +1,7 @@
 <template>
   <el-form-item class="app-formitem">
     <p class="my-[2px]">Property Type</p>
-    <el-select v-model="propertyType">
+    <el-select v-model="allFilters.propertyType">
       <el-option
         v-for="item in propertyTypes"
         :key="item.value"
@@ -15,7 +15,7 @@
 <script lang='ts' setup>
 const placesStore = usePlacesStore()
 
-const { propertyType } = storeToRefs(placesStore)
+const { allFilters } = storeToRefs(placesStore)
 
 const propertyTypes = [
   {

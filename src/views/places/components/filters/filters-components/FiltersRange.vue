@@ -2,7 +2,7 @@
   <h3 class="font-bold">Price range</h3>
   <div class="px-2 my-1">
     <el-slider
-      v-model="priceRange"
+      v-model="allFilters.priceRange"
       range
       :min="min"
       :max="max"
@@ -14,7 +14,7 @@
       <p class="mb-1">Min</p>
 
       <el-input
-        v-model.number="priceRange[0]"
+        v-model.number="allFilters.priceRange[0]"
         :prefix-icon="IconDollar"
       />
     </div>
@@ -23,7 +23,7 @@
       <p class="mb-1">Max</p>
 
       <el-input
-        v-model.number="priceRange[1]"
+        v-model.number="allFilters.priceRange[1]"
         :prefix-icon="IconDollar"
       />
     </div>
@@ -34,6 +34,6 @@
 import IconDollar from '@/components/icons/IconDollar.vue'
 
 const placesStore = usePlacesStore()
-const { priceRange, min, max } = storeToRefs(placesStore)
+const { allFilters, min, max } = storeToRefs(placesStore)
 
 </script>
