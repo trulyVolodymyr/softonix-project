@@ -31,6 +31,7 @@
         <el-button
           native-type="submit"
           class="w-full app-button"
+          aria-label="Sumbit"
         >
           Submit
         </el-button>

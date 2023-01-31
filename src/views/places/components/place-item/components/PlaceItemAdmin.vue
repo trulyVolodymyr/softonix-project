@@ -1,6 +1,6 @@
 <template>
   <el-dropdown v-if="userProfile?.is_admin&& !edit && !create" trigger="click">
-    <el-button class="app-button">Admin actions</el-button>
+    <el-button aria-label="Admin actions" class="app-button">Admin actions</el-button>
     <template #dropdown>
       <el-dropdown-menu>
         <div class="flex flex-col">

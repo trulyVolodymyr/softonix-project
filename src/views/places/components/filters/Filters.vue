@@ -16,13 +16,13 @@
 
       <FiltersAmenities />
       <div class="ml-1 mb-10 mt-6 flex justify-between laptop:hidden ">
-        <el-button class="app-button" @click="applyFilters">Aplly filters</el-button>
-        <el-button class="app-button w-[93px] mr-4" @click="resetFilters">Reset</el-button>
+        <el-button aria-label="Apply filters" class="app-button" @click="applyFilters">Aplly filters</el-button>
+        <el-button aria-label="Reset filters" class="app-button w-[93px] mr-4" @click="resetFilters">Reset</el-button>
       </div>
     </div>
     <div class="ml-1 mb-10 mt-6 hidden justify-between laptop:flex">
-      <el-button class="app-button" @click="applyFilters">Aplly filters</el-button>
-      <el-button class="app-button w-[93px] mr-4" @click="resetFilters">Reset</el-button>
+      <el-button aria-label="Apply filters" class="app-button" @click="applyFilters">Aplly filters</el-button>
+      <el-button aria-label="Reset filters" class="app-button w-[93px] mr-4" @click="resetFilters">Reset</el-button>
     </div>
   </div>
 </template>

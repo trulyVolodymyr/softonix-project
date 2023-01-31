@@ -1,6 +1,6 @@
 <template>
   <router-link class="mb-4" :to="{name:$routeNames.places}">
-    <el-button class="app-button">
+    <el-button aria-label="Back" class="app-button">
       Back
     </el-button>
   </router-link>

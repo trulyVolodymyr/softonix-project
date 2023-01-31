@@ -2,7 +2,7 @@
   <div class="flex justify-end mb-6 space-x-3">
     <div class="laptop:hidden self-end mr-auto mb-6 ">
       <div class="py-3 pr-3 bg-white z-50 fixed w-full mt-[-8px]">
-        <el-button class="app-button" @click="toggleFilters">Filters</el-button>
+        <el-button aria-label="Filters" class="app-button" @click="toggleFilters">Filters</el-button>
       </div>
     </div>
   </div>

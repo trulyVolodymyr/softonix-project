@@ -155,6 +155,7 @@
 
       <div class="mt-6 flex flex-col items-center">
         <el-button
+          aria-label="Submit"
           native-type="submit"
           class="w-[250px] app-button !ml-0"
         >
@@ -162,6 +163,7 @@
         </el-button>
 
         <el-button
+          aria-label="Cancel"
           class="w-[250px] app-button  mt-1"
           @click="close"
         >

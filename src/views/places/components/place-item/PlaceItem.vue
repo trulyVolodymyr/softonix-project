@@ -2,7 +2,7 @@
   <div v-if="place" v-loading="loading">
     <div class="flex justify-between">
       <router-link v-if="!edit && !create" :to="{name:$routeNames.places}">
-        <el-button class="app-button mb-4">
+        <el-button aria-label="Back" class="app-button mb-4">
           Back
         </el-button>
       </router-link>
@@ -52,8 +52,8 @@
 
     <template #footer>
       <span class="dialog-footer">
-        <el-button class="app-button mr-2" @click="deliteDialogVisability = false">No</el-button>
-        <el-button class="app-button" @click="deletePlace">Yes</el-button>
+        <el-button aria-label="No" class="app-button mr-2" @click="deliteDialogVisability = false">No</el-button>
+        <el-button aria-label="Yes" class="app-button" @click="deletePlace">Yes</el-button>
       </span>
     </template>
   </el-dialog>

@@ -34,7 +34,7 @@
           />
         </el-form-item>
 
-        <el-button native-type="submit" class="w-full app-button">Submit</el-button>
+        <el-button native-type="submit" class="w-full app-button" aria-label="Submit">Submit</el-button>
       </el-form>
 
       <h2 class="mt-4 px-5 pb-5 text-sm">

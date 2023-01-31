@@ -29,6 +29,7 @@
           class="w-full"
         >
           <el-button
+            aria-label="Chose guests"
             class="rounded-none h-[30px] w-[110px] hover:bg-white hover:border-black
             focus::bg-white active:bg-white"
           >
@@ -56,7 +57,11 @@
           <p class="text-sm">0 $</p>
         </div>
 
-        <el-button class="app-button w-full mt-4" disabled @click="postOrder">Check out</el-button>
+        <el-button
+          aria-label="Check out" class="app-button w-full mt-4" disabled @click="postOrder"
+        >
+          Check out
+        </el-button>
         <p class="mt-1 text-xs text-gray-400 text-center">You will NOT be charged for reservation</p>
       </div>
 
@@ -76,7 +81,7 @@
           <p class="font-bold text-xl">$ {{ totalPlusFee }}</p>
         </div>
 
-        <el-button class="app-button w-full mt-4" @click="postOrder">Check out</el-button>
+        <el-button aria-label="Check out" class="app-button w-full mt-4" @click="postOrder">Check out</el-button>
         <p class="mt-1 text-xs text-gray-400 text-center">You will NOT be charged for reservation</p>
       </div>
     </div>
@@ -89,10 +94,10 @@
       <span>You successfully ordered this place!</span>
       <template #footer>
         <span class="dialog-footer">
-          <el-button class="app-button mr-2" @click="handleClose">Okay</el-button>
+          <el-button aria-label="Okay" class="app-button mr-2" @click="handleClose">Okay</el-button>
 
           <router-link :to="{name:$routeNames.orders}">
-            <el-button class="app-button">
+            <el-button aria-label="Orders" class="app-button">
               Go to orders
             </el-button>
           </router-link>
@@ -111,10 +116,10 @@
 
       <template #footer>
         <span class="dialog-footer">
-          <el-button class="app- mr-2" @click="handleClose">Back</el-button>
+          <el-button aria-label="Back" class="app- mr-2" @click="handleClose">Back</el-button>
 
           <router-link :to="{name:$routeNames.login}">
-            <el-button class="app-button">
+            <el-button aria-label="Login" class="app-button">
               Go to login
             </el-button>
           </router-link>
