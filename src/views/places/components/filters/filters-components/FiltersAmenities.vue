@@ -126,7 +126,7 @@ const features = [
     label: 'Free parking on premises'
   },
   {
-    value: 'Ski-in/Ski-out',
+    value: 'Crib',
     label: 'Crib'
   },
   {
