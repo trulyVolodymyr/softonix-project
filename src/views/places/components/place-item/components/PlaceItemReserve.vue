@@ -1,5 +1,7 @@
 <template>
-  <div class="min-w-[413px] h-[max-content] border border-black flex justify-center mr-10 shadow-2xl">
+  <div
+    class="min-w-[300px] tablet:min-w-[413px] h-[max-content] border border-black flex justify-center mr-10 shadow-2xl"
+  >
     <div class="w-[280px]">
       <p class="mb-9 pt-[30px] text-2xl">
         <span class="font-bold">$ {{ place?.pricing.toLocaleString() }}</span> night
@@ -82,16 +84,19 @@
     <el-dialog
       v-model="dialogUserIsAuth"
       append-to-body
-      width="500px"
+      width="450px"
     >
       <span>You successfully ordered this place!</span>
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="handleClose">Okay</el-button>
+          <el-button class="app-button mr-2" @click="handleClose">Okay</el-button>
 
-          <el-button type="primary">
-            <router-link :to="{name:$routeNames.orders}">Go to orders</router-link>
-          </el-button>
+          <router-link :to="{name:$routeNames.orders}">
+            <el-button class="app-button">
+              Go to orders
+            </el-button>
+          </router-link>
+
         </span>
       </template>
     </el-dialog>
@@ -99,18 +104,21 @@
     <el-dialog
       v-model="dialogUserIsNotAuth"
       append-to-body
-      width="500px"
+      width="450px"
     >
       <p>You cant order palce.</p>
       <p>Login to continue.</p>
 
       <template #footer>
         <span class="dialog-footer">
-          <el-button @click="handleClose">Back</el-button>
+          <el-button class="app- mr-2" @click="handleClose">Back</el-button>
 
-          <el-button type="primary">
-            <router-link :to="{name:$routeNames.login}">Go to login</router-link>
-          </el-button>
+          <router-link :to="{name:$routeNames.login}">
+            <el-button class="app-button">
+              Go to login
+            </el-button>
+          </router-link>
+
         </span>
       </template>
     </el-dialog>

@@ -1,5 +1,5 @@
 <template>
-  <h3 class="text-3xl font-bold mb-10">{{ place?.name }}</h3>
+  <h3 class="laptop:text-3xl text-xl font-bold mb-10">{{ place?.name }}</h3>
 
   <div class="laptop:flex block justify-between mb-5">
     <div class="laptop:text-sm text-[9px] flex space-x-1">

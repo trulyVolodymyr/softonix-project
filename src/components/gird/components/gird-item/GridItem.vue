@@ -5,7 +5,7 @@
       :autoplay="false"
       trigger="click"
     >
-      <el-carousel-item v-for="item in photos" :key="item.pictureUrl">
+      <el-carousel-item v-for="item in photos" :key="item.thumbnailUrl">
         <img class="object-cover w-full  h-full shrink-0" :src="item.pictureUrl" :alt="item.caption">
       </el-carousel-item>
     </el-carousel>

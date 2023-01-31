@@ -1,9 +1,12 @@
 <template>
   <div v-if="place" v-loading="loading">
     <div class="flex justify-between">
-      <el-button v-if="!edit && !create" class="app-button mb-4">
-        <router-link :to="{name:$routeNames.places}">Back</router-link>
-      </el-button>
+      <router-link v-if="!edit && !create" :to="{name:$routeNames.places}">
+        <el-button class="app-button mb-4">
+          Back
+        </el-button>
+      </router-link>
+
       <PlaceItemAdmin />
     </div>
 
@@ -43,8 +46,9 @@
 
   <el-dialog
     v-model="deliteDialogVisability"
+    width="450px"
   >
-    <p class="text-xl">Are you sure you want to delete this place?</p>
+    <p>Are you sure you want to delete this place?</p>
 
     <template #footer>
       <span class="dialog-footer">

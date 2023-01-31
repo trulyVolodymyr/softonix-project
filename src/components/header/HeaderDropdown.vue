@@ -10,13 +10,17 @@
         </template>
 
         <template v-else>
-          <el-dropdown-item>
-            <router-link :to="{name:$routeNames.login}">Login</router-link>
-          </el-dropdown-item>
+          <router-link :to="{name:$routeNames.login}">
+            <el-dropdown-item>
+              Login
+            </el-dropdown-item>
+          </router-link>
 
-          <el-dropdown-item>
-            <router-link :to="{name:$routeNames.signUp}">Register</router-link>
-          </el-dropdown-item>
+          <router-link :to="{name:$routeNames.signUp}">
+            <el-dropdown-item>
+              Register
+            </el-dropdown-item>
+          </router-link>
         </template>
       </el-dropdown-menu>
     </template>

@@ -131,8 +131,10 @@ export const usePlacesStore = defineStore('placesStore', () => {
             noPlaces.value = true
           }
 
-          getFilteredLength(http.replace('*', 'id')).then(data => (filteredLength.value = data.length))
-        }).finally(() => {
+          getFilteredLength(http.replace('*', 'id'))
+            .then(data => (filteredLength.value = data.length))
+        })
+        .finally(() => {
           startFiltered.value += 20
           endFiltered.value += 20
         })

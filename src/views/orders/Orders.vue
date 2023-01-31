@@ -1,7 +1,10 @@
 <template>
-  <el-button class="app-button mb-4">
-    <router-link :to="{name:$routeNames.places}">Back</router-link>
-  </el-button>
+  <router-link class="mb-4" :to="{name:$routeNames.places}">
+    <el-button class="app-button">
+      Back
+    </el-button>
+  </router-link>
+
   <div class="pb-5">
     <el-scrollbar>
       <el-table :data="orderInfo" class="w-full">
