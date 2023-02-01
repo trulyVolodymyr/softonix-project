@@ -1,7 +1,7 @@
 <template>
   <div v-if="place">
     <div class="flex justify-between">
-      <router-link v-if="!edit && !create" :to="{name:$routeNames.places}">
+      <router-link :to="{name:$routeNames.places}">
         <el-button aria-label="Back" class="app-button mb-4">
           Back
         </el-button>
@@ -12,7 +12,7 @@
       />
     </div>
 
-    <div v-if="!edit && !create">
+    <div>
       <PlaceItemHeader :place="place" />
 
       <div class="flex">
@@ -54,8 +54,6 @@ const generalStore = useGeneralStore()
 const { loading } = storeToRefs(generalStore)
 
 const place = ref<IPlace>()
-const edit = ref<boolean>(false)
-const create = ref<boolean>(false)
 
 function getPlace () {
   const id = route.params.id as string
@@ -65,22 +63,22 @@ function getPlace () {
         router.push({ name: routeNames.places })
       }
       place.value = data[0]
-    }).finally(() => {
+    })
+    .catch((e) => {
+      ElNotification({
+        title: 'Error',
+        message: e.error_description || 'Something went wrong.',
+        type: 'error'
+      })
+    })
+    .finally(() => {
       loading.value = false
     })
 }
 
-watch(edit, (currentValue) => {
-  if (currentValue === false) {
-    getPlace()
-  }
-})
-
 onMounted(() => {
   getPlace()
   loading.value = true
-  create.value = false
-  edit.value = false
 })
 
 onUnmounted(() => {

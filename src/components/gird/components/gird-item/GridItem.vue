@@ -30,7 +30,7 @@
 </template>
 
 <script lang="ts" setup>
-const router = useRouter()
+import { routeNames, router } from '@/router'
 
 const props = defineProps<{
   photos: IGridItemPhoto[]
@@ -64,7 +64,7 @@ const gestsText = computed(() => {
 })
 
 function openPlace () {
-  router.push({ path: `place/${props.id}` })
+  router.push({ name: routeNames.place, params: { id: props.id } })
 }
 
 </script>

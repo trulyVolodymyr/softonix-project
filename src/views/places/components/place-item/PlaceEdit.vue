@@ -16,6 +16,13 @@ const getPlaceItem = () => {
     .then(res => {
       place.value = res[0]
     })
+    .catch((e) => {
+      ElNotification({
+        title: 'Error',
+        message: e.error_description || 'Something went wrong.',
+        type: 'error'
+      })
+    })
     .finally(() => (loading.value = false))
 }
 

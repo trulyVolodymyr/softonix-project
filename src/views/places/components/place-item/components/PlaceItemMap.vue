@@ -8,6 +8,7 @@
     <GMapMarker :position="location" />
   </GMapMap>
 </template>
+
 <script lang='ts' setup>
 defineProps<{
   location: ILocation

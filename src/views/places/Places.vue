@@ -62,6 +62,13 @@ function loadItems () {
       ?.then(() => {
         sortByPrice()
       })
+      .catch((e) => {
+        ElNotification({
+          title: 'Error',
+          message: e.error_description || 'Something went wrong.',
+          type: 'error'
+        })
+      })
       ?.finally(() => (loadingChunck.value = false))
   }
 
@@ -73,6 +80,13 @@ function loadItems () {
       }
       start.value = start.value + addedPlacesPerLoad.value
       end.value = end.value + addedPlacesPerLoad.value
+    })
+    .catch((e) => {
+      ElNotification({
+        title: 'Error',
+        message: e.error_description || 'Something went wrong.',
+        type: 'error'
+      })
     })
     .finally(() => {
       loadingChunck.value = false
@@ -103,6 +117,13 @@ onMounted(() => {
   if (maxlength.value === 0) {
     placesService.getLength()
       .then((data: number[]) => (maxlength.value = data.length))
+      .catch((e) => {
+        ElNotification({
+          title: 'Error',
+          message: e.error_description || 'Something went wrong.',
+          type: 'error'
+        })
+      })
       .finally(() => (loading.value = false))
   }
 
@@ -115,6 +136,13 @@ onMounted(() => {
 
         allFilters.value.priceRange[0] = min.value
         allFilters.value.priceRange[1] = max.value
+      })
+      .catch((e) => {
+        ElNotification({
+          title: 'Error',
+          message: e.error_description || 'Something went wrong.',
+          type: 'error'
+        })
       })
       .finally(() => (loading.value = false))
   }
