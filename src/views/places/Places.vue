@@ -66,16 +66,15 @@ function loadItems () {
   }
 
   placesService.getChank(`${start.value}-${end.value}`)
-
     .then((data: IPlace[]) => {
       places.value.push(...data)
       if (priceSort.value !== 'none') {
         sortByPrice()
       }
-
       start.value = start.value + addedPlacesPerLoad.value
       end.value = end.value + addedPlacesPerLoad.value
-    }).finally(() => {
+    })
+    .finally(() => {
       loadingChunck.value = false
       loading.value = false
     })
@@ -109,7 +108,7 @@ onMounted(() => {
 
   if (trigger.value) observer.observe(trigger.value)
 
-  if (min.value === 0 || max.value === 0) {
+  if (max.value === 0) {
     placesService.getPrice()
       .then((prices) => {
         max.value = Math.max(...prices.map((item: any) => item.pricing)) + 1

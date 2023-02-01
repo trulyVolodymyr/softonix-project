@@ -120,7 +120,7 @@
 
       <template #footer>
         <span class="dialog-footer">
-          <el-button aria-label="Back" class="app- mr-2" @click="handleClose">Back</el-button>
+          <el-button aria-label="Back" class="app- mr-2 app-button" @click="handleClose">Back</el-button>
 
           <router-link :to="{name:$routeNames.login}">
             <el-button aria-label="Login" class="app-button">
@@ -217,8 +217,9 @@ function postOrder () {
           type: 'error'
         })
       })
+  } else {
+    dialogUserIsNotAuth.value = true
   }
-  dialogUserIsNotAuth.value = true
 }
 
 function handleClose () {

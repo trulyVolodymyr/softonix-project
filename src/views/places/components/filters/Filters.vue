@@ -58,6 +58,7 @@ function resetFilters () {
   allFilters.value.essentials = allFilters.value.features = allFilters.value.location = allFilters.value.safety = []
   allFilters.value.bedrooms = allFilters.value.beds = allFilters.value.bathrooms = 0
   noPlaces.value = false
+  noMoreFiltered.value = false
 }
 
 </script>
