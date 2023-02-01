@@ -49,7 +49,7 @@ const {
   noPlaces, start, end, priceSort, placesShowed, adaptiveFilters,
   noMoreFiltered, max, min, allFilters, addedPlacesPerLoad
 } = storeToRefs(placesStore)
-const { getChank, getLength, getFiltered, getPrices, sortByPrice } = usePlacesStore()
+const { getFiltered, sortByPrice } = usePlacesStore()
 
 const trigger = ref<Element>()
 const loadingChunck = ref<boolean>(false)
@@ -65,7 +65,7 @@ function loadItems () {
       ?.finally(() => (loadingChunck.value = false))
   }
 
-  getChank(`${start.value}-${end.value}`)
+  placesService.getChank(`${start.value}-${end.value}`)
 
     .then((data: IPlace[]) => {
       places.value.push(...data)
@@ -101,7 +101,7 @@ onMounted(async () => {
   loading.value = true
 
   if (maxlength.value === 0) {
-    await getLength()
+    await placesService.getLength()
       .then((data: number[]) => (maxlength.value = data.length))
   }
 
@@ -110,7 +110,7 @@ onMounted(async () => {
   if (trigger.value) observer.observe(trigger.value)
 
   if (min.value === 0 || max.value === 0) {
-    const prices = await getPrices()
+    const prices = await placesService.getPrice()
 
     max.value = Math.max(...prices.map((item: any) => item.pricing)) + 1
 

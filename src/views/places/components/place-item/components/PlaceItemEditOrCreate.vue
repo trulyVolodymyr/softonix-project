@@ -1,5 +1,5 @@
 <template>
-  <div v-if="form">
+  <div>
     <el-form
       ref="formRef"
       :model="form"

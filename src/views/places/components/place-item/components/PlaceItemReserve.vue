@@ -164,6 +164,7 @@ const totalSum = computed(() => {
     return numberOfDays.value * place.value.pricing
   }
 })
+
 const totalPlusFee = computed(() => {
   if (serviceFee.value && totalSum.value) {
     return (totalSum.value + serviceFee.value).toLocaleString()

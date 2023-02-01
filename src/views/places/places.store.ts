@@ -16,7 +16,6 @@ export const usePlacesStore = defineStore('placesStore', () => {
   const noMoreFiltered = ref<boolean>(false)
   const min = ref<number>(0)
   const max = ref<number>(0)
-
   const addedPlacesPerLoad = 20
   const baseFilterUrl = `${import.meta.env.VITE_API_URL}/rest/v1/places?select=*`
 
@@ -168,18 +167,6 @@ export const usePlacesStore = defineStore('placesStore', () => {
     return finalUrl
   })
 
-  function getChank (range: string) {
-    return placesService.getChank(range)
-  }
-
-  function getLength () {
-    return placesService.getLength()
-  }
-
-  function getPrices () {
-    return placesService.getPrice()
-  }
-
   function getFiltered (http: string, range: string) {
     noPlaces.value = false
 
@@ -217,10 +204,7 @@ export const usePlacesStore = defineStore('placesStore', () => {
   }
 
   return {
-    getChank,
-    getLength,
     getFiltered,
-    getPrices,
     sortByPrice,
     places,
     placesFiltered,

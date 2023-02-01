@@ -10,13 +10,9 @@
       <PlaceItemAdmin />
     </div>
 
-    <div v-if="create">
-      <PlaceItemEditOrCreate />
-    </div>
+    <PlaceItemEditOrCreate v-if="create" />
 
-    <div v-if="edit">
-      <PlaceItemEditOrCreate :place="place" />
-    </div>
+    <PlaceItemEditOrCreate v-if="edit" :place="place" />
 
     <div v-if="!edit && !create">
       <PlaceItemHeader :place="place" />
