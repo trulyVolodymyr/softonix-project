@@ -1,5 +1,5 @@
 <template>
-  <div v-if="place" v-loading="loading">
+  <div v-if="place">
     <div class="flex justify-between">
       <router-link v-if="!edit && !create" :to="{name:$routeNames.places}">
         <el-button aria-label="Back" class="app-button mb-4">

@@ -49,7 +49,7 @@ const {
   noPlaces, start, end, priceSort, placesShowed, adaptiveFilters,
   noMoreFiltered, max, min, allFilters, addedPlacesPerLoad
 } = storeToRefs(placesStore)
-const { getChank, getLength, getFiltered, getPrices, sortByName } = usePlacesStore()
+const { getChank, getLength, getFiltered, getPrices, sortByPrice } = usePlacesStore()
 
 const trigger = ref<Element>()
 const loadingChunck = ref<boolean>(false)
@@ -60,7 +60,7 @@ function loadItems () {
   if (placesFiltered.value.length) {
     return getFiltered(url.value, `${startFiltered.value}-${endFiltered.value}`)
       ?.then(() => {
-        sortByName()
+        sortByPrice()
       })
       ?.finally(() => (loadingChunck.value = false))
   }
@@ -70,7 +70,7 @@ function loadItems () {
     .then((data: IPlace[]) => {
       places.value.push(...data)
       if (priceSort.value !== 'none') {
-        sortByName()
+        sortByPrice()
       }
 
       start.value = start.value + addedPlacesPerLoad.value

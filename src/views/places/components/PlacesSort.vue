@@ -8,13 +8,13 @@
         :label="item.label"
         :value="item.value"
         :disabled="item.disabled"
-        @click="sortByName"
+        @click="sortByPrice"
       />
     </el-select>
   </div>
 </template>
 <script lang='ts' setup>
-const { sortByName } = usePlacesStore()
+const { sortByPrice } = usePlacesStore()
 const placesStore = usePlacesStore()
 const { priceSort } = storeToRefs(placesStore)
 

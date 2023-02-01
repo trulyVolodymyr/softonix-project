@@ -44,10 +44,9 @@ export const usePlacesStore = defineStore('placesStore', () => {
     const filters: IFiltersItem[] = [
       {
         getQueryWithValue ({ bedrooms }) {
+          if (bedrooms === 0) return ''
           const queryName = '&bedrooms'
           const modifier = bedrooms < 6 ? '=eq.' : '=gte.'
-
-          if (bedrooms === 0) return ''
 
           return `${queryName}${modifier}${bedrooms}`
         }
@@ -55,10 +54,9 @@ export const usePlacesStore = defineStore('placesStore', () => {
 
       {
         getQueryWithValue ({ beds }) {
+          if (beds === 0) return ''
           const queryName = '&beds'
           const modifier = beds < 6 ? '=eq.' : '=gte.'
-
-          if (beds === 0) return ''
 
           return `${queryName}${modifier}${beds}`
         }
@@ -66,10 +64,9 @@ export const usePlacesStore = defineStore('placesStore', () => {
 
       {
         getQueryWithValue ({ bathrooms }) {
+          if (bathrooms === 0) return ''
           const queryName = '&bathrooms'
           const modifier = bathrooms < 6 ? '=eq.' : '=gte.'
-
-          if (bathrooms === 0) return ''
 
           return `${queryName}${modifier}${bathrooms}`
         }
@@ -77,9 +74,9 @@ export const usePlacesStore = defineStore('placesStore', () => {
 
       {
         getQueryWithValue ({ roomType }) {
+          if (!roomType) return ''
           const queryName = '&roomType'
           const modifier = roomType ? '=eq.' : ''
-          if (!roomType) return ''
 
           return `${queryName}${modifier}${roomType}`
         }
@@ -87,10 +84,9 @@ export const usePlacesStore = defineStore('placesStore', () => {
 
       {
         getQueryWithValue ({ propertyType }) {
+          if (!propertyType) return ''
           const queryName = '&propertyType'
           const modifier = propertyType ? '=eq.' : ''
-
-          if (!propertyType) return ''
 
           return `${queryName}${modifier}${propertyType}`
         }
@@ -98,10 +94,9 @@ export const usePlacesStore = defineStore('placesStore', () => {
 
       {
         getQueryWithValue ({ priceRange }) {
+          if (priceRange[0] === min.value) return ''
           const queryName = '&pricing'
           const modifier = priceRange[0] ? '=gt.' : ''
-
-          if (priceRange[0] === min.value) return ''
 
           return `${queryName}${modifier}${priceRange[0]}`
         }
@@ -109,10 +104,9 @@ export const usePlacesStore = defineStore('placesStore', () => {
 
       {
         getQueryWithValue ({ priceRange }) {
+          if (priceRange[1] === max.value) return ''
           const queryName = '&pricing'
           const modifier = priceRange[1] ? '=lt.' : ''
-
-          if (priceRange[1] === max.value) return ''
 
           return `${queryName}${modifier}${priceRange[1]}`
         }
@@ -120,10 +114,9 @@ export const usePlacesStore = defineStore('placesStore', () => {
 
       {
         getQueryWithValue ({ essentials }) {
+          if (!essentials.length) return ''
           const queryName = '&essentials'
           const modifier = essentials.length ? '=ov.' : ''
-
-          if (!essentials.length) return ''
 
           const addPlusToElems = allFilters.essentials.map((el: string) => el.replace(' ', '+'))
 
@@ -133,10 +126,9 @@ export const usePlacesStore = defineStore('placesStore', () => {
 
       {
         getQueryWithValue ({ features }) {
+          if (!features.length) return ''
           const queryName = '&features'
           const modifier = features.length ? '=ov.' : ''
-
-          if (!features.length) return ''
 
           const addPlusToElems = allFilters.features.map((el: string) => el.replace(' ', '+'))
 
@@ -146,10 +138,9 @@ export const usePlacesStore = defineStore('placesStore', () => {
 
       {
         getQueryWithValue ({ location }) {
+          if (!location.length) return ''
           const queryName = '&amenities_location'
           const modifier = location.length ? '=ov.' : ''
-
-          if (!location.length) return ''
 
           const addPlusToElems = allFilters.location.map((el: string) => el.replace(' ', '+'))
 
@@ -159,10 +150,9 @@ export const usePlacesStore = defineStore('placesStore', () => {
 
       {
         getQueryWithValue ({ safety }) {
+          if (!safety.length) return ''
           const queryName = '&safety'
           const modifier = safety.length ? '=ov.' : ''
-
-          if (!safety.length) return ''
 
           const addPlusToElems = allFilters.safety.map((el: string) => el.replace(' ', '+'))
 
@@ -217,7 +207,7 @@ export const usePlacesStore = defineStore('placesStore', () => {
     }
   }
 
-  function sortByName () {
+  function sortByPrice () {
     if (priceSort.value === 'greaterToLower') {
       placesShowed.value.sort((a, b) => b.pricing - a.pricing)
     }
@@ -231,7 +221,7 @@ export const usePlacesStore = defineStore('placesStore', () => {
     getLength,
     getFiltered,
     getPrices,
-    sortByName,
+    sortByPrice,
     places,
     placesFiltered,
     maxlength,
