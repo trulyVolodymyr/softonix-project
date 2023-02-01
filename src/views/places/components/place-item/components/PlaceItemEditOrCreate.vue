@@ -165,7 +165,7 @@
         <el-button
           aria-label="Cancel"
           class="w-[250px] app-button  mt-1"
-          @click="close"
+          @click="$emit('close')"
         >
           Cancel
         </el-button>
@@ -177,19 +177,19 @@
 <script lang='ts' setup>
 import { router, routeNames } from '@/router'
 
-const placeItemStore = usePlaceItemStore()
+const props = defineProps<{
+  place?: IPlace
+  create: boolean
+  edit: boolean
+}>()
 
-const { create, edit } = storeToRefs(placeItemStore)
+const emits = defineEmits(['close'])
 
 const isRulseActive = computed(() => {
   if (!props.place) {
     return formRules
   }
 })
-
-const props = defineProps<{
-  place?: IPlace
-}>()
 
 const formRef = useElFormRef()
 
@@ -416,9 +416,8 @@ function submit () {
               type: 'error'
             })
           })
-          .finally(() => {
-            create.value = false
-            edit.value = false
+          .then(() => {
+            emits('close')
           })
       }
     }
@@ -441,15 +440,11 @@ function submit () {
           message: e.error_description || 'Something went wrong.',
           type: 'error'
         })
-      }).finally(() => {
-        create.value = false
-        edit.value = false
+      })
+      .then(() => {
+        emits('close')
       })
   }
-}
-function close () {
-  edit.value = false
-  create.value = false
 }
 
 onMounted(() => {

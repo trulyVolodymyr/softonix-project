@@ -7,18 +7,39 @@
         </el-button>
       </router-link>
 
-      <PlaceItemAdmin />
+      <PlaceItemAdmin
+        :place="place"
+        :create="create"
+        :edit="edit"
+        @openEdit="edit = true"
+        @openCreate="create = true"
+      />
     </div>
 
-    <PlaceItemEditOrCreate v-if="create" />
+    <PlaceItemEditOrCreate
+      v-if="create"
+      :create="create"
+      :edit="edit"
+      @close="edit = create = false"
+    />
 
-    <PlaceItemEditOrCreate v-if="edit" :place="place" />
+    <PlaceItemEditOrCreate
+      v-if="edit"
+      :create="create"
+      :edit="edit"
+      :place="place"
+      @close="edit = create = false"
+    />
 
     <div v-if="!edit && !create">
       <PlaceItemHeader :place="place" />
 
       <div class="flex">
-        <PlaceItemReserve :reservedDates="place?.reserved_dates" class="laptop-wide:flex hidden" />
+        <PlaceItemReserve
+          :place="place"
+          :reservedDates="place?.reserved_dates"
+          class="laptop-wide:flex hidden"
+        />
         <div class="w-full">
           <PlaceItemSlider :photos="place.photos" />
           <div class="mt-10 desktop:flex block border-b border-b-gray pb-5">
@@ -29,6 +50,7 @@
               :safety="place.safety"
             />
             <PlaceItemReserve
+              :place="place"
               :reservedDates="place?.reserved_dates"
               class="laptop-wide:hidden flex mr-0 mb-6 min-w-[280px]"
             />
@@ -40,19 +62,6 @@
     </div>
   </div>
 
-  <el-dialog
-    v-model="deliteDialogVisability"
-    width="450px"
-  >
-    <p>Are you sure you want to delete this place?</p>
-
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button aria-label="No" class="app-button mr-2" @click="deliteDialogVisability = false">No</el-button>
-        <el-button aria-label="Yes" class="app-button" @click="deletePlace">Yes</el-button>
-      </span>
-    </template>
-  </el-dialog>
   <div />
 </template>
 
@@ -60,11 +69,12 @@
 import { routeNames, router } from '@/router'
 
 const route = useRoute()
-const placeItemStore = usePlaceItemStore()
 const generalStore = useGeneralStore()
-
 const { loading } = storeToRefs(generalStore)
-const { place, create, edit, deliteDialogVisability } = storeToRefs(placeItemStore)
+
+const place = ref<IPlace>()
+const edit = ref<boolean>(false)
+const create = ref<boolean>(false)
 
 function getPlace () {
   const id = route.params.id as string
@@ -77,27 +87,6 @@ function getPlace () {
     }).finally(() => {
       loading.value = false
     })
-}
-
-function deletePlace () {
-  if (place.value) {
-    placeItemService.deletePlace(place.value.id)
-      .then(() => {
-        ElNotification({
-          title: 'Success',
-          message: 'Successfuly deleted place',
-          type: 'success'
-        })
-      }).catch((e) => {
-        ElNotification({
-          title: 'Error',
-          message: e.error_description || 'Something went wrong.',
-          type: 'error'
-        })
-      }).finally(() => {
-        router.push({ name: routeNames.places })
-      })
-  }
 }
 
 watch(edit, (currentValue) => {

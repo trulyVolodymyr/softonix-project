@@ -39,7 +39,11 @@
           <template #dropdown>
             <el-dropdown-menu class="place-item-dropdown">
               <el-dropdown-item>
-                <PlaceItemNumberOfGuests />
+                <PlaceItemNumberOfGuests
+                  :place="place"
+                  :guest="guests"
+                  @guests-change="((val:IGuests)=>guests = val)"
+                />
               </el-dropdown-item>
             </el-dropdown-menu>
           </template>
@@ -131,18 +135,21 @@
 </template>
 
 <script lang='ts' setup>
-
-const placeItemStore = usePlaceItemStore()
-const { place, guests } = storeToRefs(placeItemStore)
 const { userProfile } = useAuthStore()
 
 const props = defineProps<{
+  place: IPlace
   reservedDates?: Date[] | null
 }>()
 
 const dialogUserIsAuth = ref<boolean>(false)
 const dialogUserIsNotAuth = ref<boolean>(false)
 const dates = ref<any>(['', ''])
+const guests = ref<IGuests>({
+  adults: 1,
+  children: 0,
+  infants: 0
+})
 
 const numberOfDays = computed(() => {
   if (dates.value) {
@@ -160,8 +167,8 @@ const numberOfGuest = computed(() => {
 })
 
 const totalSum = computed(() => {
-  if (numberOfDays.value && place.value) {
-    return numberOfDays.value * place.value.pricing
+  if (numberOfDays.value && props.place) {
+    return numberOfDays.value * props.place.pricing
   }
 })
 
@@ -187,12 +194,12 @@ const disabledDates = (time: Date) => {
 }
 
 function postOrder () {
-  if (userProfile && place.value) {
+  if (userProfile && props.place) {
     const sum = guests.value.children + guests.value.adults + guests.value.infants
     const order = {
       user_id: userProfile.id,
-      place_id: place.value.id,
-      place_name: place.value.name,
+      place_id: props.place.id,
+      place_name: props.place.name,
       guests: sum,
       dates: dates.value,
       created_at: new Date(),

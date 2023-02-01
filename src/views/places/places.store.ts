@@ -16,7 +16,7 @@ export const usePlacesStore = defineStore('placesStore', () => {
   const noMoreFiltered = ref<boolean>(false)
   const min = ref<number>(0)
   const max = ref<number>(0)
-  const addedPlacesPerLoad = 20
+  const addedPlacesPerLoad = ref<number>(20)
   const baseFilterUrl = `${import.meta.env.VITE_API_URL}/rest/v1/places?select=*`
 
   const allFilters = reactive<IFilters>({
@@ -188,8 +188,8 @@ export const usePlacesStore = defineStore('placesStore', () => {
           }
         })
         .finally(() => {
-          startFiltered.value += addedPlacesPerLoad
-          endFiltered.value += addedPlacesPerLoad
+          startFiltered.value += addedPlacesPerLoad.value
+          endFiltered.value += addedPlacesPerLoad.value
         })
     }
   }

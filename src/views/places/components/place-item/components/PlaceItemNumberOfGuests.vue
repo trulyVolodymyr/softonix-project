@@ -38,17 +38,19 @@
 </template>
 
 <script lang='ts' setup>
+const props = defineProps<{
+  place: IPlace
+  guest: IGuests
+}>()
+
+const emits = defineEmits(['guestsChange'])
+
 const adults = ref(1)
 const children = ref(0)
 const infants = ref(0)
 
-const placeItemStore = usePlaceItemStore()
-const { place, guests } = storeToRefs(placeItemStore)
-
 const numberOfGuests = computed(() => {
-  if (place.value?.numberOfGuests) {
-    return place.value.numberOfGuests
-  }
+  return props.place.numberOfGuests
 })
 
 const adultsMax = ref(numberOfGuests.value)
@@ -66,16 +68,11 @@ const handleChange = () => {
     childrenMax.value = numberOfGuests.value
     infantsMax.value = numberOfGuests.value
   }
-
-  guests.value.adults = adults.value
-  guests.value.children = children.value
-  guests.value.infants = infants.value
+  emits('guestsChange', {
+    adults: adults.value,
+    children: children.value,
+    infants: infants.value
+  })
 }
-
-onMounted(() => {
-  guests.value.adults = 1
-  guests.value.children = 0
-  guests.value.infants = 0
-})
 
 </script>
