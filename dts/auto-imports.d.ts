@@ -215,7 +215,6 @@ declare global {
   const usePageLeave: typeof import('@vueuse/core')['usePageLeave']
   const useParallax: typeof import('@vueuse/core')['useParallax']
   const usePermission: typeof import('@vueuse/core')['usePermission']
-  const usePlaceItemStore: typeof import('../src/views/places/components/place-item/place-item.store')['usePlaceItemStore']
   const usePlacesStore: typeof import('../src/views/places/places.store')['usePlacesStore']
   const usePointer: typeof import('@vueuse/core')['usePointer']
   const usePointerSwipe: typeof import('@vueuse/core')['usePointerSwipe']

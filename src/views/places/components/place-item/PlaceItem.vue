@@ -9,27 +9,8 @@
 
       <PlaceItemAdmin
         :place="place"
-        :create="create"
-        :edit="edit"
-        @openEdit="edit = true"
-        @openCreate="create = true"
       />
     </div>
-
-    <PlaceItemEditOrCreate
-      v-if="create"
-      :create="create"
-      :edit="edit"
-      @close="edit = create = false"
-    />
-
-    <PlaceItemEditOrCreate
-      v-if="edit"
-      :create="create"
-      :edit="edit"
-      :place="place"
-      @close="edit = create = false"
-    />
 
     <div v-if="!edit && !create">
       <PlaceItemHeader :place="place" />

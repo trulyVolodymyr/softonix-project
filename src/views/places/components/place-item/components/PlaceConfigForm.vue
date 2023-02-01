@@ -3,7 +3,7 @@
     <el-form
       ref="formRef"
       :model="form"
-      label-width="120px"
+      label-width="130px"
       :rules="isRulseActive"
       @submit.prevent="submit"
     >
@@ -132,24 +132,13 @@
       </div>
 
       <div class="form-item">
-        <el-form-item label="Photo 1 url" prop="photos">
-          <el-input v-model="form.photos[0].pictureUrl" class="form-input" />
-        </el-form-item>
-
-        <el-form-item label="Photo 2 url" prop="photos">
-          <el-input v-model="form.photos[1].pictureUrl" class="form-input" />
-        </el-form-item>
-
-        <el-form-item label="Photo 3 url" prop="photos">
-          <el-input v-model="form.photos[2].pictureUrl" class="form-input" />
-        </el-form-item>
-
-        <el-form-item label="Photo 4 url" prop="photos">
-          <el-input v-model="form.photos[3].pictureUrl" class="form-input" />
-        </el-form-item>
-
-        <el-form-item label="Photo 5 url" prop="photos">
-          <el-input v-model="form.photos[4].pictureUrl" class="form-input" />
+        <el-form-item
+          v-for="(photo, index) in form.photos"
+          :key="photo.pictureUrl"
+          :label="`Photo ${index + 1} url`"
+          prop="photos"
+        >
+          <el-input v-model="photo.pictureUrl" class="form-input" />
         </el-form-item>
       </div>
 
@@ -165,7 +154,7 @@
         <el-button
           aria-label="Cancel"
           class="w-[250px] app-button  mt-1"
-          @click="$emit('close')"
+          @click="goBack"
         >
           Cancel
         </el-button>
@@ -179,11 +168,7 @@ import { router, routeNames } from '@/router'
 
 const props = defineProps<{
   place?: IPlace
-  create: boolean
-  edit: boolean
 }>()
-
-const emits = defineEmits(['close'])
 
 const isRulseActive = computed(() => {
   if (!props.place) {
@@ -416,9 +401,6 @@ function submit () {
               type: 'error'
             })
           })
-          .then(() => {
-            emits('close')
-          })
       }
     }
     )
@@ -441,9 +423,14 @@ function submit () {
           type: 'error'
         })
       })
-      .then(() => {
-        emits('close')
-      })
+  }
+}
+
+function goBack () {
+  if (props.place) {
+    router.push({ name: routeNames.place, params: { id: props.place.id } })
+  } else {
+    router.push({ name: routeNames.places })
   }
 }
 
@@ -459,11 +446,9 @@ onMounted(() => {
     form.roomType = props.place.roomType
     form.primaryHost = props.place.primaryHost
     form.pricing = props.place.pricing
-    form.photos[0].pictureUrl = props.place.photos[0].pictureUrl
-    form.photos[1].pictureUrl = props.place.photos[1].pictureUrl
-    form.photos[2].pictureUrl = props.place.photos[2].pictureUrl
-    form.photos[3].pictureUrl = props.place.photos[3].pictureUrl
-    form.photos[4].pictureUrl = props.place.photos[4].pictureUrl
+    props.place.photos.forEach((item, index) => {
+      form.photos[index].pictureUrl = item.pictureUrl
+    })
     form.essentials = props.place.essentials
     form.features = props.place.features
     form.safety = props.place.safety

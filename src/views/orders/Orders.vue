@@ -41,11 +41,15 @@ import { orderService } from './orders.service'
 
 const authStore = useAuthStore()
 const { userId } = storeToRefs(authStore)
+const generalStore = useGeneralStore()
+
+const { loading } = storeToRefs(generalStore)
 
 const orderInfo = ref<IOrder[]>()
 
-onMounted(async () => {
-  await orderService.getOrder(userId.value)
+onMounted(() => {
+  loading.value = true
+  orderService.getOrder(userId.value)
     .then(data => (orderInfo.value = data))
     .catch((e) => {
       ElNotification({
@@ -54,5 +58,6 @@ onMounted(async () => {
         type: 'error'
       })
     })
+    .finally(() => (loading.value = false))
 })
 </script>

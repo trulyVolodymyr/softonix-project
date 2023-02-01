@@ -6,7 +6,18 @@
       <el-dropdown-menu>
         <template v-if="accessToken">
           <el-dropdown-item @click="logout"><p>Logout</p></el-dropdown-item>
-          <el-dropdown-item @click="goToOrders">Orders</el-dropdown-item>
+
+          <router-link :to="{name:$routeNames.orders}">
+            <el-dropdown-item>
+              Orders
+            </el-dropdown-item>
+          </router-link>
+
+          <router-link :to="{name:$routeNames.placeCreate}">
+            <el-dropdown-item>
+              Create place
+            </el-dropdown-item>
+          </router-link>
         </template>
 
         <template v-else>
@@ -28,13 +39,8 @@
 </template>
 
 <script lang="ts" setup>
-import { routeNames, router } from '@/router'
-
 const authStore = useAuthStore()
 const { logout } = useAuthStore()
 const { accessToken } = storeToRefs(authStore)
 
-function goToOrders () {
-  router.push({ name: routeNames.orders })
-}
 </script>

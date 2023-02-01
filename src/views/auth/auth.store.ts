@@ -40,9 +40,6 @@ export const useAuthStore = defineStore('authStore', () => {
 
   function register (payload: ILoginRequest) {
     return authService.register(payload)
-      .then((res) => {
-        console.log(res)
-      })
   }
 
   function logout () {

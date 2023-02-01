@@ -26,7 +26,6 @@ instance.interceptors.response.use(
     return res.data
   },
   async error => {
-    console.log(error)
     const { refreshToken, setRefreshToken, setToken, logout, setUserProfile, setUserId } = useAuthStore()
 
     if (error.response.status === 401 && !error.config._isRetried && refreshToken) {

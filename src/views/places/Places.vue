@@ -97,39 +97,28 @@ function toggleFilters () {
   adaptiveFilters.value = !adaptiveFilters.value
 }
 
-onMounted(async () => {
+loadItems()
+
+onMounted(() => {
   loading.value = true
-
   if (maxlength.value === 0) {
-    await placesService.getLength()
+    placesService.getLength()
       .then((data: number[]) => (maxlength.value = data.length))
+      .finally(() => (loading.value = false))
   }
-
-  if (places.value.length) loading.value = false
 
   if (trigger.value) observer.observe(trigger.value)
 
   if (min.value === 0 || max.value === 0) {
-    const prices = await placesService.getPrice()
+    placesService.getPrice()
+      .then((prices) => {
+        max.value = Math.max(...prices.map((item: any) => item.pricing)) + 1
 
-    max.value = Math.max(...prices.map((item: any) => item.pricing)) + 1
-
-    allFilters.value.priceRange[0] = min.value
-    allFilters.value.priceRange[1] = max.value
+        allFilters.value.priceRange[0] = min.value
+        allFilters.value.priceRange[1] = max.value
+      })
+      .finally(() => (loading.value = false))
   }
 })
 
 </script>
-
-<style lang='scss'>
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.3s ease;
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-}
-
-.v-enter-from,
-.v-leave-to {
-  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-}
-</style>

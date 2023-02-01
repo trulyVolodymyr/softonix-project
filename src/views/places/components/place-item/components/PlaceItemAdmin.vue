@@ -1,11 +1,14 @@
 <template>
-  <el-dropdown v-if="userProfile?.is_admin&& !edit && !create" trigger="click">
+  <el-dropdown v-if="userProfile?.is_admin" trigger="click">
     <el-button aria-label="Admin actions" class="app-button">Admin actions</el-button>
     <template #dropdown>
       <el-dropdown-menu>
         <div class="flex flex-col">
-          <el-dropdown-item class="mb-1" @click="$emit('openEdit')">Edit place</el-dropdown-item>
-          <el-dropdown-item class="mb-1" @click="$emit('openCreate')">Create place</el-dropdown-item>
+          <el-dropdown-item
+            class="mb-1" @click="router.push({ name: routeNames.placeEdit })"
+          >
+            Edit place
+          </el-dropdown-item>
           <el-dropdown-item @click="deliteDialogVisability = true">Delete place</el-dropdown-item>
         </div>
       </el-dropdown-menu>
@@ -32,8 +35,6 @@ import { routeNames, router } from '@/router'
 
 const props = defineProps<{
   place: IPlace
-  create: boolean
-  edit: boolean
 }>()
 
 defineEmits(['openEdit', 'openCreate'])

@@ -214,7 +214,6 @@
     "usePageLeave": true,
     "useParallax": true,
     "usePermission": true,
-    "usePlaceItemStore": true,
     "usePlacesStore": true,
     "usePointer": true,
     "usePointerSwipe": true,
