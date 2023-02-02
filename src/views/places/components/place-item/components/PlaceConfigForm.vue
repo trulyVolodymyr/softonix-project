@@ -128,11 +128,11 @@
 
       <div class="form-item gap-5">
         <el-form-item label="Guest" prop="numberOfGuests">
-          <el-input v-model="form.numberOfGuests" :min="1" />
+          <el-input v-model="form.numberOfGuests" :min="1" class="form-input" />
         </el-form-item>
 
         <el-form-item label="Price in $" prop="pricing">
-          <el-input v-model="form.pricing" />
+          <el-input v-model="form.pricing" class="form-input" />
         </el-form-item>
       </div>
 
@@ -323,6 +323,6 @@ onMounted(() => {
 
 <style lang='scss'>
 .form-item{
- @apply flex flex-wrap border-b-[1px] border-black mb-2 pb-5
+ @apply flex flex-wrap border-b-[1px] border-black mb-2 pb-5 flex-col items-center mobile:flex-row mobile:items-start
 }
 </style>
