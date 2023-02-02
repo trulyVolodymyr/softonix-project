@@ -1,6 +1,6 @@
 <template>
   <div
-    class="min-w-[300px] tablet:min-w-[413px] h-[max-content] border border-black flex justify-center mr-10 shadow-2xl"
+    class="min-w-[300px] tablet:min-w-[413px] h-[max-content] flex justify-center mr-10 shadow-2xl"
   >
     <div class="w-[280px]">
       <p class="mb-9 pt-[30px] text-2xl">

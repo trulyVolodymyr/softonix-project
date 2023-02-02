@@ -16,7 +16,7 @@ export const routeGuard = async (
     await setUserProfile()
   }
 
-  if (to.meta.isCreateGuarded && !userProfile?.is_admin) {
+  if (to.meta.isAdminGuarded && !userProfile?.is_admin) {
     return next({ name: placesRouteNames.places })
   }
 

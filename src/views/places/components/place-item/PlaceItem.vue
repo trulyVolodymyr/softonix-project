@@ -19,7 +19,7 @@
         <PlaceItemReserve
           :place="place"
           :reservedDates="place?.reserved_dates"
-          class="laptop-wide:flex hidden"
+          class="laptop-wide:flex hidden sticky top-[25px]"
         />
         <div class="w-full">
           <PlaceItemSlider :photos="place.photos" />
