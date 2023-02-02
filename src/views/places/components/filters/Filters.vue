@@ -1,6 +1,6 @@
 <template>
   <div
-    class="laptop:w-[250px] w-full shadow-2xl laptop:shadow-none mb-5 laptop:mb-0 laptop:sticky  laptop:top-10
+    class="laptop:w-[250px] w-full shadow-2xl laptop:shadow-none mb-5 laptop:mb-0 laptop:sticky  laptop:top-[23px]
     laptop:p-0 laptop:mr-6 laptop:max-h-[65vh] absolute top-[-33px] z-50 bg-white p-0"
   >
     <div class="laptop:max-h-[65vh] overflow-y-auto overflow-x-hidden shadow-2xl p-3 max-h-[fit-content]">
