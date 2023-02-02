@@ -1,9 +1,9 @@
 <template>
   <div
     class="laptop:w-[250px] w-full shadow-2xl laptop:shadow-none mb-5 laptop:mb-0 sticky laptop:top-10 top-16
-    laptop:p-0 p-4 laptop:mr-6 h-[450px]"
+    laptop:p-0 p-4 laptop:mr-6 max-h-[65vh] "
   >
-    <div class="h-[450px] px-1 overflow-y-auto overflow-x-hidden">
+    <div class="max-h-[65vh] overflow-y-auto overflow-x-hidden shadow-2xl p-4">
       <PlacesSort />
 
       <FiltersRange />

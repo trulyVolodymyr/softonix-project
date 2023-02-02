@@ -27,7 +27,8 @@ export const placesRoutes: Array<RouteRecordRaw> = [
   {
     path: 'place/create',
     name: placesRouteNames.placeCreate,
-    component: () => import('@/views/places/components/place-item/PlaceCreate.vue')
+    component: () => import('@/views/places/components/place-item/PlaceCreate.vue'),
+    meta: { isCreateGuarded: true }
   }
 
 ]

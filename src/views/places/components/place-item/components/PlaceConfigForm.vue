@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pb-6">
     <el-form
       ref="formRef"
       :model="form"
@@ -24,17 +24,19 @@
 
       <div class="form-item gap-5">
         <el-form-item label="Bedrooms" prop="bedrooms">
-          <el-input-number v-model="form.bedrooms" class="form-input" />
+          <el-input v-model="form.bedrooms" class="form-input" />
         </el-form-item>
 
         <el-form-item label="Beds" prop="beds">
-          <el-input-number v-model="form.beds" class="form-input" />
+          <el-input v-model="form.beds" class="form-input" />
         </el-form-item>
 
         <el-form-item label="Bathrooms" prop="bathrooms">
-          <el-input-number v-model="form.bathrooms" class="form-input" />
+          <el-input v-model="form.bathrooms" class="form-input" />
         </el-form-item>
+      </div>
 
+      <div class="form-item gap-5">
         <el-form-item label="Property Type" prop="propertyType">
           <el-select v-model="form.propertyType" class="form-input">
             <el-option
@@ -56,7 +58,9 @@
             />
           </el-select>
         </el-form-item>
+      </div>
 
+      <div class="form-item gap-5">
         <el-form-item label="Essentials" prop="essentials">
           <el-select
             v-model="form.essentials"
@@ -124,11 +128,11 @@
 
       <div class="form-item gap-5">
         <el-form-item label="Guest" prop="numberOfGuests">
-          <el-input-number v-model="form.numberOfGuests" :min="1" />
+          <el-input v-model="form.numberOfGuests" :min="1" />
         </el-form-item>
 
         <el-form-item label="Price in $" prop="pricing">
-          <el-input-number v-model="form.pricing" />
+          <el-input v-model="form.pricing" />
         </el-form-item>
       </div>
 
@@ -137,7 +141,7 @@
           v-for="(photo, index) in form.photos"
           :key="photo.pictureUrl"
           :label="`Photo ${index + 1} url`"
-          prop="photos"
+          prop="photo"
         >
           <el-input v-model="photo.pictureUrl" class="form-input" />
         </el-form-item>
@@ -225,17 +229,17 @@ const form = useElFormModel<IPostPlace>({
 })
 
 const formRules = useElFormRules({
-  name: [useRequiredRule()],
-  numberOfGuests: [useRequiredRule()],
-  bedrooms: [useRequiredRule()],
-  beds: [useRequiredRule()],
-  bathrooms: [useRequiredRule()],
+  name: [useRequiredRule(), useMinLenRule(4)],
+  numberOfGuests: [useRequiredRule(), useMinLenRule(1)],
+  bedrooms: [useRequiredRule(), useMinLenRule(1)],
+  beds: [useRequiredRule(), useMinLenRule(1)],
+  bathrooms: [useRequiredRule(), useMinLenRule(1)],
   propertyType: [useRequiredRule()],
   address: [useRequiredRule()],
   roomType: [useRequiredRule()],
   location: [useRequiredRule()],
-  pricing: [useRequiredRule()],
-  photos: [useRequiredRule()],
+  pricing: [useRequiredRule(), useMinLenRule(1)],
+  photo: [useRequiredRule()],
   primaryHost: [useRequiredRule()],
   safety: [useRequiredRule()],
   features: [useRequiredRule()],
@@ -319,6 +323,6 @@ onMounted(() => {
 
 <style lang='scss'>
 .form-item{
- @apply flex flex-wrap border-b-[1px] border-black mb-2 pb-2
+ @apply flex flex-wrap border-b-[1px] border-black mb-2 pb-5
 }
 </style>

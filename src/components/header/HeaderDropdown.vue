@@ -13,7 +13,7 @@
             </el-dropdown-item>
           </router-link>
 
-          <router-link :to="{name:$routeNames.placeCreate}">
+          <router-link v-if="userProfile?.is_admin" :to="{name:$routeNames.placeCreate}">
             <el-dropdown-item>
               Create place
             </el-dropdown-item>
@@ -41,6 +41,6 @@
 <script lang="ts" setup>
 const authStore = useAuthStore()
 const { logout } = useAuthStore()
-const { accessToken } = storeToRefs(authStore)
+const { accessToken, userProfile } = storeToRefs(authStore)
 
 </script>

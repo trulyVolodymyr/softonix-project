@@ -9,7 +9,7 @@
 
   <div class="laptop:flex">
     <Transition>
-      <Filters v-if="adaptiveFilters" class="overflow-hidden z-50 bg-white mb-10 laptop:hidden" />
+      <Filters v-if="adaptiveFilters" class="" />
     </Transition>
 
     <Filters class="hidden laptop:block" />
