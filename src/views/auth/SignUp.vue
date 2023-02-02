@@ -88,7 +88,7 @@ function submit () {
         .then(() => {
           ElNotification({
             title: 'Success',
-            message: 'Successfully registered',
+            message: 'Successfully registered, check your email.',
             type: 'success'
           })
           router.push({ name: $routeNames.login })

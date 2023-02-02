@@ -9,7 +9,7 @@
       </div>
 
       <div>
-        <el-input-number v-model="adults" :min="0" :max="adultsMax" @change="handleChange" />
+        <el-input-number v-model="adults" :min="1" :max="adultsMax" @change="handleChange" />
       </div>
     </div>
 

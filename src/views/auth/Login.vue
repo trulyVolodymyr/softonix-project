@@ -71,11 +71,6 @@ function submit () {
 
       login(formModel)
         .then(() => {
-          ElNotification({
-            title: 'Success',
-            message: 'Successfully loged in',
-            type: 'success'
-          })
           router.push({ name: $routeNames.places })
         })
         .catch((e) => {
