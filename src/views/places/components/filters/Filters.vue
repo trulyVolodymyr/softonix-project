@@ -1,10 +1,10 @@
 <template>
   <div
     class="laptop:w-[250px] w-full shadow-2xl laptop:shadow-none mb-5 laptop:mb-0 laptop:sticky  laptop:top-10
-    laptop:p-0 laptop:mr-6 laptop:max-h-[65vh] absolute top-[-45px] z-50 bg-white p-0"
+    laptop:p-0 laptop:mr-6 laptop:max-h-[65vh] absolute top-[-40px] z-50 bg-white p-0"
   >
     <div class="laptop:max-h-[65vh] overflow-y-auto overflow-x-hidden shadow-2xl p-3 max-h-[fit-content]">
-      <div class="flex justify-end">
+      <div class="flex justify-end laptop:hidden">
         <button
           @click="adaptiveFilters =false"
         >
@@ -29,7 +29,7 @@
     </div>
     <div class="ml-1 mb-10 mt-6 hidden justify-between laptop:flex">
       <el-button aria-label="Apply filters" class="app-button" @click="applyFilters">Aplly filters</el-button>
-      <el-button aria-label="Reset filters" class="app-button w-[93px] mr-4" @click="resetFilters">Reset</el-button>
+      <el-button aria-label="Reset filters" class="app-button w-[93px]" @click="resetFilters">Reset</el-button>
     </div>
   </div>
 </template>

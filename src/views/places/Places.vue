@@ -1,15 +1,13 @@
 <template>
-  <div class="flex justify-end mb-6 space-x-3 laptop:hidden ">
-    <div class="laptop:hidden self-end mr-auto mb-6 pl-2">
-      <div class="bg-white z-50 absolute mt-[5px]">
-        <el-button aria-label="Filters" class="app-button" @click="toggleFilters">Filters</el-button>
-      </div>
+  <div class="laptop:hidden self-end mr-auto mb-6 pl-2">
+    <div class="bg-white z-50 absolute mt-[5px]">
+      <el-button aria-label="Filters" class="app-button" @click="toggleFilters">Filters</el-button>
     </div>
   </div>
 
   <div class="laptop:flex relative">
     <Transition>
-      <Filters v-if="adaptiveFilters" class="" />
+      <Filters v-if="adaptiveFilters" class="laptop:hidden" />
     </Transition>
 
     <Filters class="hidden laptop:block" />
@@ -18,25 +16,42 @@
       <h2 class="text-center w-full text-lg">No places found...</h2>
     </div>
 
-    <div v-show="!adaptiveFilters">
-      <div v-if="!noPlaces" class="flex-grow pt-3 laptop:pt-0">
-        <Grid>
-          <GridItem
-            v-for="place in placesShowed"
-            :id="place.id"
-            :key="place.id"
-            :photos="place.photos"
-            :address="place.address"
-            :stars="place.stars || 0"
-            :price="place.pricing"
-            :beds="place.beds"
-            :guests="place.numberOfGuests"
-          />
-        </Grid>
+    <div v-if="!noPlaces" v-show="!adaptiveFilters" class="flex-grow pt-10 laptop:pt-0 laptop:hidden">
+      <Grid>
+        <GridItem
+          v-for="place in placesShowed"
+          :id="place.id"
+          :key="place.id"
+          :photos="place.photos"
+          :address="place.address"
+          :stars="place.stars || 0"
+          :price="place.pricing"
+          :beds="place.beds"
+          :guests="place.numberOfGuests"
+        />
+      </Grid>
 
-        <div ref="trigger" class="trigger" />
-        <div v-loading="loadingChunck" class="h-10 my-3" />
-      </div>
+      <div ref="trigger" class="trigger" />
+      <div v-loading="loadingChunck" class="h-10 my-3" />
+    </div>
+
+    <div v-if="!noPlaces" class="flex-grow laptop:pt-0 hidden laptop:block">
+      <Grid>
+        <GridItem
+          v-for="place in placesShowed"
+          :id="place.id"
+          :key="place.id"
+          :photos="place.photos"
+          :address="place.address"
+          :stars="place.stars || 0"
+          :price="place.pricing"
+          :beds="place.beds"
+          :guests="place.numberOfGuests"
+        />
+      </Grid>
+
+      <div ref="trigger" class="trigger" />
+      <div v-loading="loadingChunck" class="h-10 my-3" />
     </div>
   </div>
 </template>
