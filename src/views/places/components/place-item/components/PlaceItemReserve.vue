@@ -115,7 +115,7 @@
       append-to-body
       width="450px"
     >
-      <p>You cant order palce.</p>
+      <p>You cant order place.</p>
       <p>Login to continue.</p>
 
       <template #footer>

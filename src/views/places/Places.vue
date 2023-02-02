@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-end mb-6 space-x-3">
+  <div class="flex justify-end mb-6 space-x-3 laptop:hidden">
     <div class="laptop:hidden self-end mr-auto mb-6 ">
       <div class="py-3 pr-3 bg-white z-50 fixed w-full mt-[-8px]">
         <el-button aria-label="Filters" class="app-button" @click="toggleFilters">Filters</el-button>
@@ -9,7 +9,7 @@
 
   <div class="laptop:flex">
     <Transition>
-      <Filters v-if="adaptiveFilters" class=" overflow-hidden z-50 bg-white mb-10" />
+      <Filters v-if="adaptiveFilters" class="overflow-hidden z-50 bg-white mb-10 laptop:hidden" />
     </Transition>
 
     <Filters class="hidden laptop:block" />
