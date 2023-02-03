@@ -34,7 +34,7 @@
 <script lang='ts' setup>
 import { routeNames, router } from '@/router'
 const placesStore = usePlacesStore()
-const { places } = storeToRefs(placesStore)
+const { places, placesFiltered } = storeToRefs(placesStore)
 
 const props = defineProps<{
   place: IPlace
@@ -52,6 +52,7 @@ function deletePlace () {
     placeItemService.deletePlace(props.place.id)
       .then(() => {
         places.value = []
+        placesFiltered.value = []
         ElNotification({
           title: 'Success',
           message: 'Successfuly deleted place',
