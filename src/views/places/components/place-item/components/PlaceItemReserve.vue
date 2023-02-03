@@ -7,7 +7,6 @@
         <span class="font-bold">$ {{ place?.pricing.toLocaleString() }}</span> night
       </p>
 
-      <!-- <p class="underline mb-3">Pick dates to check out this place</p> -->
       <div class="flex items-center mb-7">
         <IconCalendar class="mr-2" />
         <el-date-picker
@@ -135,6 +134,7 @@
 </template>
 
 <script lang='ts' setup>
+
 const { userProfile } = useAuthStore()
 
 const props = defineProps<{

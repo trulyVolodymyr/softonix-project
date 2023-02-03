@@ -14,24 +14,27 @@
       </el-dropdown-menu>
     </template>
   </el-dropdown>
+  <Teleport to="body">
+    <el-dialog
+      v-model="deliteDialogVisability"
+      width="450px"
+    >
+      <p>Are you sure you want to delete this place?</p>
 
-  <el-dialog
-    v-model="deliteDialogVisability"
-    width="450px"
-  >
-    <p>Are you sure you want to delete this place?</p>
-
-    <template #footer>
-      <span class="dialog-footer">
-        <el-button aria-label="No" class="app-button mr-2" @click="deliteDialogVisability = false">No</el-button>
-        <el-button aria-label="Yes" class="app-button" @click="deletePlace">Yes</el-button>
-      </span>
-    </template>
-  </el-dialog>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button aria-label="No" class="app-button mr-2" @click="deliteDialogVisability = false">No</el-button>
+          <el-button aria-label="Yes" class="app-button" @click="deletePlace">Yes</el-button>
+        </span>
+      </template>
+    </el-dialog>
+  </Teleport>
 </template>
 
 <script lang='ts' setup>
 import { routeNames, router } from '@/router'
+const placesStore = usePlacesStore()
+const { places } = storeToRefs(placesStore)
 
 const props = defineProps<{
   place: IPlace
@@ -48,6 +51,7 @@ function deletePlace () {
   if (props.place) {
     placeItemService.deletePlace(props.place.id)
       .then(() => {
+        places.value = []
         ElNotification({
           title: 'Success',
           message: 'Successfuly deleted place',
