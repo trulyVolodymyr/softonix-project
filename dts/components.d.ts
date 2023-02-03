@@ -79,7 +79,7 @@ declare module '@vue/runtime-core' {
     PlaceItemReserveDays: typeof import('./../src/views/places/components/place-item/components/components/PlaceItemReserveDays.vue')['default']
     PlaceItemReviews: typeof import('./../src/views/places/components/place-item/components/PlaceItemReviews.vue')['default']
     PlaceItemSlider: typeof import('./../src/views/places/components/place-item/components/PlaceItemSlider.vue')['default']
-    PlacesSort: typeof import('./../src/views/places/components/PlacesSort.vue')['default']
+    PlacesSort: typeof import('./../src/views/places/components/filters/components/PlacesSort.vue')['default']
     Portal: typeof import('./../src/plugins/portal/Portal.vue')['default']
     PortalTarget: typeof import('./../src/plugins/portal/PortalTarget.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
