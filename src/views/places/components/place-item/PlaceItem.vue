@@ -35,9 +35,9 @@
               :reservedDates="place?.reserved_dates"
               class="laptop-wide:hidden flex mr-0 mb-6 min-w-[280px]"
             />
-            <PlaceItemMap :location="place.location" />
+            <PlaceItemMap v-if="place.location" :location="place.location" />
           </div>
-          <PlaceItemReviews :reviews="place.reviews" />
+          <PlaceItemReviews v-if="place.reviews" :reviews="place.reviews" />
         </div>
       </div>
     </div>
