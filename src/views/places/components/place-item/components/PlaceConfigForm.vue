@@ -9,7 +9,7 @@
       @submit.prevent="submit"
     >
       <div class="form-item gap-5">
-        <el-form-item ref="vova" label="Name" prop="name">
+        <el-form-item label="Name" prop="name">
           <el-input v-model="form.name" class="form-input" />
         </el-form-item>
 
@@ -137,13 +137,20 @@
       </div>
 
       <div class="form-item gap-5">
-        <el-form-item
-          v-for="(photo, index) in form.photos"
-          :key="photo.pictureUrl"
-          :label="`Photo ${index + 1} url`"
-          prop="photo"
-        >
-          <el-input v-model="photo.pictureUrl" class="form-input" />
+        <el-form-item label="Photo 1 url">
+          <el-input v-model="form.photos[0].pictureUrl" class="form-input" />
+        </el-form-item>
+        <el-form-item label="Photo 2 url">
+          <el-input v-model="form.photos[1].pictureUrl" class="form-input" />
+        </el-form-item>
+        <el-form-item label="Photo 3 url">
+          <el-input v-model="form.photos[2].pictureUrl" class="form-input" />
+        </el-form-item>
+        <el-form-item label="Photo 4 url">
+          <el-input v-model="form.photos[3].pictureUrl" class="form-input" />
+        </el-form-item>
+        <el-form-item label="Photo 5 url">
+          <el-input v-model="form.photos[4].pictureUrl" class="form-input" />
         </el-form-item>
       </div>
 
